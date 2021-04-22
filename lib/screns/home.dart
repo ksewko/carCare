@@ -124,33 +124,26 @@ class _HomeState extends State<Home> {
                   color: Colors.blue[900],
                 ),
               ),
-              Row(children: []),
-              FlatButton.icon(
-                onPressed: () async {
-                  dynamic result =
-                      await Navigator.pushNamed(context, '/mechanics');
-                  // setState(() {
-                  //   data = {
-                  //     'time': result['time'],
-                  //     'location': result['location'],
-                  //     'isDaytime': result['isDaytime'],
-                  //     'flag': result['flag'],
-                  //   };
-                  // });
-                },
-                icon: Icon(
-                  Icons.push_pin,
-                  color: Colors.grey[300],
-                ),
-                label: Text('Przypomnienia',
-                    style: TextStyle(
-                      color: Colors.grey[300],
-                    )),
-              ),
-              SizedBox(height: 20.0),
+
+              //Lista przycisków -> odniesień na inne screeny
+              SizedBox(height: 10.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
+                children: [
+                  FlatButton.icon(
+                    onPressed: () async {
+                      dynamic result =
+                          await Navigator.pushNamed(context, '/mechanics');
+                    },
+                    icon: Icon(
+                      Icons.push_pin,
+                      color: Colors.grey[300],
+                    ),
+                    label: Text('Przypomnienia',
+                        style: TextStyle(
+                          color: Colors.grey[300],
+                        )),
+                  ),
                   FlatButton.icon(
                     onPressed: () async {
                       dynamic result =
@@ -167,10 +160,10 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
-              SizedBox(height: 20.0),
+              SizedBox(height: 10.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
+                children: [
                   FlatButton.icon(
                     onPressed: () async {
                       dynamic result =
@@ -185,12 +178,6 @@ class _HomeState extends State<Home> {
                           color: Colors.grey[300],
                         )),
                   ),
-                ],
-              ),
-              SizedBox(height: 20.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
                   FlatButton.icon(
                     onPressed: () async {
                       dynamic result =
@@ -207,7 +194,7 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
-              SizedBox(height: 20.0),
+              SizedBox(height: 10.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
