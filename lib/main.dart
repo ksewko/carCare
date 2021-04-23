@@ -1,36 +1,33 @@
-import 'package:CWCFlutter/screns/home.dart';
-import 'package:CWCFlutter/screns/mechanics.dart';
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
+import 'package:movierental/screens/homeOld.dart';
+import 'package:movierental/screens/mechanics.dart';
+import 'package:movierental/screens/home.dart';
+import 'package:provider/provider.dart';
+import 'package:movierental/model/db_manager.dart';
+import 'package:movierental/screens/splash_screen.dart';
+import 'package:movierental/utils/theme.dart';
 
-void main() => runApp(MaterialApp(routes: {
-      // '/': (context) => Loading(),
-      '/': (context) => Home(),
-      '/mechanics': (context) => Mechanics(),
-      // '/location': (context) => ChooseLocation()
-    }));
+void main() {
+  runApp(MovieRental());
+}
 
-// import 'package:CWCFlutter/food_list.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-
-// import 'bloc/food_bloc.dart';
-
-// void main() => runApp(MyApp());
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return BlocProvider<FoodBloc>(
-//       create: (context) => FoodBloc(),
-//       child: MaterialApp(
-//         debugShowCheckedModeBanner: false,
-//         title: 'Sqflite Tutorial',
-//         theme: ThemeData(
-//           primarySwatch: Colors.red,
-//         ),
-//         home: FoodList(),
-//       ),
-//     );
-//   }
-// }
+class MovieRental extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => DBManager(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Movie_Rental_App',
+        theme: MyTheme().buildTheme(),
+        home: SplashScreen(),
+        routes: {
+          // '/': (context) => Loading(),
+          '/mechanics': (context) => Mechanics(),
+          // '/location': (context) => ChooseLocation()
+        },
+      ),
+    );
+  }
+}

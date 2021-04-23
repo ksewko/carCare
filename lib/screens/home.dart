@@ -10,13 +10,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    //isNotEmpty metoda na mapach wbudowana
-    // data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
-    // print(data);
-
-    //set backgroud
-    // String bgImage =data ['isDaytime'] ? 'day.png' : 'night.png';
-    // Color bgColor = data['isDaytime'] ? Colors.blue : Colors.indigo[700];
     String bgImage = 'night.png';
     Color bgColor = Colors.blue;
 
@@ -44,6 +37,7 @@ class _HomeState extends State<Home> {
           )),
           child: Column(
             children: <Widget>[
+              SizedBox(height: 25.0),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Center(
@@ -53,6 +47,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
+              SizedBox(height: 25.0),
               Container(
                 width: 350.0,
                 child: Column(
@@ -92,12 +87,12 @@ class _HomeState extends State<Home> {
                         ),
                         SizedBox(width: 20.0),
                         Text(
-                          'Benzyna E95: ${olej} zł',
+                          'Olej Napędowy: ${olej} zł',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20.0,
                           ),
-                        )
+                        ),
                       ],
                     ),
                     Row(
@@ -109,7 +104,7 @@ class _HomeState extends State<Home> {
                         ),
                         SizedBox(width: 20.0),
                         Text(
-                          'Benzyna E95: ${gaz} zł',
+                          'LPG E95: ${gaz} zł',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20.0,
@@ -126,91 +121,125 @@ class _HomeState extends State<Home> {
               ),
 
               //Lista przycisków -> odniesień na inne screeny
-              SizedBox(height: 10.0),
+              SizedBox(height: 25.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  FlatButton.icon(
-                    onPressed: () async {
-                      dynamic result =
-                          await Navigator.pushNamed(context, '/mechanics');
-                    },
-                    icon: Icon(
-                      Icons.push_pin,
-                      color: Colors.grey[300],
-                    ),
-                    label: Text('Przypomnienia',
+                  Expanded(
+                    child: FlatButton.icon(
+                      height: 50.0,
+                      onPressed: () async {
+                        dynamic result =
+                            await Navigator.pushNamed(context, '/home');
+                      },
+                      icon: Icon(
+                        Icons.push_pin,
+                        color: Colors.blue[900],
+                      ),
+                      label: Text(
+                        'Przypomnienia',
                         style: TextStyle(
-                          color: Colors.grey[300],
-                        )),
+                          color: Colors.blue[900],
+                          fontSize: 18.0,
+                        ),
+                      ),
+                      color: Colors.grey[50],
+                    ),
                   ),
-                  FlatButton.icon(
-                    onPressed: () async {
-                      dynamic result =
-                          await Navigator.pushNamed(context, '/mechanics');
-                    },
-                    icon: Icon(
-                      Icons.car_repair,
+                  Expanded(
+                    child: FlatButton.icon(
+                      height: 50.0,
+                      onPressed: () async {
+                        dynamic result =
+                            await Navigator.pushNamed(context, '/mechanics');
+                      },
+                      icon: Icon(
+                        Icons.car_repair,
+                        color: Colors.blue[900],
+                      ),
+                      label: Text(
+                        'Pojazdy',
+                        style: TextStyle(
+                          color: Colors.blue[900],
+                          fontSize: 18.0,
+                        ),
+                      ),
                       color: Colors.grey[300],
                     ),
-                    label: Text('Pojazdy',
-                        style: TextStyle(
-                          color: Colors.grey[300],
-                        )),
                   ),
                 ],
               ),
-              SizedBox(height: 10.0),
+              SizedBox(height: 20.0),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  FlatButton.icon(
-                    onPressed: () async {
-                      dynamic result =
-                          await Navigator.pushNamed(context, '/mechanics');
-                    },
-                    icon: Icon(
-                      Icons.settings,
+                  Expanded(
+                    child: FlatButton.icon(
+                      height: 50.0,
+                      onPressed: () async {
+                        dynamic result =
+                            await Navigator.pushNamed(context, '/mechanics');
+                      },
+                      icon: Icon(
+                        Icons.settings,
+                        color: Colors.blue[900],
+                      ),
+                      label: Text(
+                        'Warsztaty',
+                        style: TextStyle(
+                          color: Colors.blue[900],
+                          fontSize: 18.0,
+                        ),
+                      ),
                       color: Colors.grey[300],
                     ),
-                    label: Text('Warsztaty',
-                        style: TextStyle(
-                          color: Colors.grey[300],
-                        )),
                   ),
-                  FlatButton.icon(
-                    onPressed: () async {
-                      dynamic result =
-                          await Navigator.pushNamed(context, '/mechanics');
-                    },
-                    icon: Icon(
-                      Icons.assistant,
-                      color: Colors.grey[300],
-                    ),
-                    label: Text('Assistance',
+                  Expanded(
+                    child: FlatButton.icon(
+                      height: 50.0,
+                      onPressed: () async {
+                        dynamic result =
+                            await Navigator.pushNamed(context, '/mechanics');
+                      },
+                      icon: Icon(
+                        Icons.assistant,
+                        color: Colors.blue[900],
+                      ),
+                      label: Text(
+                        'Assistance',
                         style: TextStyle(
-                          color: Colors.grey[300],
-                        )),
+                          color: Colors.blue[900],
+                          fontSize: 18.0,
+                        ),
+                      ),
+                      color: Colors.grey[50],
+                    ),
                   ),
                 ],
               ),
-              SizedBox(height: 10.0),
+              SizedBox(height: 20.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  FlatButton.icon(
-                    onPressed: () async {
-                      dynamic result =
-                          await Navigator.pushNamed(context, '/mechanics');
-                    },
-                    icon: Icon(
-                      Icons.source,
+                  Expanded(
+                    child: FlatButton.icon(
+                      height: 50.0,
+                      onPressed: () async {
+                        dynamic result =
+                            await Navigator.pushNamed(context, '/mechanics');
+                      },
+                      icon: Icon(
+                        Icons.source,
+                        color: Colors.blue[900],
+                      ),
+                      label: Text(
+                        'CEPIK',
+                        style: TextStyle(
+                          color: Colors.blue[900],
+                          fontSize: 18.0,
+                        ),
+                      ),
                       color: Colors.grey[300],
                     ),
-                    label: Text('CEPIK',
-                        style: TextStyle(
-                          color: Colors.grey[300],
-                        )),
                   ),
                 ],
               ),
