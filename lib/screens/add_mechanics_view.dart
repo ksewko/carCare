@@ -1,35 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:movierental/model/db_manager.dart';
-import 'package:movierental/model/movie.dart';
+import 'package:movierental/model/db_mechanics.dart';
+import 'package:movierental/model/mechanics_model.dart';
 import 'package:provider/provider.dart';
 
-class AddMovie extends StatefulWidget {
+class AddMechanics extends StatefulWidget {
   @override
-  _AddMovieState createState() => _AddMovieState();
+  _AddMechanicsState createState() => _AddMechanicsState();
 }
 
-class _AddMovieState extends State<AddMovie> {
-  final DBManager getDB = DBManager();
+class _AddMechanicsState extends State<AddMechanics> {
+  final DBMechanics getDB = DBMechanics();
 
-  final FocusNode titleNode = FocusNode();
-  final FocusNode actorNode = FocusNode();
+  final FocusNode nameNode = FocusNode();
+  final FocusNode addressNode = FocusNode();
   final FocusNode descNode = FocusNode();
-  final FocusNode yearNode = FocusNode();
+  final FocusNode phoneNumberNode = FocusNode();
 
   // capture input from TextField
-  var titleController = TextEditingController();
-  var actorController = TextEditingController();
+  var nameController = TextEditingController();
+  var addressController = TextEditingController();
   var descController = TextEditingController();
-  var releasedYearController = TextEditingController();
+  var phoneNumberController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    final getDB = Provider.of<DBManager>(context);
+    final getDB = Provider.of<DBMechanics>(context);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Add new Movie'),
+        title: Text('Dodaj nowy Warsztat'),
       ),
       body: SafeArea(
           child: SingleChildScrollView(
@@ -42,9 +42,9 @@ class _AddMovieState extends State<AddMovie> {
                 TextFormField(
                   autofocus: true,
                   textInputAction: TextInputAction.next,
-                  controller: titleController,
+                  controller: nameController,
                   decoration: InputDecoration(
-                    labelText: 'Movie Title',
+                    labelText: 'Nazwa Warsztatu',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
@@ -57,19 +57,19 @@ class _AddMovieState extends State<AddMovie> {
                     ),
                   ),
                   onEditingComplete: () {
-                    FocusScope.of(context).requestFocus(actorNode);
+                    FocusScope.of(context).requestFocus(addressNode);
                   },
                   validator: (val) =>
-                      val.isEmpty ? 'Please enter Movie Title' : null,
+                      val.isEmpty ? 'Musisz dodać nazwę Warsztatu!' : null,
                 ),
                 SizedBox(
                   height: 20.0,
                 ),
                 TextFormField(
-                  focusNode: actorNode,
-                  controller: actorController,
+                  focusNode: addressNode,
+                  controller: addressController,
                   decoration: InputDecoration(
-                    labelText: 'Movie Actor(s)',
+                    labelText: 'Adres Warsztatu',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
@@ -85,7 +85,7 @@ class _AddMovieState extends State<AddMovie> {
                     FocusScope.of(context).requestFocus(descNode);
                   },
                   validator: (val) =>
-                      val.isEmpty ? 'Please enter Movie Actor(s)' : null,
+                      val.isEmpty ? 'Musisz dodać adres Warsztatu!' : null,
                 ),
                 SizedBox(
                   height: 20.0,
@@ -97,7 +97,7 @@ class _AddMovieState extends State<AddMovie> {
                   keyboardType: TextInputType.multiline,
                   controller: descController,
                   decoration: InputDecoration(
-                    labelText: 'Movie Description',
+                    labelText: 'Opis',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
@@ -110,18 +110,18 @@ class _AddMovieState extends State<AddMovie> {
                     ),
                   ),
                   onEditingComplete: () {
-                    FocusScope.of(context).requestFocus(yearNode);
+                    FocusScope.of(context).requestFocus(phoneNumberNode);
                   },
                 ),
                 SizedBox(
                   height: 20.0,
                 ),
                 TextFormField(
-                  focusNode: yearNode,
+                  focusNode: phoneNumberNode,
                   keyboardType: TextInputType.number,
-                  controller: releasedYearController,
+                  controller: phoneNumberController,
                   decoration: InputDecoration(
-                    labelText: 'Movie Release Year',
+                    labelText: 'Numer telefonu',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
@@ -134,7 +134,7 @@ class _AddMovieState extends State<AddMovie> {
                     ),
                   ),
                   validator: (val) =>
-                      val.isEmpty ? 'Please enter Movie released year' : null,
+                      val.isEmpty ? 'Musisz dodać numer telefonu!' : null,
                 ),
                 SizedBox(
                   height: 20.0,
@@ -142,24 +142,24 @@ class _AddMovieState extends State<AddMovie> {
                 RaisedButton(
                   color: Colors.blue,
                   child: Text(
-                    'Add',
+                    'Dodaj',
                     style: TextStyle(color: Colors.white),
                   ),
                   shape: StadiumBorder(),
                   onPressed: () {
                     if (_formKey.currentState.validate()) {
-                      Movie newMovie = Movie(
-                          titleController.text,
-                          actorController.text,
-                          int.parse(releasedYearController.text),
+                      MechanicsModel newMechanics = MechanicsModel(
+                          nameController.text,
+                          addressController.text,
+                          int.parse(phoneNumberController.text),
                           descController.text ?? "");
 
-                      getDB.addMovie(newMovie).then((i) {
-                        titleController.clear();
-                        actorController.clear();
-                        releasedYearController.clear();
+                      getDB.addMechanics(newMechanics).then((i) {
+                        nameController.clear();
+                        addressController.clear();
+                        phoneNumberController.clear();
                         descController.clear();
-                        newMovie = null;
+                        newMechanics = null;
                       });
                       Navigator.pop(context);
                     }

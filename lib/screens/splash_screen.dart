@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movierental/screens/homeOld.dart';
 import 'package:movierental/screens/home.dart';
 
 class SplashScreen extends StatefulWidget {

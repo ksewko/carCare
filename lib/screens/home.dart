@@ -151,7 +151,7 @@ class _HomeState extends State<Home> {
                       height: 50.0,
                       onPressed: () async {
                         dynamic result =
-                            await Navigator.pushNamed(context, '/mechanics');
+                            await Navigator.pushNamed(context, '/cars');
                       },
                       icon: Icon(
                         Icons.car_repair,

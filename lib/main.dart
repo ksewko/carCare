@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:movierental/screens/homeOld.dart';
-import 'package:movierental/screens/mechanics.dart';
+import 'package:movierental/screens/car_view.dart';
+import 'package:movierental/screens/mechanics_view.dart';
 import 'package:movierental/screens/home.dart';
 import 'package:provider/provider.dart';
-import 'package:movierental/model/db_manager.dart';
+import 'package:movierental/model/db_mechanics.dart';
 import 'package:movierental/screens/splash_screen.dart';
-import 'package:movierental/utils/theme.dart';
+// import 'package:movierental/utils/theme.dart';
 
 void main() {
   runApp(MovieRental());
@@ -16,14 +16,15 @@ class MovieRental extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => DBManager(),
+      create: (_) => DBMechanics(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Movie_Rental_App',
-        theme: MyTheme().buildTheme(),
+        // theme: MyTheme().buildTheme(),
         home: SplashScreen(),
         routes: {
           // '/': (context) => Loading(),
+          // '/cars': (context) => CarView(),
           '/mechanics': (context) => Mechanics(),
           // '/location': (context) => ChooseLocation()
         },

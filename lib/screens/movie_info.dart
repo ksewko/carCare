@@ -1,38 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:movierental/model/db_manager.dart';
-import 'package:movierental/model/movie.dart';
+import 'package:movierental/model/db_mechanics.dart';
+import 'package:movierental/model/mechanics_model.dart';
 
-class MovieInfo extends StatefulWidget {
-  final Movie movie;
-  MovieInfo(this.movie);
+class MechanicsInfo extends StatefulWidget {
+  final MechanicsModel mechanics;
+  MechanicsInfo(this.mechanics);
 
   @override
-  _MovieInfoState createState() => _MovieInfoState();
+  _MechanicsInfoState createState() => _MechanicsInfoState();
 }
 
-class _MovieInfoState extends State<MovieInfo> {
-  final DBManager getDB = DBManager();
+class _MechanicsInfoState extends State<MechanicsInfo> {
+  final DBMechanics getDB = DBMechanics();
 
   // capture input from TextField
-  var titleController = TextEditingController();
-  var actorController = TextEditingController();
+  var nameController = TextEditingController();
+  var addressController = TextEditingController();
   var descController = TextEditingController();
-  var releasedYearController = TextEditingController();
+  var phoneNumberController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    Movie movie = widget.movie;
+    MechanicsModel mechanics = widget.mechanics;
     // filled values to Form input field
-    titleController.text = widget.movie.title;
-    actorController.text = widget.movie.actor;
-    descController.text = widget.movie.description;
-    releasedYearController.text = widget.movie.releasedYear.toString();
+    nameController.text = widget.mechanics.name;
+    addressController.text = widget.mechanics.address;
+    descController.text = widget.mechanics.description;
+    phoneNumberController.text = widget.mechanics.phoneNumber.toString();
 
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(widget.movie.title),
+        title: Text(widget.mechanics.name),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -46,9 +46,9 @@ class _MovieInfoState extends State<MovieInfo> {
                     height: 10.0,
                   ),
                   TextFormField(
-                    controller: titleController,
+                    controller: nameController,
                     decoration: InputDecoration(
-                      labelText: 'Movie Title',
+                      labelText: 'Nazwa Warsztatu',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
@@ -61,15 +61,15 @@ class _MovieInfoState extends State<MovieInfo> {
                       ),
                     ),
                     validator: (val) =>
-                        val.isEmpty ? 'Please enter Movie Title' : null,
+                        val.isEmpty ? 'Musisz dodać nazwę Warsztatu!' : null,
                   ),
                   SizedBox(
                     height: 20.0,
                   ),
                   TextFormField(
-                    controller: actorController,
+                    controller: addressController,
                     decoration: InputDecoration(
-                      labelText: 'Movie Actor(s)',
+                      labelText: 'Adres Warsztatu',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
@@ -82,7 +82,7 @@ class _MovieInfoState extends State<MovieInfo> {
                       ),
                     ),
                     validator: (val) =>
-                        val.isEmpty ? 'Please enter Movie Actor(s)' : null,
+                        val.isEmpty ? 'Musisz dodać adres Warsztatu!' : null,
                   ),
                   SizedBox(
                     height: 20.0,
@@ -91,7 +91,7 @@ class _MovieInfoState extends State<MovieInfo> {
                     keyboardType: TextInputType.multiline,
                     controller: descController,
                     decoration: InputDecoration(
-                      labelText: 'Movie Description',
+                      labelText: 'Opis',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
@@ -109,9 +109,9 @@ class _MovieInfoState extends State<MovieInfo> {
                   ),
                   TextFormField(
                     keyboardType: TextInputType.number,
-                    controller: releasedYearController,
+                    controller: phoneNumberController,
                     decoration: InputDecoration(
-                      labelText: 'Movie Release Year',
+                      labelText: 'Numer telefonu',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
@@ -124,7 +124,7 @@ class _MovieInfoState extends State<MovieInfo> {
                       ),
                     ),
                     validator: (val) =>
-                        val.isEmpty ? 'Please enter Movie released year' : null,
+                        val.isEmpty ? 'Musisz dodać numer telefonu!' : null,
                   ),
                   SizedBox(
                     height: 30.0,
@@ -135,19 +135,19 @@ class _MovieInfoState extends State<MovieInfo> {
                       RaisedButton(
                         color: Colors.blue,
                         child: Text(
-                          'Update',
+                          'Edytuj',
                           style: TextStyle(color: Colors.white),
                         ),
                         shape: StadiumBorder(),
                         onPressed: () {
                           if (_formKey.currentState.validate()) {
-                            movie.title = titleController.text;
-                            movie.actor = actorController.text;
-                            movie.description = descController.text ?? '';
-                            movie.releasedYear =
-                                int.parse(releasedYearController.text);
+                            mechanics.name = nameController.text;
+                            mechanics.address = addressController.text;
+                            mechanics.description = descController.text ?? '';
+                            mechanics.phoneNumber =
+                                int.parse(phoneNumberController.text);
 
-                            getDB.updateMovie(movie);
+                            getDB.updateMechanics(mechanics);
                             Navigator.pop(context);
                           }
                         },
@@ -158,7 +158,7 @@ class _MovieInfoState extends State<MovieInfo> {
                       RaisedButton(
                         color: Colors.red,
                         child: Text(
-                          'Delete',
+                          'Usuń',
                           style: TextStyle(color: Colors.white),
                         ),
                         shape: StadiumBorder(),
@@ -169,11 +169,11 @@ class _MovieInfoState extends State<MovieInfo> {
                               builder: (context) {
                                 return AlertDialog(
                                   title: Text(
-                                    'Delete a Movie!',
+                                    'Usuń Warsztat!',
                                     textAlign: TextAlign.center,
                                   ),
                                   content: Text(
-                                    'Do you want to Delete\n${titleController.text} ?',
+                                    'Czy chcesz usunąć warsztat \n${nameController.text} z listy?',
                                     textAlign: TextAlign.center,
                                   ),
                                   backgroundColor: Colors.red,
@@ -187,14 +187,15 @@ class _MovieInfoState extends State<MovieInfo> {
                                           BorderSide(color: Colors.blue),
                                       shape: StadiumBorder(),
                                       child: Text(
-                                        'Yes',
+                                        'Tak',
                                         style: TextStyle(
                                             fontSize: 18.0,
                                             letterSpacing: 1.0,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       onPressed: () async {
-                                        await getDB.deleteMovie(movie.id);
+                                        await getDB
+                                            .deleteMechanics(mechanics.id);
                                         Navigator.pop(context);
                                         Navigator.pop(context);
                                       },
