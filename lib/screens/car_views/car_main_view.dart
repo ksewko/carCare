@@ -78,7 +78,7 @@ class _CarViewState extends State<CarView> {
                       height: 50.0,
                       onPressed: () async {
                         dynamic result =
-                            await Navigator.pushNamed(context, '/cars');
+                            await Navigator.pushNamed(context, '/tires');
                       },
                       icon: Icon(
                         Icons.circle,
@@ -104,7 +104,7 @@ class _CarViewState extends State<CarView> {
                       height: 50.0,
                       onPressed: () async {
                         dynamic result =
-                            await Navigator.pushNamed(context, '/mechanics');
+                            await Navigator.pushNamed(context, '/service');
                       },
                       icon: Icon(
                         Icons.build,

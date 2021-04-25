@@ -26,6 +26,7 @@ dependencies:
   cupertino_icons: ^0.1.3
   provider: ^4.0.4
   sqflite: ^1.3.0
+  form_validators: ^0.3.0
   path:
 
 dev_dependencies:
@@ -51,6 +52,7 @@ flutter:
     - assets/benzyna.jpg
     - assets/olej.jpg
     - assets/gaz.jpg
+    - assets/tires.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

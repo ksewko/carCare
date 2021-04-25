@@ -20,7 +20,7 @@ class _CarInfoMainState extends State<CarInfoMain> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Informacje'),
+        title: Text('Podstawowe Informacje'),
         backgroundColor: Colors.blue[900],
       ),
       body: SafeArea(
@@ -34,49 +34,185 @@ class _CarInfoMainState extends State<CarInfoMain> {
                 return ListView.builder(
                   itemCount: carinfo.length,
                   itemBuilder: (context, index) {
-                    return Card(
-                      // color: Theme.of(context).primaryColorLight,
-                      color: Colors.grey[300],
-                      elevation: 6.0,
-                      shape: StadiumBorder(),
-                      child: ListTile(
-                        leading: Icon(
-                          Icons.settings,
-                          color: Colors.blue[900],
-                        ),
-                        title: Text(
-                          carinfo[index].brand,
-                          style: TextStyle(
-                            color: Colors.blue[900],
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
+                    if (carinfo.length == 1) {
+                      return Column(
+                        children: [
+                          Card(
+                            // color: Theme.of(context).primaryColorLight,
+                            color: Colors.grey[300],
+                            elevation: 6.0,
+                            shape: StadiumBorder(),
+                            child: ListTile(
+                              leading: Icon(
+                                Icons.label_important,
+                                color: Colors.blue[900],
+                              ),
+                              title: Text(
+                                'Marka: ',
+                                style: TextStyle(
+                                  color: Colors.blue[900],
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              subtitle: Text(
+                                (carinfo[0].brand),
+                                style: TextStyle(
+                                  color: Colors.blue[700],
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                        subtitle: Text(
-                          (carinfo[index].model),
-                          style: TextStyle(
-                            color: Colors.blue[700],
-                            fontSize: 14.0,
-                            fontWeight: FontWeight.bold,
+                          SizedBox(height: 10.0),
+                          Card(
+                            // color: Theme.of(context).primaryColorLight,
+                            color: Colors.grey[300],
+                            elevation: 6.0,
+                            shape: StadiumBorder(),
+                            child: ListTile(
+                              leading: Icon(
+                                Icons.label_important,
+                                color: Colors.blue[900],
+                              ),
+                              title: Text(
+                                'Model: ',
+                                style: TextStyle(
+                                  color: Colors.blue[900],
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              subtitle: Text(
+                                (carinfo[0].model),
+                                style: TextStyle(
+                                  color: Colors.blue[700],
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                        trailing: Text(
-                          (carinfo[index].year.toString()),
-                          style: TextStyle(
-                            color: Colors.blue[900],
-                            fontSize: 18.0,
+                          SizedBox(height: 10.0),
+                          Card(
+                            // color: Theme.of(context).primaryColorLight,
+                            color: Colors.grey[300],
+                            elevation: 6.0,
+                            shape: StadiumBorder(),
+                            child: ListTile(
+                              leading: Icon(
+                                Icons.label_important,
+                                color: Colors.blue[900],
+                              ),
+                              title: Text(
+                                'Rok Produkcji: ',
+                                style: TextStyle(
+                                  color: Colors.blue[900],
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              subtitle: Text(
+                                (carinfo[0].year.toString()),
+                                style: TextStyle(
+                                  color: Colors.blue[700],
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    EditCarInfo(carinfo[index])),
-                          );
-                        },
-                      ),
-                    );
+                          SizedBox(height: 10.0),
+                          Card(
+                            // color: Theme.of(context).primaryColorLight,
+                            color: Colors.grey[300],
+                            elevation: 6.0,
+                            shape: StadiumBorder(),
+                            child: ListTile(
+                              leading: Icon(
+                                Icons.label_important,
+                                color: Colors.blue[900],
+                              ),
+                              title: Text(
+                                'Numer rejestracyjny: ',
+                                style: TextStyle(
+                                  color: Colors.blue[900],
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              subtitle: Text(
+                                (carinfo[0].registration),
+                                style: TextStyle(
+                                  color: Colors.blue[700],
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 10.0),
+                          Card(
+                            // color: Theme.of(context).primaryColorLight,
+                            color: Colors.grey[300],
+                            elevation: 6.0,
+                            shape: StadiumBorder(),
+                            child: ListTile(
+                              leading: Icon(
+                                Icons.label_important,
+                                color: Colors.blue[900],
+                              ),
+                              title: Text(
+                                'Pojemność silnika: ',
+                                style: TextStyle(
+                                  color: Colors.blue[900],
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              subtitle: Text(
+                                (carinfo[0].engineCapacity),
+                                style: TextStyle(
+                                  color: Colors.blue[700],
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 10.0),
+                          Card(
+                            // color: Theme.of(context).primaryColorLight,
+                            color: Colors.grey[300],
+                            elevation: 6.0,
+                            shape: StadiumBorder(),
+                            child: ListTile(
+                              leading: Icon(
+                                Icons.label_important,
+                                color: Colors.blue[900],
+                              ),
+                              title: Text(
+                                'Numer polisy: ',
+                                style: TextStyle(
+                                  color: Colors.blue[900],
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              subtitle: Text(
+                                (carinfo[0].policyNumber.toString()),
+                                style: TextStyle(
+                                  color: Colors.blue[700],
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    }
                   },
                 );
               }
@@ -88,12 +224,19 @@ class _CarInfoMainState extends State<CarInfoMain> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: Icon(Icons.edit),
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => AddCarInfo()),
-          );
+          if (carinfo.length == 0) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AddCarInfo()),
+            );
+          } else {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => EditCarInfo(carinfo[0])),
+            );
+          }
         },
       ),
     );
