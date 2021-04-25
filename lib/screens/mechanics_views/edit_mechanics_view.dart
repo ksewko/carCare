@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:movierental/model/db_mechanics.dart';
-import 'package:movierental/model/mechanics_model.dart';
+import 'package:movierental/model/mechanics/db_mechanics.dart';
+import 'package:movierental/model/mechanics/mechanics_model.dart';
 
-class MechanicsInfo extends StatefulWidget {
+class EditMechanics extends StatefulWidget {
   final MechanicsModel mechanics;
-  MechanicsInfo(this.mechanics);
+  EditMechanics(this.mechanics);
 
   @override
-  _MechanicsInfoState createState() => _MechanicsInfoState();
+  _EditMechanicsState createState() => _EditMechanicsState();
 }
 
-class _MechanicsInfoState extends State<MechanicsInfo> {
+class _EditMechanicsState extends State<EditMechanics> {
   final DBMechanics getDB = DBMechanics();
 
   // capture input from TextField

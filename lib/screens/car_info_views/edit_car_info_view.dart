@@ -1,0 +1,265 @@
+import 'package:flutter/material.dart';
+import 'package:movierental/model/car/car_info_model.dart';
+import 'package:movierental/model/car/db_car_info.dart';
+
+class EditCarInfo extends StatefulWidget {
+  final CarInfoModel carinfo;
+  EditCarInfo(this.carinfo);
+
+  @override
+  _EditCarInfoState createState() => _EditCarInfoState();
+}
+
+class _EditCarInfoState extends State<EditCarInfo> {
+  final DBCarInfo getDB = DBCarInfo();
+
+  // capture input from TextField
+  var brandController = TextEditingController();
+  var modelController = TextEditingController();
+  var yearController = TextEditingController();
+  var registrationController = TextEditingController();
+  var engineCapacityController = TextEditingController();
+  var policyNumberController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    CarInfoModel carinfo = widget.carinfo;
+    // filled values to Form input field
+    brandController.text = widget.carinfo.brand;
+    modelController.text = widget.carinfo.model;
+    yearController.text = widget.carinfo.year.toString();
+    registrationController.text = widget.carinfo.registration;
+    engineCapacityController.text = widget.carinfo.engineCapacity;
+    policyNumberController.text = widget.carinfo.policyNumber.toString();
+
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(widget.carinfo.brand),
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  TextFormField(
+                    controller: brandController,
+                    decoration: InputDecoration(
+                      labelText: 'Marka',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.blue.shade200,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    validator: (val) =>
+                        val.isEmpty ? 'Musisz dodać markę auta!' : null,
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  TextFormField(
+                    controller: modelController,
+                    decoration: InputDecoration(
+                      labelText: 'Model',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.blue.shade200,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    validator: (val) =>
+                        val.isEmpty ? 'Musisz dodać model Auta!' : null,
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  TextFormField(
+                    keyboardType: TextInputType.number,
+                    controller: yearController,
+                    decoration: InputDecoration(
+                      labelText: 'Rok produkcji',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.blue.shade200,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    validator: (val) =>
+                        val.isEmpty ? 'Musisz dodać rok produkcji Auta!' : null,
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  TextFormField(
+                    controller: registrationController,
+                    decoration: InputDecoration(
+                      labelText: 'Numer rejestracyjny',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.blue.shade200,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    validator: (val) => val.isEmpty
+                        ? 'Musisz dodać numer rejestracyjny!'
+                        : null,
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  TextFormField(
+                    controller: engineCapacityController,
+                    decoration: InputDecoration(
+                      labelText: 'Pojemność Silnika',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.blue.shade200,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  TextFormField(
+                    keyboardType: TextInputType.number,
+                    controller: policyNumberController,
+                    decoration: InputDecoration(
+                      labelText: 'Numer Polisy',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.blue.shade200,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30.0,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      RaisedButton(
+                        color: Colors.blue,
+                        child: Text(
+                          'Edytuj',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        shape: StadiumBorder(),
+                        onPressed: () {
+                          if (_formKey.currentState.validate()) {
+                            carinfo.brand = brandController.text;
+                            carinfo.model = modelController.text;
+                            carinfo.year = int.parse(yearController.text);
+                            carinfo.registration = registrationController.text;
+                            carinfo.engineCapacity =
+                                engineCapacityController.text ?? '';
+                            carinfo.policyNumber =
+                                int.parse(policyNumberController.text) ?? '';
+
+                            getDB.updateCarInfo(carinfo);
+                            Navigator.pop(context);
+                          }
+                        },
+                      ),
+                      SizedBox(
+                        width: 30.0,
+                      ),
+                      RaisedButton(
+                        color: Colors.red,
+                        child: Text(
+                          'Usuń',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        shape: StadiumBorder(),
+                        onPressed: () {
+                          showDialog(
+                              context: context,
+                              barrierDismissible: true,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Text(
+                                    'Usuń Pojazd!',
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  content: Text(
+                                    'Czy chcesz usunąć pojazd marki \n${brandController.text}?',
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  backgroundColor: Colors.red,
+                                  elevation: 8.0,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(30.0),
+                                  ),
+                                  actions: <Widget>[
+                                    OutlineButton(
+                                      borderSide:
+                                          BorderSide(color: Colors.blue),
+                                      shape: StadiumBorder(),
+                                      child: Text(
+                                        'Tak',
+                                        style: TextStyle(
+                                            fontSize: 18.0,
+                                            letterSpacing: 1.0,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      onPressed: () async {
+                                        await getDB.deleteCarInfo(carinfo.id);
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                  ],
+                                );
+                              });
+                        },
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

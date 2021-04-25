@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movierental/model/db_mechanics.dart';
-import 'package:movierental/model/mechanics_model.dart';
+import 'package:movierental/model/mechanics/db_mechanics.dart';
+import 'package:movierental/model/mechanics/mechanics_model.dart';
 import 'package:provider/provider.dart';
 
 class AddMechanics extends StatefulWidget {

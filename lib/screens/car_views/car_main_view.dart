@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
+class CarView extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _CarViewState createState() => _CarViewState();
 }
 
-class _HomeState extends State<Home> {
+class _CarViewState extends State<CarView> {
   Map data = {};
 
   @override
@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
       backgroundColor: bgColor,
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Car Care'),
+        title: Text('Twoje auto'),
         backgroundColor: Colors.blue[900],
         elevation: 0.0,
       ),
@@ -42,84 +42,11 @@ class _HomeState extends State<Home> {
                 padding: const EdgeInsets.all(8.0),
                 child: Center(
                   child: CircleAvatar(
-                    radius: 75.0,
+                    radius: 100.0,
                     backgroundImage: AssetImage('assets/lala.jpg'),
                   ),
                 ),
               ),
-              SizedBox(height: 25.0),
-              Container(
-                width: 350.0,
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(height: 8.0),
-                    Text(
-                      'Ceny paliw:',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25.0,
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        CircleAvatar(
-                          radius: 15.0,
-                          backgroundImage: AssetImage('assets/benzyna.jpg'),
-                        ),
-                        SizedBox(width: 20.0),
-                        Text(
-                          'Benzyna E95: ${benzyna} zł',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
-                          ),
-                        )
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        CircleAvatar(
-                          radius: 15.0,
-                          backgroundImage: AssetImage('assets/olej.jpg'),
-                        ),
-                        SizedBox(width: 20.0),
-                        Text(
-                          'Olej Napędowy: ${olej} zł',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        CircleAvatar(
-                          radius: 15.0,
-                          backgroundImage: AssetImage('assets/gaz.jpg'),
-                        ),
-                        SizedBox(width: 20.0),
-                        Text(
-                          'LPG E95: ${gaz} zł',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(height: 8.0),
-                  ],
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.blue[900],
-                ),
-              ),
-
               //Lista przycisków -> odniesień na inne screeny
               SizedBox(height: 25.0),
               Row(
@@ -130,14 +57,14 @@ class _HomeState extends State<Home> {
                       height: 50.0,
                       onPressed: () async {
                         dynamic result =
-                            await Navigator.pushNamed(context, '/home');
+                            await Navigator.pushNamed(context, '/carinfo');
                       },
                       icon: Icon(
-                        Icons.push_pin,
+                        Icons.info,
                         color: Colors.blue[900],
                       ),
                       label: Text(
-                        'Przypomnienia',
+                        'Informacje',
                         style: TextStyle(
                           color: Colors.blue[900],
                           fontSize: 18.0,
@@ -151,14 +78,14 @@ class _HomeState extends State<Home> {
                       height: 50.0,
                       onPressed: () async {
                         dynamic result =
-                            await Navigator.pushNamed(context, '/car');
+                            await Navigator.pushNamed(context, '/cars');
                       },
                       icon: Icon(
-                        Icons.car_repair,
+                        Icons.circle,
                         color: Colors.blue[900],
                       ),
                       label: Text(
-                        'Twoje auto',
+                        'Opony',
                         style: TextStyle(
                           color: Colors.blue[900],
                           fontSize: 18.0,
@@ -180,11 +107,11 @@ class _HomeState extends State<Home> {
                             await Navigator.pushNamed(context, '/mechanics');
                       },
                       icon: Icon(
-                        Icons.settings,
+                        Icons.build,
                         color: Colors.blue[900],
                       ),
                       label: Text(
-                        'Warsztaty',
+                        'Serwis',
                         style: TextStyle(
                           color: Colors.blue[900],
                           fontSize: 18.0,
@@ -201,11 +128,58 @@ class _HomeState extends State<Home> {
                             await Navigator.pushNamed(context, '/mechanics');
                       },
                       icon: Icon(
-                        Icons.assistant,
+                        Icons.local_gas_station,
                         color: Colors.blue[900],
                       ),
                       label: Text(
-                        'Assistance',
+                        'Tankowanie',
+                        style: TextStyle(
+                          color: Colors.blue[900],
+                          fontSize: 18.0,
+                        ),
+                      ),
+                      color: Colors.grey[50],
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 20.0),
+              Row(
+                children: [
+                  Expanded(
+                    child: FlatButton.icon(
+                      height: 50.0,
+                      onPressed: () async {
+                        dynamic result =
+                            await Navigator.pushNamed(context, '/mechanics');
+                      },
+                      icon: Icon(
+                        Icons.whatshot,
+                        color: Colors.blue[900],
+                      ),
+                      label: Text(
+                        'Szkody',
+                        style: TextStyle(
+                          color: Colors.blue[900],
+                          fontSize: 18.0,
+                        ),
+                      ),
+                      color: Colors.grey[300],
+                    ),
+                  ),
+                  Expanded(
+                    child: FlatButton.icon(
+                      height: 50.0,
+                      onPressed: () async {
+                        dynamic result =
+                            await Navigator.pushNamed(context, '/mechanics');
+                      },
+                      icon: Icon(
+                        Icons.insert_chart,
+                        color: Colors.blue[900],
+                      ),
+                      label: Text(
+                        'Statystyki',
                         style: TextStyle(
                           color: Colors.blue[900],
                           fontSize: 18.0,
@@ -228,11 +202,11 @@ class _HomeState extends State<Home> {
                             await Navigator.pushNamed(context, '/mechanics');
                       },
                       icon: Icon(
-                        Icons.source,
+                        Icons.add_a_photo,
                         color: Colors.blue[900],
                       ),
                       label: Text(
-                        'CEPIK',
+                        'Zdjęcia',
                         style: TextStyle(
                           color: Colors.blue[900],
                           fontSize: 18.0,

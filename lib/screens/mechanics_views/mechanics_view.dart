@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:movierental/model/db_mechanics.dart';
-import 'package:movierental/model/mechanics_model.dart';
-import 'package:movierental/screens/add_mechanics_view.dart';
-import 'package:movierental/screens/movie_info.dart';
+import 'package:movierental/model/mechanics/db_mechanics.dart';
+import 'package:movierental/model/mechanics/mechanics_model.dart';
+import 'package:movierental/screens/mechanics_views/add_mechanics_view.dart';
+import 'package:movierental/screens/mechanics_views/edit_mechanics_view.dart';
 import 'package:provider/provider.dart';
 
-class Mechanics extends StatefulWidget {
+class MechanicsMain extends StatefulWidget {
   @override
-  _MechanicsState createState() => _MechanicsState();
+  _MechanicsMainState createState() => _MechanicsMainState();
 }
 
-class _MechanicsState extends State<Mechanics> {
-  List<MechanicsModel> movies;
+class _MechanicsMainState extends State<MechanicsMain> {
+  List<MechanicsModel> mechanics;
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +30,9 @@ class _MechanicsState extends State<Mechanics> {
             future: getDB.getMechanics(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                movies = snapshot.data;
+                mechanics = snapshot.data;
                 return ListView.builder(
-                  itemCount: movies.length,
+                  itemCount: mechanics.length,
                   itemBuilder: (context, index) {
                     return Card(
                       // color: Theme.of(context).primaryColorLight,
@@ -45,7 +45,7 @@ class _MechanicsState extends State<Mechanics> {
                           color: Colors.blue[900],
                         ),
                         title: Text(
-                          movies[index].name,
+                          mechanics[index].name,
                           style: TextStyle(
                             color: Colors.blue[900],
                             fontSize: 18.0,
@@ -53,7 +53,7 @@ class _MechanicsState extends State<Mechanics> {
                           ),
                         ),
                         subtitle: Text(
-                          (movies[index].address),
+                          (mechanics[index].address),
                           style: TextStyle(
                             color: Colors.blue[700],
                             fontSize: 14.0,
@@ -61,7 +61,7 @@ class _MechanicsState extends State<Mechanics> {
                           ),
                         ),
                         trailing: Text(
-                          (movies[index].phoneNumber.toString()),
+                          (mechanics[index].phoneNumber.toString()),
                           style: TextStyle(
                             color: Colors.blue[900],
                             fontSize: 18.0,
@@ -71,7 +71,8 @@ class _MechanicsState extends State<Mechanics> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => MechanicsInfo(movies[index])),
+                                builder: (context) =>
+                                    EditMechanics(mechanics[index])),
                           );
                         },
                       ),
