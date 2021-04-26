@@ -1,38 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:movierental/model/mechanics/db_mechanics.dart';
-import 'package:movierental/model/mechanics/mechanics_model.dart';
+import 'package:movierental/model/refuel/db_refuel.dart';
+import 'package:movierental/model/refuel/refuel_model.dart';
 
-class EditMechanics extends StatefulWidget {
-  final MechanicsModel mechanics;
-  EditMechanics(this.mechanics);
+class EditRefuel extends StatefulWidget {
+  final RefuelModel refuel;
+  EditRefuel(this.refuel);
 
   @override
-  _EditMechanicsState createState() => _EditMechanicsState();
+  _EditRefuelState createState() => _EditRefuelState();
 }
 
-class _EditMechanicsState extends State<EditMechanics> {
-  final DBMechanics getDB = DBMechanics();
+class _EditRefuelState extends State<EditRefuel> {
+  final DBRefuel getDB = DBRefuel();
 
   // capture input from TextField
-  var nameController = TextEditingController();
-  var addressController = TextEditingController();
-  var descController = TextEditingController();
-  var phoneNumberController = TextEditingController();
+  var typeController = TextEditingController();
+  var dateController = TextEditingController();
+  var meterController = TextEditingController();
+  var filledController = TextEditingController();
+  var priceController = TextEditingController();
+  var isFullController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    MechanicsModel mechanics = widget.mechanics;
+    RefuelModel refuel = widget.refuel;
     // filled values to Form input field
-    nameController.text = widget.mechanics.name;
-    addressController.text = widget.mechanics.address;
-    descController.text = widget.mechanics.description;
-    phoneNumberController.text = widget.mechanics.phoneNumber.toString();
+    typeController.text = widget.refuel.type;
+    dateController.text = widget.refuel.date;
+    meterController.text = widget.refuel.meter;
+    filledController.text = widget.refuel.filled;
+    priceController.text = widget.refuel.price;
+    isFullController.text = widget.refuel.isFull;
 
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(widget.mechanics.name),
+        title: Text(widget.refuel.type),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -46,9 +50,9 @@ class _EditMechanicsState extends State<EditMechanics> {
                     height: 10.0,
                   ),
                   TextFormField(
-                    controller: nameController,
+                    controller: typeController,
                     decoration: InputDecoration(
-                      labelText: 'Nazwa Warsztatu',
+                      labelText: 'Rodzaj paliwa',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
@@ -61,15 +65,15 @@ class _EditMechanicsState extends State<EditMechanics> {
                       ),
                     ),
                     validator: (val) =>
-                        val.isEmpty ? 'Musisz dodać nazwę Warsztatu!' : null,
+                        val.isEmpty ? 'Musisz dodać rodzaj paliwa!' : null,
                   ),
                   SizedBox(
                     height: 20.0,
                   ),
                   TextFormField(
-                    controller: addressController,
+                    controller: dateController,
                     decoration: InputDecoration(
-                      labelText: 'Adres Warsztatu',
+                      labelText: 'Data tankowania',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
@@ -82,38 +86,15 @@ class _EditMechanicsState extends State<EditMechanics> {
                       ),
                     ),
                     validator: (val) =>
-                        val.isEmpty ? 'Musisz dodać adres Warsztatu!' : null,
+                        val.isEmpty ? 'Musisz dodać datę tankowania!' : null,
                   ),
                   SizedBox(
                     height: 20.0,
                   ),
                   TextFormField(
-                    textInputAction: TextInputAction.next,
-                    maxLines: 3,
-                    keyboardType: TextInputType.multiline,
-                    controller: descController,
+                    controller: meterController,
                     decoration: InputDecoration(
-                      labelText: 'Opis',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.blue.shade200,
-                          width: 2.0,
-                        ),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  TextFormField(
-                    keyboardType: TextInputType.number,
-                    controller: phoneNumberController,
-                    decoration: InputDecoration(
-                      labelText: 'Numer telefonu',
+                      labelText: 'Stan licznika',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
@@ -126,7 +107,74 @@ class _EditMechanicsState extends State<EditMechanics> {
                       ),
                     ),
                     validator: (val) =>
-                        val.isEmpty ? 'Musisz dodać numer telefonu!' : null,
+                        val.isEmpty ? 'Musisz dodać stan licznika!' : null,
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  TextFormField(
+                    controller: filledController,
+                    decoration: InputDecoration(
+                      labelText: 'Ilość zatankowanego paliwa',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.blue.shade200,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    validator: (val) => val.isEmpty
+                        ? 'Musisz dodać ile litrow zatankowano!'
+                        : null,
+                  ),
+                  SizedBox(
+                    height: 30.0,
+                  ),
+                  TextFormField(
+                    controller: priceController,
+                    decoration: InputDecoration(
+                      labelText: 'Cena za litr paliwa',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.blue.shade200,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    validator: (val) => val.isEmpty
+                        ? 'Musisz dodać cenę za litr paliwa!'
+                        : null,
+                  ),
+                  SizedBox(
+                    height: 30.0,
+                  ),
+                  TextFormField(
+                    controller: isFullController,
+                    decoration: InputDecoration(
+                      labelText: 'Czy zatankowano do pełna? Tak/Nie',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.blue.shade200,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    validator: (val) =>
+                        (!val.contains('Tak') && !val.contains('Nie'))
+                            ? 'Musisz wpisać słowo Tak lub Nie'
+                            : null,
                   ),
                   SizedBox(
                     height: 30.0,
@@ -143,13 +191,14 @@ class _EditMechanicsState extends State<EditMechanics> {
                         shape: StadiumBorder(),
                         onPressed: () {
                           if (_formKey.currentState.validate()) {
-                            mechanics.name = nameController.text;
-                            mechanics.address = addressController.text;
-                            mechanics.description = descController.text ?? '';
-                            mechanics.phoneNumber =
-                                int.parse(phoneNumberController.text);
+                            refuel.type = typeController.text;
+                            refuel.date = dateController.text;
+                            refuel.meter = meterController.text;
+                            refuel.filled = filledController.text;
+                            refuel.price = priceController.text;
+                            refuel.isFull = isFullController.text;
 
-                            getDB.updateMechanics(mechanics);
+                            getDB.updateRefuel(refuel);
                             Navigator.pop(context);
                           }
                         },
@@ -171,11 +220,11 @@ class _EditMechanicsState extends State<EditMechanics> {
                               builder: (context) {
                                 return AlertDialog(
                                   title: Text(
-                                    'Usuń Warsztat!',
+                                    'Usuń Tankowanie!',
                                     textAlign: TextAlign.center,
                                   ),
                                   content: Text(
-                                    'Czy chcesz usunąć warsztat \n${nameController.text} z listy?',
+                                    'Czy chcesz usunąć tankowanie z listy?',
                                     textAlign: TextAlign.center,
                                   ),
                                   backgroundColor: Colors.red,
@@ -196,8 +245,7 @@ class _EditMechanicsState extends State<EditMechanics> {
                                             fontWeight: FontWeight.bold),
                                       ),
                                       onPressed: () async {
-                                        await getDB
-                                            .deleteMechanics(mechanics.id);
+                                        await getDB.deleteRefuel(refuel.id);
                                         Navigator.pop(context);
                                         Navigator.pop(context);
                                       },

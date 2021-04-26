@@ -125,7 +125,7 @@ class _CarViewState extends State<CarView> {
                       height: 50.0,
                       onPressed: () async {
                         dynamic result =
-                            await Navigator.pushNamed(context, '/mechanics');
+                            await Navigator.pushNamed(context, '/refuel');
                       },
                       icon: Icon(
                         Icons.local_gas_station,
@@ -151,7 +151,7 @@ class _CarViewState extends State<CarView> {
                       height: 50.0,
                       onPressed: () async {
                         dynamic result =
-                            await Navigator.pushNamed(context, '/mechanics');
+                            await Navigator.pushNamed(context, '/damages');
                       },
                       icon: Icon(
                         Icons.whatshot,

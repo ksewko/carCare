@@ -1,64 +1,74 @@
+class RefuelModel {
+  // class properties
+  int _id;
+  String _type;
+  String _date;
+  String _meter;
+  String _filled;
+  String _price;
+  String _isFull;
 
-// class RefuelModel {
-// //moduł opony
-//   int _id;
-//   String _rims; // rodzaj felg
-//   String _tireSize; //rozmiar opon
-//   String _frontPressure; //ciśnienie w przedniej osi
-//   String _backPressure; // ciśnienie w tylnej osi
-//   String _isSummer; //true- jeśli opony letnie false -jeśli opony zimowe
+  // Constructor
+  RefuelModel(this._type, this._date, this._meter, this._filled, this._price, this._isFull);
+  RefuelModel.withId(this._id, this._type, this._date, this._meter, this._filled, this._price, this._isFull);
 
-//   // Constructor
-//   TiresModel(this._rims, this._tireSize, this._frontPressure,
-//       this._backPressure, this._isSummer);
-//   TiresModel.withId(this._id, this._rims, this._tireSize, this._frontPressure,
-//       this._backPressure, this._isSummer);
+  // getters
+  int get id => _id;
+  String get type => _type;
+  String get date => _date;
+  String get meter => _meter;
+  String get filled => _filled;
+  String get price =>  _price;
+  String get isFull => _isFull;
 
-//   // getters
-//   int get id => _id;
-//   String get rims => _rims;
-//   String get tireSize => _tireSize;
-//   String get frontPressure => _frontPressure;
-//   String get backPressure => _backPressure;
-//   String get isSummer => _isSummer;
+  // setters
+  set type(String newType) {
+    if (newType.length <= 255) {
+      _type = newType;
+    }
+  }
 
-//   // setters
-//   set rims(String newRims) {
-//     if (newRims.length <= 255) {
-//       _rims = newRims;
-//     }
-//   }
+  set date(String newDate) {
+    if (newDate.length <= 255) {
+      _date = newDate;
+    }
+  }
 
-//   set tireSize(String newTireSize) {
-//     if (newTireSize.length <= 255) {
-//       _tireSize = newTireSize;
-//     }
-//   }
+  set meter(String newMeter) {
+    if (newMeter.length <= 255) {
+      _meter = newMeter;
+    }
+  }
 
-//   set frontPressure(String newFrontPressure) {
-//     if (newFrontPressure.length <= 255) {
-//       _frontPressure = newFrontPressure;
-//     }
-//   }
+  set filled(String newFilled) {
+    if (newFilled.length <= 255) {
+      _filled = newFilled;
+    }
+  }
 
-//   set backPressure(String newBackPressure) {
-//     if (newBackPressure.length <= 255) {
-//       _backPressure = newBackPressure;
-//     }
-//   }
+  set price(String newPrice) {
+    if (newPrice.length <= 255) {
+      _price = newPrice;
+    }
+  }
 
-//   set isSummer(String newIsSummer) => _isSummer = newIsSummer;
+  set isFull(String newIsFull) {
+    if (newIsFull.length <= 255) {
+      _isFull = newIsFull;
+    }
+  }
 
-//   Map<String, dynamic> toMap() {
-//     var tiresMap = Map<String, dynamic>();
-//     tiresMap['rims'] = _rims;
-//     tiresMap['tireSize'] = _tireSize;
-//     tiresMap['frontPressure'] = _frontPressure;
-//     tiresMap['backPressure'] = _backPressure;
-//     tiresMap['isSummer'] = _isSummer;
-//     if (_id != null) {
-//       tiresMap['id'] = _id;
-//     }
-//     return tiresMap;
-//   }
-// }
+  Map<String, dynamic> toMap() {
+    var refuelMap = Map<String, dynamic>();
+    refuelMap['type'] = _type;
+    refuelMap['date'] = _date;
+    refuelMap['meter'] = _meter;
+    refuelMap['filled'] = _filled;
+    refuelMap['price'] = _price;
+    refuelMap['isFull'] = _isFull;
+    if (_id != null) {
+      refuelMap['id'] = _id;
+    }
+    return refuelMap;
+  }
+}

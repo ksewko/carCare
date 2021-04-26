@@ -1,38 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:movierental/model/mechanics/db_mechanics.dart';
-import 'package:movierental/model/mechanics/mechanics_model.dart';
+import 'package:movierental/model/damages/damages_model.dart';
+import 'package:movierental/model/damages/db_damages.dart';
 
-class EditMechanics extends StatefulWidget {
-  final MechanicsModel mechanics;
-  EditMechanics(this.mechanics);
+class EditDamages extends StatefulWidget {
+  final DamagesModel damages;
+  EditDamages(this.damages);
 
   @override
-  _EditMechanicsState createState() => _EditMechanicsState();
+  _EditDamagesState createState() => _EditDamagesState();
 }
 
-class _EditMechanicsState extends State<EditMechanics> {
-  final DBMechanics getDB = DBMechanics();
+class _EditDamagesState extends State<EditDamages> {
+  final DBDamages getDB = DBDamages();
 
   // capture input from TextField
   var nameController = TextEditingController();
-  var addressController = TextEditingController();
+  var dateController = TextEditingController();
+  var placeController = TextEditingController();
+  var isGuiltyController = TextEditingController();
+  var insuranceController = TextEditingController();
   var descController = TextEditingController();
-  var phoneNumberController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    MechanicsModel mechanics = widget.mechanics;
+    DamagesModel damages = widget.damages;
     // filled values to Form input field
-    nameController.text = widget.mechanics.name;
-    addressController.text = widget.mechanics.address;
-    descController.text = widget.mechanics.description;
-    phoneNumberController.text = widget.mechanics.phoneNumber.toString();
+    nameController.text = widget.damages.name;
+    dateController.text = widget.damages.date;
+    placeController.text = widget.damages.place;
+    isGuiltyController.text = widget.damages.isGuilty;
+    insuranceController.text = widget.damages.insurance;
+    descController.text = widget.damages.desc;
 
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(widget.mechanics.name),
+        title: Text(widget.damages.name),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -48,7 +52,7 @@ class _EditMechanicsState extends State<EditMechanics> {
                   TextFormField(
                     controller: nameController,
                     decoration: InputDecoration(
-                      labelText: 'Nazwa Warsztatu',
+                      labelText: 'Nazwa szkody',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
@@ -61,15 +65,15 @@ class _EditMechanicsState extends State<EditMechanics> {
                       ),
                     ),
                     validator: (val) =>
-                        val.isEmpty ? 'Musisz dodać nazwę Warsztatu!' : null,
+                        val.isEmpty ? 'Musisz dodać nazwę szkody!' : null,
                   ),
                   SizedBox(
                     height: 20.0,
                   ),
                   TextFormField(
-                    controller: addressController,
+                    controller: dateController,
                     decoration: InputDecoration(
-                      labelText: 'Adres Warsztatu',
+                      labelText: 'Data zajścia szkody',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20.0),
                       ),
@@ -81,8 +85,73 @@ class _EditMechanicsState extends State<EditMechanics> {
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),
-                    validator: (val) =>
-                        val.isEmpty ? 'Musisz dodać adres Warsztatu!' : null,
+                    validator: (val) => val.isEmpty
+                        ? 'Musisz dodać datę zajścia szkody!'
+                        : null,
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  TextFormField(
+                    controller: placeController,
+                    decoration: InputDecoration(
+                      labelText: 'Miejsce zajścia szkody',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.blue.shade200,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    validator: (val) => val.isEmpty
+                        ? 'Musisz dodać miejsce zajścia szkody!'
+                        : null,
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  TextFormField(
+                    controller: isGuiltyController,
+                    decoration: InputDecoration(
+                      labelText: 'Czy byłeś sprawcą szkody? Tak/Nie',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.blue.shade200,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    validator: (val) => (!val.contains('Tak') &&
+                            !val.contains('Nie'))
+                        ? 'Musisz wskazać czy byłeś sprawcą, wpisz Tak lub Nie'
+                        : null,
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  TextFormField(
+                    controller: insuranceController,
+                    decoration: InputDecoration(
+                      labelText: 'Ubezpieczenie sprawcy',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.blue.shade200,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
                   ),
                   SizedBox(
                     height: 20.0,
@@ -109,28 +178,6 @@ class _EditMechanicsState extends State<EditMechanics> {
                   SizedBox(
                     height: 20.0,
                   ),
-                  TextFormField(
-                    keyboardType: TextInputType.number,
-                    controller: phoneNumberController,
-                    decoration: InputDecoration(
-                      labelText: 'Numer telefonu',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.blue.shade200,
-                          width: 2.0,
-                        ),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                    validator: (val) =>
-                        val.isEmpty ? 'Musisz dodać numer telefonu!' : null,
-                  ),
-                  SizedBox(
-                    height: 30.0,
-                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -143,13 +190,14 @@ class _EditMechanicsState extends State<EditMechanics> {
                         shape: StadiumBorder(),
                         onPressed: () {
                           if (_formKey.currentState.validate()) {
-                            mechanics.name = nameController.text;
-                            mechanics.address = addressController.text;
-                            mechanics.description = descController.text ?? '';
-                            mechanics.phoneNumber =
-                                int.parse(phoneNumberController.text);
+                            damages.name = nameController.text;
+                            damages.date = dateController.text;
+                            damages.place = placeController.text;
+                            damages.isGuilty = isGuiltyController.text;
+                            damages.insurance = insuranceController.text ?? '';
+                            damages.desc = descController.text ?? '';
 
-                            getDB.updateMechanics(mechanics);
+                            getDB.updateDamages(damages);
                             Navigator.pop(context);
                           }
                         },
@@ -171,11 +219,11 @@ class _EditMechanicsState extends State<EditMechanics> {
                               builder: (context) {
                                 return AlertDialog(
                                   title: Text(
-                                    'Usuń Warsztat!',
+                                    'Usuń Szkodę!',
                                     textAlign: TextAlign.center,
                                   ),
                                   content: Text(
-                                    'Czy chcesz usunąć warsztat \n${nameController.text} z listy?',
+                                    'Czy chcesz usunąć szkodę \n${nameController.text} z listy?',
                                     textAlign: TextAlign.center,
                                   ),
                                   backgroundColor: Colors.red,
@@ -196,8 +244,7 @@ class _EditMechanicsState extends State<EditMechanics> {
                                             fontWeight: FontWeight.bold),
                                       ),
                                       onPressed: () async {
-                                        await getDB
-                                            .deleteMechanics(mechanics.id);
+                                        await getDB.deleteDamages(damages.id);
                                         Navigator.pop(context);
                                         Navigator.pop(context);
                                       },
