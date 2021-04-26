@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movierental/model/car/db_car_info.dart';
+import 'package:movierental/model/car_info/db_car_info.dart';
 import 'package:movierental/model/damages/db_damages.dart';
 import 'package:movierental/model/mechanics/db_mechanics.dart';
 import 'package:movierental/model/refuel/db_refuel.dart';
@@ -8,6 +8,9 @@ import 'package:movierental/model/tires/db_tires.dart';
 import 'package:movierental/screens/car_info_views/car_info_view.dart';
 import 'package:movierental/screens/car_views/car_main_view.dart';
 import 'package:movierental/screens/damages_view/damages_view.dart';
+import 'package:movierental/screens/help_view/assistance_view.dart';
+import 'package:movierental/screens/help_view/form_view.dart';
+import 'package:movierental/screens/help_view/help_view.dart';
 import 'package:movierental/screens/mechanics_views/mechanics_view.dart';
 import 'package:movierental/screens/home.dart';
 import 'package:movierental/screens/refuel_views/refuel_view.dart';
@@ -47,7 +50,9 @@ class MovieRental extends StatelessWidget {
           '/service': (context) => SerwisMain(),
           '/refuel': (context) => RefuelMain(),
           '/damages': (context) => DamagesMain(),
-          '/mechanics': (context) => MechanicsMain(),
+          '/help': (context) => HelpView(),
+          '/assistance': (context) => AssistanceView(),
+          '/form': (context) => FormView(),
 
           // '/location': (context) => ChooseLocation()
         },

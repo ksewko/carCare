@@ -198,14 +198,14 @@ class _HomeState extends State<Home> {
                       height: 50.0,
                       onPressed: () async {
                         dynamic result =
-                            await Navigator.pushNamed(context, '/mechanics');
+                            await Navigator.pushNamed(context, '/help');
                       },
                       icon: Icon(
                         Icons.assistant,
                         color: Colors.blue[900],
                       ),
                       label: Text(
-                        'Assistance',
+                        'Pomoc',
                         style: TextStyle(
                           color: Colors.blue[900],
                           fontSize: 18.0,

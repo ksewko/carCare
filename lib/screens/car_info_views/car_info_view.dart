@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movierental/model/car/car_info_model.dart';
-import 'package:movierental/model/car/db_car_info.dart';
+import 'package:movierental/model/car_info/car_info_model.dart';
+import 'package:movierental/model/car_info/db_car_info.dart';
 import 'package:movierental/screens/car_info_views/add_car_info_view.dart';
 import 'package:movierental/screens/car_info_views/edit_car_info_view.dart';
 import 'package:provider/provider.dart';
