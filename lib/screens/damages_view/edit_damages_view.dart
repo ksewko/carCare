@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movierental/model/damages/damages_model.dart';
-import 'package:movierental/model/damages/db_damages.dart';
+import 'package:carcare/model/damages/damages_model.dart';
+import 'package:carcare/model/damages/db_damages.dart';
 
 class EditDamages extends StatefulWidget {
   final DamagesModel damages;

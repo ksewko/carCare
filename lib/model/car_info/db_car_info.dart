@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:movierental/model/car_info/car_info_model.dart';
+import 'package:carcare/model/car_info/car_info_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';

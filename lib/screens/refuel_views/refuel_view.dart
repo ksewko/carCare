@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movierental/model/refuel/db_refuel.dart';
-import 'package:movierental/model/refuel/refuel_model.dart';
-import 'package:movierental/screens/refuel_views/add_refuel_view.dart';
-import 'package:movierental/screens/refuel_views/edit_refuel_view.dart';
+import 'package:carcare/model/refuel/db_refuel.dart';
+import 'package:carcare/model/refuel/refuel_model.dart';
+import 'package:carcare/screens/refuel_views/add_refuel_view.dart';
+import 'package:carcare/screens/refuel_views/edit_refuel_view.dart';
 import 'package:provider/provider.dart';
 
 class RefuelMain extends StatefulWidget {

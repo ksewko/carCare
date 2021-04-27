@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movierental/model/damages/damages_model.dart';
-import 'package:movierental/model/damages/db_damages.dart';
-import 'package:movierental/screens/damages_view/add_damages_view.dart';
-import 'package:movierental/screens/damages_view/edit_damages_view.dart';
+import 'package:carcare/model/damages/damages_model.dart';
+import 'package:carcare/model/damages/db_damages.dart';
+import 'package:carcare/screens/damages_view/add_damages_view.dart';
+import 'package:carcare/screens/damages_view/edit_damages_view.dart';
 import 'package:provider/provider.dart';
 
 class DamagesMain extends StatefulWidget {

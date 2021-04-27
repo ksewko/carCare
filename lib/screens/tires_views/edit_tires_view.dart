@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movierental/model/tires/db_tires.dart';
-import 'package:movierental/model/tires/tires_model.dart';
+import 'package:carcare/model/tires/db_tires.dart';
+import 'package:carcare/model/tires/tires_model.dart';
 import 'package:form_validators/form_validators.dart';
 
 class EditTires extends StatefulWidget {

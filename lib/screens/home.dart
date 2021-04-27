@@ -10,8 +10,9 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    String bgImage = 'night.png';
+    String bgImage = 'bg.png';
     Color bgColor = Colors.blue;
+    Color mainColor = Colors.grey[900];
 
     //ceny paliw
     double benzyna = 4.67;
@@ -24,7 +25,7 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         centerTitle: true,
         title: Text('Car Care'),
-        backgroundColor: Colors.blue[900],
+        backgroundColor: mainColor,
         elevation: 0.0,
       ),
       body: SafeArea(
@@ -116,7 +117,7 @@ class _HomeState extends State<Home> {
                   ],
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.blue[900],
+                  color: mainColor,
                 ),
               ),
 
@@ -130,16 +131,16 @@ class _HomeState extends State<Home> {
                       height: 50.0,
                       onPressed: () async {
                         dynamic result =
-                            await Navigator.pushNamed(context, '/home');
+                            await Navigator.pushNamed(context, '/reminders');
                       },
                       icon: Icon(
                         Icons.push_pin,
-                        color: Colors.blue[900],
+                        color: mainColor,
                       ),
                       label: Text(
                         'Przypomnienia',
                         style: TextStyle(
-                          color: Colors.blue[900],
+                          color: mainColor,
                           fontSize: 18.0,
                         ),
                       ),
@@ -155,12 +156,12 @@ class _HomeState extends State<Home> {
                       },
                       icon: Icon(
                         Icons.car_repair,
-                        color: Colors.blue[900],
+                        color: mainColor,
                       ),
                       label: Text(
                         'Twoje auto',
                         style: TextStyle(
-                          color: Colors.blue[900],
+                          color: mainColor,
                           fontSize: 18.0,
                         ),
                       ),
@@ -181,12 +182,12 @@ class _HomeState extends State<Home> {
                       },
                       icon: Icon(
                         Icons.settings,
-                        color: Colors.blue[900],
+                        color: mainColor,
                       ),
                       label: Text(
                         'Warsztaty',
                         style: TextStyle(
-                          color: Colors.blue[900],
+                          color: mainColor,
                           fontSize: 18.0,
                         ),
                       ),
@@ -202,12 +203,12 @@ class _HomeState extends State<Home> {
                       },
                       icon: Icon(
                         Icons.assistant,
-                        color: Colors.blue[900],
+                        color: mainColor,
                       ),
                       label: Text(
                         'Pomoc',
                         style: TextStyle(
-                          color: Colors.blue[900],
+                          color: mainColor,
                           fontSize: 18.0,
                         ),
                       ),
@@ -229,12 +230,12 @@ class _HomeState extends State<Home> {
                       },
                       icon: Icon(
                         Icons.source,
-                        color: Colors.blue[900],
+                        color: mainColor,
                       ),
                       label: Text(
                         'CEPIK',
                         style: TextStyle(
-                          color: Colors.blue[900],
+                          color: mainColor,
                           fontSize: 18.0,
                         ),
                       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movierental/model/car_info/car_info_model.dart';
-import 'package:movierental/model/car_info/db_car_info.dart';
+import 'package:carcare/model/car_info/car_info_model.dart';
+import 'package:carcare/model/car_info/db_car_info.dart';
 import 'package:provider/provider.dart';
 
 class AddCarInfo extends StatefulWidget {

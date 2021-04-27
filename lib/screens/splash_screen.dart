@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movierental/screens/home.dart';
+import 'package:carcare/screens/home.dart';
 
 class SplashScreen extends StatefulWidget {
   @override

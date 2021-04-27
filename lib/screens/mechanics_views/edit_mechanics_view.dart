@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movierental/model/mechanics/db_mechanics.dart';
-import 'package:movierental/model/mechanics/mechanics_model.dart';
+import 'package:carcare/model/mechanics/db_mechanics.dart';
+import 'package:carcare/model/mechanics/mechanics_model.dart';
 
 class EditMechanics extends StatefulWidget {
   final MechanicsModel mechanics;

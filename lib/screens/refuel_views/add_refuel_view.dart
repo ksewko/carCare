@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movierental/model/refuel/db_refuel.dart';
-import 'package:movierental/model/refuel/refuel_model.dart';
+import 'package:carcare/model/refuel/db_refuel.dart';
+import 'package:carcare/model/refuel/refuel_model.dart';
 import 'package:provider/provider.dart';
 
 class AddRefuel extends StatefulWidget {

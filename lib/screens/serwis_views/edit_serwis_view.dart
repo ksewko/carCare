@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movierental/model/serwis/db_serwis.dart';
-import 'package:movierental/model/serwis/serwis_model.dart';
+import 'package:carcare/model/serwis/db_serwis.dart';
+import 'package:carcare/model/serwis/serwis_model.dart';
 
 class EditSerwis extends StatefulWidget {
   final SerwisModel serwis;

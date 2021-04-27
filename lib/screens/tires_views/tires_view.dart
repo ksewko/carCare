@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movierental/model/tires/db_tires.dart';
-import 'package:movierental/model/tires/tires_model.dart';
-import 'package:movierental/screens/tires_views/add_tires_view.dart';
-import 'package:movierental/screens/tires_views/edit_tires_view.dart';
+import 'package:carcare/model/tires/db_tires.dart';
+import 'package:carcare/model/tires/tires_model.dart';
+import 'package:carcare/screens/tires_views/add_tires_view.dart';
+import 'package:carcare/screens/tires_views/edit_tires_view.dart';
 import 'package:provider/provider.dart';
 
 class TiresMain extends StatefulWidget {

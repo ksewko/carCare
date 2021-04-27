@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movierental/model/serwis/db_serwis.dart';
-import 'package:movierental/model/serwis/serwis_model.dart';
+import 'package:carcare/model/serwis/db_serwis.dart';
+import 'package:carcare/model/serwis/serwis_model.dart';
 import 'package:provider/provider.dart';
 
 class AddSerwis extends StatefulWidget {
