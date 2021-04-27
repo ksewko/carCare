@@ -7,22 +7,23 @@ class AssistanceView extends StatefulWidget {
 
 class _AssistanceViewState extends State<AssistanceView> {
   Map data = {};
+  Color mainColor = Colors.grey[900];
+  Color subColor = Colors.grey[50];
+  String bgImage = 'bg.png';
 
   @override
   Widget build(BuildContext context) {
-    String bgImage = 'night.png';
-    Color bgColor = Colors.blue;
+    String bgImage = 'bg.png';
 
     Color cellFirst = Colors.grey[50];
     Color cellSecond = Colors.grey[300];
 
     return Scaffold(
       //ustanienie paska na górze aplikacji w zależności od dnia i nocy
-      backgroundColor: bgColor,
       appBar: AppBar(
         centerTitle: true,
         title: Text('Assistance'),
-        backgroundColor: Colors.blue[900],
+        backgroundColor: mainColor,
         elevation: 0.0,
       ),
       body: SafeArea(
@@ -48,13 +49,13 @@ class _AssistanceViewState extends State<AssistanceView> {
                         children: [
                           Icon(
                             Icons.local_phone,
-                            color: Colors.blue[900],
+                            color: mainColor,
                           ),
                           SizedBox(width: 20.0),
                           Text(
                             'ALLIANZ',
                             style: TextStyle(
-                              color: Colors.blue[900],
+                              color: mainColor,
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold,
                             ),
@@ -63,7 +64,7 @@ class _AssistanceViewState extends State<AssistanceView> {
                           Text(
                             '224224224',
                             style: TextStyle(
-                              color: Colors.blue[900],
+                              color: mainColor,
                               fontSize: 18.0,
                             ),
                           ),
@@ -86,13 +87,13 @@ class _AssistanceViewState extends State<AssistanceView> {
                         children: [
                           Icon(
                             Icons.local_phone,
-                            color: Colors.blue[900],
+                            color: mainColor,
                           ),
                           SizedBox(width: 20.0),
                           Text(
                             'AVIVA',
                             style: TextStyle(
-                              color: Colors.blue[900],
+                              color: mainColor,
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold,
                             ),
@@ -101,7 +102,7 @@ class _AssistanceViewState extends State<AssistanceView> {
                           Text(
                             '225632828',
                             style: TextStyle(
-                              color: Colors.blue[900],
+                              color: mainColor,
                               fontSize: 18.0,
                             ),
                           ),
@@ -124,13 +125,13 @@ class _AssistanceViewState extends State<AssistanceView> {
                         children: [
                           Icon(
                             Icons.local_phone,
-                            color: Colors.blue[900],
+                            color: mainColor,
                           ),
                           SizedBox(width: 20.0),
                           Text(
                             'AXA DIRECT',
                             style: TextStyle(
-                              color: Colors.blue[900],
+                              color: mainColor,
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold,
                             ),
@@ -139,7 +140,7 @@ class _AssistanceViewState extends State<AssistanceView> {
                           Text(
                             '225999522',
                             style: TextStyle(
-                              color: Colors.blue[900],
+                              color: mainColor,
                               fontSize: 18.0,
                             ),
                           ),
@@ -162,13 +163,13 @@ class _AssistanceViewState extends State<AssistanceView> {
                         children: [
                           Icon(
                             Icons.local_phone,
-                            color: Colors.blue[900],
+                            color: mainColor,
                           ),
                           SizedBox(width: 20.0),
                           Text(
                             'GENERALI',
                             style: TextStyle(
-                              color: Colors.blue[900],
+                              color: mainColor,
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold,
                             ),
@@ -177,7 +178,7 @@ class _AssistanceViewState extends State<AssistanceView> {
                           Text(
                             '913913913',
                             style: TextStyle(
-                              color: Colors.blue[900],
+                              color: mainColor,
                               fontSize: 18.0,
                             ),
                           ),
@@ -200,13 +201,13 @@ class _AssistanceViewState extends State<AssistanceView> {
                         children: [
                           Icon(
                             Icons.local_phone,
-                            color: Colors.blue[900],
+                            color: mainColor,
                           ),
                           SizedBox(width: 20.0),
                           Text(
                             'LINK4',
                             style: TextStyle(
-                              color: Colors.blue[900],
+                              color: mainColor,
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold,
                             ),
@@ -215,7 +216,7 @@ class _AssistanceViewState extends State<AssistanceView> {
                           Text(
                             '224444444',
                             style: TextStyle(
-                              color: Colors.blue[900],
+                              color: mainColor,
                               fontSize: 18.0,
                             ),
                           ),
@@ -238,13 +239,13 @@ class _AssistanceViewState extends State<AssistanceView> {
                         children: [
                           Icon(
                             Icons.local_phone,
-                            color: Colors.blue[900],
+                            color: mainColor,
                           ),
                           SizedBox(width: 20.0),
                           Text(
                             'PROAMA',
                             style: TextStyle(
-                              color: Colors.blue[900],
+                              color: mainColor,
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold,
                             ),
@@ -253,7 +254,7 @@ class _AssistanceViewState extends State<AssistanceView> {
                           Text(
                             '815815815',
                             style: TextStyle(
-                              color: Colors.blue[900],
+                              color: mainColor,
                               fontSize: 18.0,
                             ),
                           ),
@@ -276,13 +277,13 @@ class _AssistanceViewState extends State<AssistanceView> {
                         children: [
                           Icon(
                             Icons.local_phone,
-                            color: Colors.blue[900],
+                            color: mainColor,
                           ),
                           SizedBox(width: 20.0),
                           Text(
                             'PZU',
                             style: TextStyle(
-                              color: Colors.blue[900],
+                              color: mainColor,
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold,
                             ),
@@ -291,7 +292,7 @@ class _AssistanceViewState extends State<AssistanceView> {
                           Text(
                             '225665555',
                             style: TextStyle(
-                              color: Colors.blue[900],
+                              color: mainColor,
                               fontSize: 18.0,
                             ),
                           ),
@@ -314,13 +315,13 @@ class _AssistanceViewState extends State<AssistanceView> {
                         children: [
                           Icon(
                             Icons.local_phone,
-                            color: Colors.blue[900],
+                            color: mainColor,
                           ),
                           SizedBox(width: 20.0),
                           Text(
                             'TUZ',
                             style: TextStyle(
-                              color: Colors.blue[900],
+                              color: mainColor,
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold,
                             ),
@@ -329,7 +330,7 @@ class _AssistanceViewState extends State<AssistanceView> {
                           Text(
                             '223276060',
                             style: TextStyle(
-                              color: Colors.blue[900],
+                              color: mainColor,
                               fontSize: 18.0,
                             ),
                           ),

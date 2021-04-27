@@ -12,6 +12,9 @@ class RefuelMain extends StatefulWidget {
 
 class _RefuelMainState extends State<RefuelMain> {
   List<RefuelModel> refuel;
+  Color mainColor = Colors.grey[900];
+  Color subColor = Colors.black;
+  String bgImage = 'bg.png';
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +24,16 @@ class _RefuelMainState extends State<RefuelMain> {
       appBar: AppBar(
         centerTitle: true,
         title: Text('Ostatnie tankowania'),
-        backgroundColor: Colors.blue[900],
+        backgroundColor: mainColor,
       ),
       body: SafeArea(
         child: Container(
-          color: Colors.blue[300],
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage('assets/$bgImage'),
+            fit: BoxFit
+                .cover, //zasłoni cały background, -> umiejscowienie image w bgc
+          )),
           child: FutureBuilder(
             future: getDB.getRefuel(),
             builder: (context, snapshot) {
@@ -42,12 +50,12 @@ class _RefuelMainState extends State<RefuelMain> {
                       child: ListTile(
                         leading: Icon(
                           Icons.local_gas_station,
-                          color: Colors.blue[900],
+                          color: mainColor,
                         ),
                         title: Text(
                           refuel[index].type,
                           style: TextStyle(
-                            color: Colors.blue[900],
+                            color: mainColor,
                             fontSize: 18.0,
                             fontWeight: FontWeight.bold,
                           ),
@@ -55,7 +63,7 @@ class _RefuelMainState extends State<RefuelMain> {
                         subtitle: Text(
                           (refuel[index].date),
                           style: TextStyle(
-                            color: Colors.blue[700],
+                            color: subColor,
                             fontSize: 14.0,
                             fontWeight: FontWeight.bold,
                           ),
@@ -63,7 +71,7 @@ class _RefuelMainState extends State<RefuelMain> {
                         trailing: Text(
                           (refuel[index].price),
                           style: TextStyle(
-                            color: Colors.blue[900],
+                            color: mainColor,
                             fontSize: 18.0,
                           ),
                         ),
@@ -95,6 +103,7 @@ class _RefuelMainState extends State<RefuelMain> {
             MaterialPageRoute(builder: (context) => AddRefuel()),
           );
         },
+        backgroundColor: Colors.red[900],
       ),
     );
   }

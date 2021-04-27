@@ -10,6 +10,9 @@ class AddRefuel extends StatefulWidget {
 
 class _AddRefuelState extends State<AddRefuel> {
   final DBRefuel getDB = DBRefuel();
+  Color mainColor = Colors.grey[900];
+  Color subColor = Colors.grey[50];
+  String bgImage = 'bg.png';
 
   final FocusNode typeNode = FocusNode();
   final FocusNode dateNode = FocusNode();
@@ -32,12 +35,19 @@ class _AddRefuelState extends State<AddRefuel> {
     final getDB = Provider.of<DBRefuel>(context);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: mainColor,
         centerTitle: true,
         title: Text('Dodaj tankowanie'),
       ),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage('assets/$bgImage'),
+            fit: BoxFit
+                .cover, //zasłoni cały background, -> umiejscowienie image w bgc
+          )),
           padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 20.0),
           child: Form(
             key: _formKey,
@@ -49,12 +59,17 @@ class _AddRefuelState extends State<AddRefuel> {
                   controller: typeController,
                   decoration: InputDecoration(
                     labelText: 'Rodzaj paliwa',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -74,12 +89,17 @@ class _AddRefuelState extends State<AddRefuel> {
                   controller: dateController,
                   decoration: InputDecoration(
                     labelText: 'Data tankowania',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -99,12 +119,17 @@ class _AddRefuelState extends State<AddRefuel> {
                   controller: meterController,
                   decoration: InputDecoration(
                     labelText: 'Stan licznika',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -122,12 +147,17 @@ class _AddRefuelState extends State<AddRefuel> {
                   controller: filledController,
                   decoration: InputDecoration(
                     labelText: 'Ilość zatankowanego paliwa',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -136,8 +166,9 @@ class _AddRefuelState extends State<AddRefuel> {
                   onEditingComplete: () {
                     FocusScope.of(context).requestFocus(priceNode);
                   },
-                  validator: (val) =>
-                      val.isEmpty ? 'Musisz dodać ile litrów paliwa zatankowano!' : null,
+                  validator: (val) => val.isEmpty
+                      ? 'Musisz dodać ile litrów paliwa zatankowano!'
+                      : null,
                 ),
                 SizedBox(
                   height: 20.0,
@@ -147,12 +178,17 @@ class _AddRefuelState extends State<AddRefuel> {
                   controller: priceController,
                   decoration: InputDecoration(
                     labelText: 'Cena za litr paliwa',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -172,26 +208,32 @@ class _AddRefuelState extends State<AddRefuel> {
                   controller: isFullController,
                   decoration: InputDecoration(
                     labelText: 'Czy zatankowano do pełna? Tak/Nie',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
                     ),
                   ),
-                   validator: (val) =>(!val.contains('Tak') && !val.contains('Nie'))
-                            ? 'Musisz wpisać słowo Tak lub Nie'
-                            : null,
+                  validator: (val) =>
+                      (!val.contains('Tak') && !val.contains('Nie'))
+                          ? 'Musisz wpisać słowo Tak lub Nie'
+                          : null,
                 ),
                 SizedBox(
                   height: 20.0,
                 ),
                 RaisedButton(
-                  color: Colors.blue,
+                  color: Colors.red[900],
                   child: Text(
                     'Dodaj',
                     style: TextStyle(color: Colors.white),
@@ -200,12 +242,13 @@ class _AddRefuelState extends State<AddRefuel> {
                   onPressed: () {
                     if (_formKey.currentState.validate()) {
                       RefuelModel newRefuel = RefuelModel(
-                          typeController.text,
-                          dateController.text,
-                          meterController.text,
-                          filledController.text,
-                          priceController.text,
-                          isFullController.text ?? '',);
+                        typeController.text,
+                        dateController.text,
+                        meterController.text,
+                        filledController.text,
+                        priceController.text,
+                        isFullController.text ?? '',
+                      );
 
                       getDB.addRefuel(newRefuel).then((i) {
                         typeController.clear();

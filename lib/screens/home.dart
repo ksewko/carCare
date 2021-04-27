@@ -42,13 +42,18 @@ class _HomeState extends State<Home> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Center(
-                  child: CircleAvatar(
-                    radius: 75.0,
-                    backgroundImage: AssetImage('assets/lala.jpg'),
+                  child: Container(
+                    height: 150.0,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                      image: AssetImage('assets/logo.png'),
+                      fit: BoxFit
+                          .fill, //zasłoni cały background, -> umiejscowienie image w bgc
+                    )),
                   ),
                 ),
               ),
-              SizedBox(height: 25.0),
+              SizedBox(height: 15.0),
               Container(
                 width: 350.0,
                 child: Column(

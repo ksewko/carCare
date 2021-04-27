@@ -12,6 +12,9 @@ class TiresMain extends StatefulWidget {
 
 class _TiresMainState extends State<TiresMain> {
   List<TiresModel> tires;
+  Color mainColor = Colors.grey[900];
+  Color subColor = Colors.black;
+  String bgImage = 'bg.png';
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +24,16 @@ class _TiresMainState extends State<TiresMain> {
       appBar: AppBar(
         centerTitle: true,
         title: Text('Opony'),
-        backgroundColor: Colors.blue[900],
+        backgroundColor: mainColor,
       ),
       body: SafeArea(
         child: Container(
-          color: Colors.blue[300],
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage('assets/$bgImage'),
+            fit: BoxFit
+                .cover, //zasłoni cały background, -> umiejscowienie image w bgc
+          )),
           child: FutureBuilder(
             future: getDB.getTires(),
             builder: (context, snapshot) {
@@ -39,9 +47,14 @@ class _TiresMainState extends State<TiresMain> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Center(
-                            child: CircleAvatar(
-                              radius: 50.0,
-                              backgroundImage: AssetImage('assets/tires.jpg'),
+                            child: Container(
+                              height: 150.0,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                image: AssetImage('assets/tires.png'),
+                                fit: BoxFit
+                                    .fill, //zasłoni cały background, -> umiejscowienie image w bgc
+                              )),
                             ),
                           ),
                         ),
@@ -52,12 +65,12 @@ class _TiresMainState extends State<TiresMain> {
                           child: ListTile(
                             leading: Icon(
                               Icons.radio_button_checked,
-                              color: Colors.blue[900],
+                              color: mainColor,
                             ),
                             title: Text(
                               tires[index].rims,
                               style: TextStyle(
-                                color: Colors.blue[900],
+                                color: mainColor,
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -67,7 +80,7 @@ class _TiresMainState extends State<TiresMain> {
                                 Text(
                                   (tires[index].tireSize),
                                   style: TextStyle(
-                                    color: Colors.blue[700],
+                                    color: subColor,
                                     fontSize: 14.0,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -75,7 +88,7 @@ class _TiresMainState extends State<TiresMain> {
                                 Text(
                                   (tires[index].frontPressure),
                                   style: TextStyle(
-                                    color: Colors.blue[700],
+                                    color: subColor,
                                     fontSize: 14.0,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -83,7 +96,7 @@ class _TiresMainState extends State<TiresMain> {
                                 Text(
                                   (tires[index].backPressure),
                                   style: TextStyle(
-                                    color: Colors.blue[700],
+                                    color: subColor,
                                     fontSize: 14.0,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -93,7 +106,7 @@ class _TiresMainState extends State<TiresMain> {
                             trailing: Text(
                               tires[index].isSummer,
                               style: TextStyle(
-                                color: Colors.blue[900],
+                                color: mainColor,
                               ),
                             ),
                             onTap: () {
@@ -126,6 +139,7 @@ class _TiresMainState extends State<TiresMain> {
             MaterialPageRoute(builder: (context) => AddTires()),
           );
         },
+        backgroundColor: Colors.red[900],
       ),
     );
   }

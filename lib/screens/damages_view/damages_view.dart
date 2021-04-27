@@ -12,6 +12,9 @@ class DamagesMain extends StatefulWidget {
 
 class _DamagesMainState extends State<DamagesMain> {
   List<DamagesModel> damages;
+  Color mainColor = Colors.grey[900];
+  Color subColor = Colors.black;
+  String bgImage = 'bg.png';
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +24,17 @@ class _DamagesMainState extends State<DamagesMain> {
       appBar: AppBar(
         centerTitle: true,
         title: Text('Lista Szkód'),
-        backgroundColor: Colors.blue[900],
+        backgroundColor: mainColor,
       ),
       body: SafeArea(
         child: Container(
-          color: Colors.blue[300],
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage('assets/$bgImage'),
+            fit: BoxFit
+                .cover, //zasłoni cały background, -> umiejscowienie image w bgc
+          )),
+          // color: Colors.blue[300],
           child: FutureBuilder(
             future: getDB.getDamages(),
             builder: (context, snapshot) {
@@ -42,12 +51,12 @@ class _DamagesMainState extends State<DamagesMain> {
                       child: ListTile(
                         leading: Icon(
                           Icons.whatshot,
-                          color: Colors.blue[900],
+                          color: mainColor,
                         ),
                         title: Text(
                           damages[index].name,
                           style: TextStyle(
-                            color: Colors.blue[900],
+                            color: mainColor,
                             fontSize: 18.0,
                             fontWeight: FontWeight.bold,
                           ),
@@ -55,7 +64,7 @@ class _DamagesMainState extends State<DamagesMain> {
                         subtitle: Text(
                           (damages[index].place),
                           style: TextStyle(
-                            color: Colors.blue[700],
+                            color: subColor,
                             fontSize: 14.0,
                             fontWeight: FontWeight.bold,
                           ),
@@ -63,7 +72,7 @@ class _DamagesMainState extends State<DamagesMain> {
                         trailing: Text(
                           (damages[index].date),
                           style: TextStyle(
-                            color: Colors.blue[900],
+                            color: mainColor,
                             fontSize: 18.0,
                           ),
                         ),
@@ -95,6 +104,7 @@ class _DamagesMainState extends State<DamagesMain> {
             MaterialPageRoute(builder: (context) => AddDamages()),
           );
         },
+        backgroundColor: Colors.red[900],
       ),
     );
   }

@@ -12,6 +12,9 @@ class SerwisMain extends StatefulWidget {
 
 class _SerwisMainState extends State<SerwisMain> {
   List<SerwisModel> serwis;
+  Color mainColor = Colors.grey[900];
+  Color subColor = Colors.black;
+  String bgImage = 'bg.png';
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +24,16 @@ class _SerwisMainState extends State<SerwisMain> {
       appBar: AppBar(
         centerTitle: true,
         title: Text('Lista Serwisów'),
-        backgroundColor: Colors.blue[900],
+        backgroundColor: mainColor,
       ),
       body: SafeArea(
         child: Container(
-          color: Colors.blue[300],
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage('assets/$bgImage'),
+            fit: BoxFit
+                .cover, //zasłoni cały background, -> umiejscowienie image w bgc
+          )),
           child: FutureBuilder(
             future: getDB.getSerwis(),
             builder: (context, snapshot) {
@@ -42,12 +50,12 @@ class _SerwisMainState extends State<SerwisMain> {
                       child: ListTile(
                         leading: Icon(
                           Icons.construction_rounded,
-                          color: Colors.blue[900],
+                          color: mainColor,
                         ),
                         title: Text(
                           serwis[index].name,
                           style: TextStyle(
-                            color: Colors.blue[900],
+                            color: mainColor,
                             fontSize: 18.0,
                             fontWeight: FontWeight.bold,
                           ),
@@ -55,7 +63,7 @@ class _SerwisMainState extends State<SerwisMain> {
                         subtitle: Text(
                           (serwis[index].date),
                           style: TextStyle(
-                            color: Colors.blue[700],
+                            color: subColor,
                             fontSize: 14.0,
                             fontWeight: FontWeight.bold,
                           ),
@@ -63,7 +71,7 @@ class _SerwisMainState extends State<SerwisMain> {
                         trailing: Text(
                           (serwis[index].price),
                           style: TextStyle(
-                            color: Colors.blue[900],
+                            color: mainColor,
                             fontSize: 18.0,
                           ),
                         ),
@@ -95,6 +103,7 @@ class _SerwisMainState extends State<SerwisMain> {
             MaterialPageRoute(builder: (context) => AddSerwis()),
           );
         },
+        backgroundColor: Colors.red[900],
       ),
     );
   }

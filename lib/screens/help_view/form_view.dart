@@ -10,16 +10,15 @@ class _FormViewState extends State<FormView> {
 
   @override
   Widget build(BuildContext context) {
-    String bgImage = 'night.png';
-    Color bgColor = Colors.blue;
+    Color mainColor = Colors.grey[900];
+    String bgImage = 'bg.png';
 
     return Scaffold(
       //ustanienie paska na górze aplikacji w zależności od dnia i nocy
-      backgroundColor: bgColor,
       appBar: AppBar(
         centerTitle: true,
         title: Text('Oświadczenie'),
-        backgroundColor: Colors.blue[900],
+        backgroundColor: mainColor,
         elevation: 0.0,
       ),
       body: SafeArea(

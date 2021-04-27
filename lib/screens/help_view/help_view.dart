@@ -10,18 +10,17 @@ class _HelpViewState extends State<HelpView> {
 
   @override
   Widget build(BuildContext context) {
-    String bgImage = 'night.png';
-    Color bgColor = Colors.blue;
+    String bgImage = 'bg.png';
+    Color mainColor = Colors.grey[900];
     Color cellFirst = Colors.grey[50];
     Color cellSecond = Colors.grey[300];
 
     return Scaffold(
       //ustanienie paska na górze aplikacji w zależności od dnia i nocy
-      backgroundColor: bgColor,
       appBar: AppBar(
         centerTitle: true,
         title: Text('Pomoc'),
-        backgroundColor: Colors.blue[900],
+        backgroundColor: mainColor,
         elevation: 0.0,
       ),
       body: SafeArea(
@@ -38,9 +37,14 @@ class _HelpViewState extends State<HelpView> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Center(
-                  child: CircleAvatar(
-                    radius: 100.0,
-                    backgroundImage: AssetImage('assets/help.jpg'),
+                  child: Container(
+                    height: 150.0,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                      image: AssetImage('assets/help.png'),
+                      fit: BoxFit
+                          .fill, //zasłoni cały background, -> umiejscowienie image w bgc
+                    )),
                   ),
                 ),
               ),
@@ -58,12 +62,12 @@ class _HelpViewState extends State<HelpView> {
                       },
                       icon: Icon(
                         Icons.local_phone_outlined,
-                        color: Colors.blue[900],
+                        color: mainColor,
                       ),
                       label: Text(
                         'Assistance',
                         style: TextStyle(
-                          color: Colors.blue[900],
+                          color: mainColor,
                           fontSize: 18.0,
                         ),
                       ),
@@ -84,12 +88,12 @@ class _HelpViewState extends State<HelpView> {
                       },
                       icon: Icon(
                         Icons.description_outlined,
-                        color: Colors.blue[900],
+                        color: mainColor,
                       ),
                       label: Text(
                         'Formularz',
                         style: TextStyle(
-                          color: Colors.blue[900],
+                          color: mainColor,
                           fontSize: 18.0,
                         ),
                       ),

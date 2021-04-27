@@ -10,6 +10,9 @@ class AddDamages extends StatefulWidget {
 
 class _AddDamagesState extends State<AddDamages> {
   final DBDamages getDB = DBDamages();
+  Color mainColor = Colors.grey[900];
+  Color subColor = Colors.grey[50];
+  String bgImage = 'bg.png';
 
   final FocusNode nameNode = FocusNode();
   final FocusNode dateNode = FocusNode();
@@ -32,12 +35,19 @@ class _AddDamagesState extends State<AddDamages> {
     final getDB = Provider.of<DBDamages>(context);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: mainColor,
         centerTitle: true,
         title: Text('Dodaj nową szkodę'),
       ),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage('assets/$bgImage'),
+            fit: BoxFit
+                .cover, //zasłoni cały background, -> umiejscowienie image w bgc
+          )),
           padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 20.0),
           child: Form(
             key: _formKey,
@@ -49,12 +59,17 @@ class _AddDamagesState extends State<AddDamages> {
                   controller: nameController,
                   decoration: InputDecoration(
                     labelText: 'Nazwa szkody',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -74,12 +89,17 @@ class _AddDamagesState extends State<AddDamages> {
                   controller: dateController,
                   decoration: InputDecoration(
                     labelText: 'Data zajścia szkody',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -99,12 +119,17 @@ class _AddDamagesState extends State<AddDamages> {
                   controller: placeController,
                   decoration: InputDecoration(
                     labelText: 'Miejsce zajścia szkody',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -125,12 +150,17 @@ class _AddDamagesState extends State<AddDamages> {
                   controller: isGuiltyController,
                   decoration: InputDecoration(
                     labelText: 'Czy byłeś sprawcą szkody? Tak/Nie',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -152,12 +182,17 @@ class _AddDamagesState extends State<AddDamages> {
                   controller: insuranceController,
                   decoration: InputDecoration(
                     labelText: 'Ubezpieczyciel sprawcy',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -178,12 +213,17 @@ class _AddDamagesState extends State<AddDamages> {
                   controller: descController,
                   decoration: InputDecoration(
                     labelText: 'Opis',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -194,7 +234,7 @@ class _AddDamagesState extends State<AddDamages> {
                   height: 20.0,
                 ),
                 RaisedButton(
-                  color: Colors.blue,
+                  color: Colors.red[900],
                   child: Text(
                     'Dodaj',
                     style: TextStyle(color: Colors.white),

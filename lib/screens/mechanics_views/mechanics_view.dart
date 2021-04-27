@@ -12,6 +12,9 @@ class MechanicsMain extends StatefulWidget {
 
 class _MechanicsMainState extends State<MechanicsMain> {
   List<MechanicsModel> mechanics;
+  Color mainColor = Colors.grey[900];
+  Color subColor = Colors.black;
+  String bgImage = 'bg.png';
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +24,16 @@ class _MechanicsMainState extends State<MechanicsMain> {
       appBar: AppBar(
         centerTitle: true,
         title: Text('Lista Warsztatów'),
-        backgroundColor: Colors.blue[900],
+        backgroundColor: mainColor,
       ),
       body: SafeArea(
         child: Container(
-          color: Colors.blue[300],
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage('assets/$bgImage'),
+            fit: BoxFit
+                .cover, //zasłoni cały background, -> umiejscowienie image w bgc
+          )),
           child: FutureBuilder(
             future: getDB.getMechanics(),
             builder: (context, snapshot) {
@@ -42,12 +50,12 @@ class _MechanicsMainState extends State<MechanicsMain> {
                       child: ListTile(
                         leading: Icon(
                           Icons.settings,
-                          color: Colors.blue[900],
+                          color: mainColor,
                         ),
                         title: Text(
                           mechanics[index].name,
                           style: TextStyle(
-                            color: Colors.blue[900],
+                            color: mainColor,
                             fontSize: 18.0,
                             fontWeight: FontWeight.bold,
                           ),
@@ -55,7 +63,7 @@ class _MechanicsMainState extends State<MechanicsMain> {
                         subtitle: Text(
                           (mechanics[index].address),
                           style: TextStyle(
-                            color: Colors.blue[700],
+                            color: subColor,
                             fontSize: 14.0,
                             fontWeight: FontWeight.bold,
                           ),
@@ -63,7 +71,7 @@ class _MechanicsMainState extends State<MechanicsMain> {
                         trailing: Text(
                           (mechanics[index].phoneNumber.toString()),
                           style: TextStyle(
-                            color: Colors.blue[900],
+                            color: mainColor,
                             fontSize: 18.0,
                           ),
                         ),
@@ -95,6 +103,7 @@ class _MechanicsMainState extends State<MechanicsMain> {
             MaterialPageRoute(builder: (context) => AddMechanics()),
           );
         },
+        backgroundColor: Colors.red[900],
       ),
     );
   }

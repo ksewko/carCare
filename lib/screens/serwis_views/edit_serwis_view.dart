@@ -12,6 +12,9 @@ class EditSerwis extends StatefulWidget {
 
 class _EditSerwisState extends State<EditSerwis> {
   final DBSerwis getDB = DBSerwis();
+  Color mainColor = Colors.grey[900];
+  Color subColor = Colors.grey[50];
+  String bgImage = 'bg.png';
 
   // capture input from TextField
   var nameController = TextEditingController();
@@ -31,184 +34,212 @@ class _EditSerwisState extends State<EditSerwis> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: mainColor,
         centerTitle: true,
         title: Text('Serwis'),
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.all(10.0),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  TextFormField(
-                    controller: nameController,
-                    decoration: InputDecoration(
-                      labelText: 'Nazwa serwisu',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.blue.shade200,
-                          width: 2.0,
+      body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+          image: AssetImage('assets/$bgImage'),
+          fit: BoxFit
+              .cover, //zasłoni cały background, -> umiejscowienie image w bgc
+        )),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    TextFormField(
+                      controller: nameController,
+                      decoration: InputDecoration(
+                        labelText: 'Nazwa serwisu',
+                        labelStyle: TextStyle(color: subColor),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          borderSide: BorderSide(
+                            color: subColor,
+                            width: 2.0,
+                          ),
                         ),
-                        borderRadius: BorderRadius.circular(20),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: subColor,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      validator: (val) =>
+                          val.isEmpty ? 'Musisz dodać nazwę serwisu!' : null,
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    TextFormField(
+                      controller: dateController,
+                      decoration: InputDecoration(
+                        labelText: 'Data serwisu',
+                        labelStyle: TextStyle(color: subColor),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          borderSide: BorderSide(
+                            color: subColor,
+                            width: 2.0,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: subColor,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      validator: (val) => val.isEmpty
+                          ? 'Musisz dodać datę wykonania serwisu!'
+                          : null,
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    TextFormField(
+                      controller: priceController,
+                      decoration: InputDecoration(
+                        labelText: 'Koszt',
+                        labelStyle: TextStyle(color: subColor),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          borderSide: BorderSide(
+                            color: subColor,
+                            width: 2.0,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: subColor,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      validator: (val) => val.isEmpty
+                          ? 'Musisz dodać koszt wykonania serwisu!'
+                          : null,
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    TextFormField(
+                      textInputAction: TextInputAction.next,
+                      maxLines: 3,
+                      keyboardType: TextInputType.multiline,
+                      controller: descController,
+                      decoration: InputDecoration(
+                        labelText: 'Opis',
+                        labelStyle: TextStyle(color: subColor),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          borderSide: BorderSide(
+                            color: subColor,
+                            width: 2.0,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: subColor,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
                       ),
                     ),
-                    validator: (val) =>
-                        val.isEmpty ? 'Musisz dodać nazwę serwisu!' : null,
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  TextFormField(
-                    controller: dateController,
-                    decoration: InputDecoration(
-                      labelText: 'Data serwisu',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.blue.shade200,
-                          width: 2.0,
-                        ),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
+                    SizedBox(
+                      height: 30.0,
                     ),
-                    validator: (val) => val.isEmpty
-                        ? 'Musisz dodać datę wykonania serwisu!'
-                        : null,
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  TextFormField(
-                    controller: priceController,
-                    decoration: InputDecoration(
-                      labelText: 'Koszt',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.blue.shade200,
-                          width: 2.0,
-                        ),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                    validator: (val) => val.isEmpty
-                        ? 'Musisz dodać koszt wykonania serwisu!'
-                        : null,
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  TextFormField(
-                    textInputAction: TextInputAction.next,
-                    maxLines: 3,
-                    keyboardType: TextInputType.multiline,
-                    controller: descController,
-                    decoration: InputDecoration(
-                      labelText: 'Opis',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.blue.shade200,
-                          width: 2.0,
-                        ),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30.0,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      RaisedButton(
-                        color: Colors.blue,
-                        child: Text(
-                          'Edytuj',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        shape: StadiumBorder(),
-                        onPressed: () {
-                          if (_formKey.currentState.validate()) {
-                            serwis.name = nameController.text;
-                            serwis.date = dateController.text;
-                            serwis.price = priceController.text;
-                            serwis.description = descController.text ?? '';
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        RaisedButton(
+                          color: Colors.red[900],
+                          child: Text(
+                            'Edytuj',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          shape: StadiumBorder(),
+                          onPressed: () {
+                            if (_formKey.currentState.validate()) {
+                              serwis.name = nameController.text;
+                              serwis.date = dateController.text;
+                              serwis.price = priceController.text;
+                              serwis.description = descController.text ?? '';
 
-                            getDB.updateSerwis(serwis);
-                            Navigator.pop(context);
-                          }
-                        },
-                      ),
-                      SizedBox(
-                        width: 30.0,
-                      ),
-                      RaisedButton(
-                        color: Colors.red,
-                        child: Text(
-                          'Usuń',
-                          style: TextStyle(color: Colors.white),
+                              getDB.updateSerwis(serwis);
+                              Navigator.pop(context);
+                            }
+                          },
                         ),
-                        shape: StadiumBorder(),
-                        onPressed: () {
-                          showDialog(
-                              context: context,
-                              barrierDismissible: true,
-                              builder: (context) {
-                                return AlertDialog(
-                                  title: Text(
-                                    'Usuń Serwis!',
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  content: Text(
-                                    'Czy chcesz usunąć serwis ${serwis.name}?',
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  backgroundColor: Colors.red,
-                                  elevation: 8.0,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30.0),
-                                  ),
-                                  actions: <Widget>[
-                                    OutlineButton(
-                                      borderSide:
-                                          BorderSide(color: Colors.blue),
-                                      shape: StadiumBorder(),
-                                      child: Text(
-                                        'Tak',
-                                        style: TextStyle(
-                                            fontSize: 18.0,
-                                            letterSpacing: 1.0,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      onPressed: () async {
-                                        await getDB.deleteSerwis(serwis.id);
-                                        Navigator.pop(context);
-                                        Navigator.pop(context);
-                                      },
+                        SizedBox(
+                          width: 30.0,
+                        ),
+                        RaisedButton(
+                          color: Colors.red[900],
+                          child: Text(
+                            'Usuń',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          shape: StadiumBorder(),
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                barrierDismissible: true,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title: Text(
+                                      'Usuń Serwis!',
+                                      textAlign: TextAlign.center,
                                     ),
-                                  ],
-                                );
-                              });
-                        },
-                      ),
-                    ],
-                  )
-                ],
+                                    content: Text(
+                                      'Czy chcesz usunąć serwis ${serwis.name}?',
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    backgroundColor: Colors.red,
+                                    elevation: 8.0,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(30.0),
+                                    ),
+                                    actions: <Widget>[
+                                      OutlineButton(
+                                        borderSide: BorderSide(color: subColor),
+                                        shape: StadiumBorder(),
+                                        child: Text(
+                                          'Tak',
+                                          style: TextStyle(
+                                              fontSize: 18.0,
+                                              letterSpacing: 1.0,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        onPressed: () async {
+                                          await getDB.deleteSerwis(serwis.id);
+                                          Navigator.pop(context);
+                                          Navigator.pop(context);
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                });
+                          },
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           ),

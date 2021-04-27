@@ -11,6 +11,10 @@ class AddMechanics extends StatefulWidget {
 class _AddMechanicsState extends State<AddMechanics> {
   final DBMechanics getDB = DBMechanics();
 
+  Color mainColor = Colors.grey[900];
+  Color subColor = Colors.grey[50];
+  String bgImage = 'bg.png';
+
   final FocusNode nameNode = FocusNode();
   final FocusNode addressNode = FocusNode();
   final FocusNode descNode = FocusNode();
@@ -28,6 +32,7 @@ class _AddMechanicsState extends State<AddMechanics> {
     final getDB = Provider.of<DBMechanics>(context);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: mainColor,
         centerTitle: true,
         title: Text('Dodaj nowy Warsztat'),
       ),
@@ -45,12 +50,17 @@ class _AddMechanicsState extends State<AddMechanics> {
                   controller: nameController,
                   decoration: InputDecoration(
                     labelText: 'Nazwa Warsztatu',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -70,12 +80,17 @@ class _AddMechanicsState extends State<AddMechanics> {
                   controller: addressController,
                   decoration: InputDecoration(
                     labelText: 'Adres Warsztatu',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -98,12 +113,17 @@ class _AddMechanicsState extends State<AddMechanics> {
                   controller: descController,
                   decoration: InputDecoration(
                     labelText: 'Opis',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -122,12 +142,17 @@ class _AddMechanicsState extends State<AddMechanics> {
                   controller: phoneNumberController,
                   decoration: InputDecoration(
                     labelText: 'Numer telefonu',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -140,7 +165,7 @@ class _AddMechanicsState extends State<AddMechanics> {
                   height: 20.0,
                 ),
                 RaisedButton(
-                  color: Colors.blue,
+                  color: Colors.red[900],
                   child: Text(
                     'Dodaj',
                     style: TextStyle(color: Colors.white),

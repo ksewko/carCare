@@ -11,6 +11,10 @@ class AddCarInfo extends StatefulWidget {
 class _AddCarInfoState extends State<AddCarInfo> {
   final DBCarInfo getDB = DBCarInfo();
 
+  Color mainColor = Colors.grey[900];
+  Color subColor = Colors.grey[50];
+  String bgImage = 'bg.png';
+
   final FocusNode brandNode = FocusNode();
   final FocusNode modelNode = FocusNode();
   final FocusNode yearNode = FocusNode();
@@ -33,11 +37,18 @@ class _AddCarInfoState extends State<AddCarInfo> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        backgroundColor: mainColor,
         title: Text('Dodaj nowy Pojazd'),
       ),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage('assets/$bgImage'),
+            fit: BoxFit
+                .cover, //zasłoni cały background, -> umiejscowienie image w bgc
+          )),
           padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 20.0),
           child: Form(
             key: _formKey,
@@ -49,12 +60,17 @@ class _AddCarInfoState extends State<AddCarInfo> {
                   controller: brandController,
                   decoration: InputDecoration(
                     labelText: 'Marka',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -74,12 +90,17 @@ class _AddCarInfoState extends State<AddCarInfo> {
                   controller: modelController,
                   decoration: InputDecoration(
                     labelText: 'Model',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -100,12 +121,17 @@ class _AddCarInfoState extends State<AddCarInfo> {
                   controller: yearController,
                   decoration: InputDecoration(
                     labelText: 'Rok Produkcji',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -124,14 +150,20 @@ class _AddCarInfoState extends State<AddCarInfo> {
                 TextFormField(
                   focusNode: registrationNode,
                   controller: registrationController,
+                  style: TextStyle(color: subColor),
                   decoration: InputDecoration(
                     labelText: 'Numer rejestracyjny',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -151,12 +183,17 @@ class _AddCarInfoState extends State<AddCarInfo> {
                   controller: engineCapacityController,
                   decoration: InputDecoration(
                     labelText: 'Pojemność silnika',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -175,12 +212,17 @@ class _AddCarInfoState extends State<AddCarInfo> {
                   controller: policyNumberController,
                   decoration: InputDecoration(
                     labelText: 'Numer Polisy',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -191,7 +233,7 @@ class _AddCarInfoState extends State<AddCarInfo> {
                   height: 20.0,
                 ),
                 RaisedButton(
-                  color: Colors.blue,
+                  color: Colors.red[900],
                   child: Text(
                     'Dodaj',
                     style: TextStyle(color: Colors.white),

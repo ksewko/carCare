@@ -12,6 +12,9 @@ class CarInfoMain extends StatefulWidget {
 
 class _CarInfoMainState extends State<CarInfoMain> {
   List<CarInfoModel> carinfo;
+  Color mainColor = Colors.grey[900];
+  Color subColor = Colors.black;
+  String bgImage = 'bg.png';
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +24,17 @@ class _CarInfoMainState extends State<CarInfoMain> {
       appBar: AppBar(
         centerTitle: true,
         title: Text('Podstawowe Informacje'),
-        backgroundColor: Colors.blue[900],
+        backgroundColor: mainColor,
       ),
       body: SafeArea(
         child: Container(
-          color: Colors.blue[300],
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage('assets/$bgImage'),
+            fit: BoxFit
+                .cover, //zasłoni cały background, -> umiejscowienie image w bgc
+          )),
+          //color: Colors.blue[300],
           child: FutureBuilder(
             future: getDB.getCarInfo(),
             builder: (context, snapshot) {
@@ -45,12 +54,12 @@ class _CarInfoMainState extends State<CarInfoMain> {
                             child: ListTile(
                               leading: Icon(
                                 Icons.label_important,
-                                color: Colors.blue[900],
+                                color: mainColor,
                               ),
                               title: Text(
                                 'Marka: ',
                                 style: TextStyle(
-                                  color: Colors.blue[900],
+                                  color: mainColor,
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -58,7 +67,7 @@ class _CarInfoMainState extends State<CarInfoMain> {
                               subtitle: Text(
                                 (carinfo[0].brand),
                                 style: TextStyle(
-                                  color: Colors.blue[700],
+                                  color: subColor,
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -74,12 +83,12 @@ class _CarInfoMainState extends State<CarInfoMain> {
                             child: ListTile(
                               leading: Icon(
                                 Icons.label_important,
-                                color: Colors.blue[900],
+                                color: mainColor,
                               ),
                               title: Text(
                                 'Model: ',
                                 style: TextStyle(
-                                  color: Colors.blue[900],
+                                  color: mainColor,
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -87,7 +96,7 @@ class _CarInfoMainState extends State<CarInfoMain> {
                               subtitle: Text(
                                 (carinfo[0].model),
                                 style: TextStyle(
-                                  color: Colors.blue[700],
+                                  color: subColor,
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -103,12 +112,12 @@ class _CarInfoMainState extends State<CarInfoMain> {
                             child: ListTile(
                               leading: Icon(
                                 Icons.label_important,
-                                color: Colors.blue[900],
+                                color: mainColor,
                               ),
                               title: Text(
                                 'Rok Produkcji: ',
                                 style: TextStyle(
-                                  color: Colors.blue[900],
+                                  color: mainColor,
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -116,7 +125,7 @@ class _CarInfoMainState extends State<CarInfoMain> {
                               subtitle: Text(
                                 (carinfo[0].year.toString()),
                                 style: TextStyle(
-                                  color: Colors.blue[700],
+                                  color: subColor,
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -132,12 +141,12 @@ class _CarInfoMainState extends State<CarInfoMain> {
                             child: ListTile(
                               leading: Icon(
                                 Icons.label_important,
-                                color: Colors.blue[900],
+                                color: mainColor,
                               ),
                               title: Text(
                                 'Numer rejestracyjny: ',
                                 style: TextStyle(
-                                  color: Colors.blue[900],
+                                  color: mainColor,
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -145,7 +154,7 @@ class _CarInfoMainState extends State<CarInfoMain> {
                               subtitle: Text(
                                 (carinfo[0].registration),
                                 style: TextStyle(
-                                  color: Colors.blue[700],
+                                  color: subColor,
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -161,12 +170,12 @@ class _CarInfoMainState extends State<CarInfoMain> {
                             child: ListTile(
                               leading: Icon(
                                 Icons.label_important,
-                                color: Colors.blue[900],
+                                color: mainColor,
                               ),
                               title: Text(
                                 'Pojemność silnika: ',
                                 style: TextStyle(
-                                  color: Colors.blue[900],
+                                  color: mainColor,
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -174,7 +183,7 @@ class _CarInfoMainState extends State<CarInfoMain> {
                               subtitle: Text(
                                 (carinfo[0].engineCapacity),
                                 style: TextStyle(
-                                  color: Colors.blue[700],
+                                  color: subColor,
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -190,12 +199,12 @@ class _CarInfoMainState extends State<CarInfoMain> {
                             child: ListTile(
                               leading: Icon(
                                 Icons.label_important,
-                                color: Colors.blue[900],
+                                color: mainColor,
                               ),
                               title: Text(
                                 'Numer polisy: ',
                                 style: TextStyle(
-                                  color: Colors.blue[900],
+                                  color: mainColor,
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -203,7 +212,7 @@ class _CarInfoMainState extends State<CarInfoMain> {
                               subtitle: Text(
                                 (carinfo[0].policyNumber.toString()),
                                 style: TextStyle(
-                                  color: Colors.blue[700],
+                                  color: subColor,
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -224,7 +233,10 @@ class _CarInfoMainState extends State<CarInfoMain> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.edit),
+        child: Icon(
+          Icons.edit,
+          color: subColor,
+        ),
         onPressed: () {
           if (carinfo.length == 0) {
             Navigator.push(
@@ -238,6 +250,7 @@ class _CarInfoMainState extends State<CarInfoMain> {
             );
           }
         },
+        backgroundColor: Colors.red[900],
       ),
     );
   }

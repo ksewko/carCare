@@ -10,8 +10,8 @@ class _CarViewState extends State<CarView> {
 
   @override
   Widget build(BuildContext context) {
-    String bgImage = 'night.png';
-    Color bgColor = Colors.blue;
+    String bgImage = 'bg.png';
+    Color mainColor = Colors.grey[900];
 
     //ceny paliw
     double benzyna = 4.67;
@@ -20,11 +20,10 @@ class _CarViewState extends State<CarView> {
 
     return Scaffold(
       //ustanienie paska na górze aplikacji w zależności od dnia i nocy
-      backgroundColor: bgColor,
       appBar: AppBar(
         centerTitle: true,
         title: Text('Twoje auto'),
-        backgroundColor: Colors.blue[900],
+        backgroundColor: mainColor,
         elevation: 0.0,
       ),
       body: SafeArea(
@@ -41,9 +40,14 @@ class _CarViewState extends State<CarView> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Center(
-                  child: CircleAvatar(
-                    radius: 100.0,
-                    backgroundImage: AssetImage('assets/lala.jpg'),
+                  child: Container(
+                    height: 150.0,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                      image: AssetImage('assets/logo.png'),
+                      fit: BoxFit
+                          .fill, //zasłoni cały background, -> umiejscowienie image w bgc
+                    )),
                   ),
                 ),
               ),
@@ -61,12 +65,12 @@ class _CarViewState extends State<CarView> {
                       },
                       icon: Icon(
                         Icons.info,
-                        color: Colors.blue[900],
+                        color: mainColor,
                       ),
                       label: Text(
                         'Informacje',
                         style: TextStyle(
-                          color: Colors.blue[900],
+                          color: mainColor,
                           fontSize: 18.0,
                         ),
                       ),
@@ -82,12 +86,12 @@ class _CarViewState extends State<CarView> {
                       },
                       icon: Icon(
                         Icons.circle,
-                        color: Colors.blue[900],
+                        color: mainColor,
                       ),
                       label: Text(
                         'Opony',
                         style: TextStyle(
-                          color: Colors.blue[900],
+                          color: mainColor,
                           fontSize: 18.0,
                         ),
                       ),
@@ -108,12 +112,12 @@ class _CarViewState extends State<CarView> {
                       },
                       icon: Icon(
                         Icons.build,
-                        color: Colors.blue[900],
+                        color: mainColor,
                       ),
                       label: Text(
                         'Serwis',
                         style: TextStyle(
-                          color: Colors.blue[900],
+                          color: mainColor,
                           fontSize: 18.0,
                         ),
                       ),
@@ -129,12 +133,12 @@ class _CarViewState extends State<CarView> {
                       },
                       icon: Icon(
                         Icons.local_gas_station,
-                        color: Colors.blue[900],
+                        color: mainColor,
                       ),
                       label: Text(
                         'Tankowanie',
                         style: TextStyle(
-                          color: Colors.blue[900],
+                          color: mainColor,
                           fontSize: 18.0,
                         ),
                       ),
@@ -155,12 +159,12 @@ class _CarViewState extends State<CarView> {
                       },
                       icon: Icon(
                         Icons.whatshot,
-                        color: Colors.blue[900],
+                        color: mainColor,
                       ),
                       label: Text(
                         'Szkody',
                         style: TextStyle(
-                          color: Colors.blue[900],
+                          color: mainColor,
                           fontSize: 18.0,
                         ),
                       ),
@@ -176,12 +180,12 @@ class _CarViewState extends State<CarView> {
                       },
                       icon: Icon(
                         Icons.insert_chart,
-                        color: Colors.blue[900],
+                        color: mainColor,
                       ),
                       label: Text(
                         'Statystyki',
                         style: TextStyle(
-                          color: Colors.blue[900],
+                          color: mainColor,
                           fontSize: 18.0,
                         ),
                       ),
@@ -203,12 +207,12 @@ class _CarViewState extends State<CarView> {
                       },
                       icon: Icon(
                         Icons.add_a_photo,
-                        color: Colors.blue[900],
+                        color: mainColor,
                       ),
                       label: Text(
                         'Zdjęcia',
                         style: TextStyle(
-                          color: Colors.blue[900],
+                          color: mainColor,
                           fontSize: 18.0,
                         ),
                       ),

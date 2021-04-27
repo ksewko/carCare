@@ -11,6 +11,9 @@ class AddTires extends StatefulWidget {
 
 class _AddTiresState extends State<AddTires> {
   final DBTires getDB = DBTires();
+  Color mainColor = Colors.grey[900];
+  Color subColor = Colors.grey[50];
+  String bgImage = 'bg.png';
 
   final FocusNode rimsNode = FocusNode();
   final FocusNode tireSizeNode = FocusNode();
@@ -31,12 +34,19 @@ class _AddTiresState extends State<AddTires> {
     final getDB = Provider.of<DBTires>(context);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: mainColor,
         centerTitle: true,
         title: Text('Dodaj nowe opony'),
       ),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage('assets/$bgImage'),
+            fit: BoxFit
+                .cover, //zasłoni cały background, -> umiejscowienie image w bgc
+          )),
           padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 20.0),
           child: Form(
             key: _formKey,
@@ -48,12 +58,17 @@ class _AddTiresState extends State<AddTires> {
                   controller: rimsController,
                   decoration: InputDecoration(
                     labelText: 'Felgi',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -73,12 +88,17 @@ class _AddTiresState extends State<AddTires> {
                   controller: tireSizeController,
                   decoration: InputDecoration(
                     labelText: 'Rozmiar opon',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -98,12 +118,17 @@ class _AddTiresState extends State<AddTires> {
                   controller: frontPressureController,
                   decoration: InputDecoration(
                     labelText: 'Ciśnienie w przedniej osi',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -121,12 +146,17 @@ class _AddTiresState extends State<AddTires> {
                   controller: backPressureController,
                   decoration: InputDecoration(
                     labelText: 'Ciśnienie w tylnej osi',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -144,12 +174,17 @@ class _AddTiresState extends State<AddTires> {
                   controller: isSummerController,
                   decoration: InputDecoration(
                     labelText: 'Letnie/Zimowe',
-                    border: OutlineInputBorder(
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Colors.blue.shade200,
+                        color: subColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -161,7 +196,7 @@ class _AddTiresState extends State<AddTires> {
                           : null,
                 ),
                 RaisedButton(
-                  color: Colors.blue,
+                  color: Colors.red[900],
                   child: Text(
                     'Dodaj',
                     style: TextStyle(color: Colors.white),
