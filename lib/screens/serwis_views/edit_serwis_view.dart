@@ -57,6 +57,10 @@ class _EditSerwisState extends State<EditSerwis> {
                       height: 10.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       controller: nameController,
                       decoration: InputDecoration(
                         labelText: 'Nazwa serwisu',
@@ -83,6 +87,10 @@ class _EditSerwisState extends State<EditSerwis> {
                       height: 20.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       controller: dateController,
                       decoration: InputDecoration(
                         labelText: 'Data serwisu',
@@ -110,6 +118,10 @@ class _EditSerwisState extends State<EditSerwis> {
                       height: 20.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       controller: priceController,
                       decoration: InputDecoration(
                         labelText: 'Koszt',
@@ -137,6 +149,10 @@ class _EditSerwisState extends State<EditSerwis> {
                       height: 20.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       textInputAction: TextInputAction.next,
                       maxLines: 3,
                       keyboardType: TextInputType.multiline,
@@ -170,7 +186,10 @@ class _EditSerwisState extends State<EditSerwis> {
                           color: Colors.red[900],
                           child: Text(
                             'Edytuj',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(
+                              color: subColor,
+                              fontSize: 20.0,
+                            ),
                           ),
                           shape: StadiumBorder(),
                           onPressed: () {
@@ -192,7 +211,10 @@ class _EditSerwisState extends State<EditSerwis> {
                           color: Colors.red[900],
                           child: Text(
                             'Usuń',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(
+                              color: subColor,
+                              fontSize: 20.0,
+                            ),
                           ),
                           shape: StadiumBorder(),
                           onPressed: () {

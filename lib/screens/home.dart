@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -230,8 +231,13 @@ class _HomeState extends State<Home> {
                     child: FlatButton.icon(
                       height: 50.0,
                       onPressed: () async {
-                        dynamic result =
-                            await Navigator.pushNamed(context, '/mechanics');
+                        final url = 'https://historiapojazdu.gov.pl/';
+                        if (await canLaunch(url)) {
+                          await launch(
+                            url,
+                            forceSafariVC: false,
+                          );
+                        }
                       },
                       icon: Icon(
                         Icons.source,

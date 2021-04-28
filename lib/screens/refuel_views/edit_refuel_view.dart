@@ -61,6 +61,10 @@ class _EditRefuelState extends State<EditRefuel> {
                       height: 10.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       controller: typeController,
                       decoration: InputDecoration(
                         labelText: 'Rodzaj paliwa',
@@ -87,6 +91,10 @@ class _EditRefuelState extends State<EditRefuel> {
                       height: 20.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       controller: dateController,
                       decoration: InputDecoration(
                         labelText: 'Data tankowania',
@@ -113,6 +121,10 @@ class _EditRefuelState extends State<EditRefuel> {
                       height: 20.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       controller: meterController,
                       decoration: InputDecoration(
                         labelText: 'Stan licznika',
@@ -139,6 +151,10 @@ class _EditRefuelState extends State<EditRefuel> {
                       height: 20.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       controller: filledController,
                       decoration: InputDecoration(
                         labelText: 'Ilość zatankowanego paliwa',
@@ -166,6 +182,10 @@ class _EditRefuelState extends State<EditRefuel> {
                       height: 30.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       controller: priceController,
                       decoration: InputDecoration(
                         labelText: 'Cena za litr paliwa',
@@ -193,6 +213,10 @@ class _EditRefuelState extends State<EditRefuel> {
                       height: 30.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       controller: isFullController,
                       decoration: InputDecoration(
                         labelText: 'Czy zatankowano do pełna? Tak/Nie',
@@ -227,7 +251,10 @@ class _EditRefuelState extends State<EditRefuel> {
                           color: Colors.blue,
                           child: Text(
                             'Edytuj',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(
+                              color: subColor,
+                              fontSize: 20.0,
+                            ),
                           ),
                           shape: StadiumBorder(),
                           onPressed: () {
@@ -251,7 +278,10 @@ class _EditRefuelState extends State<EditRefuel> {
                           color: Colors.red,
                           child: Text(
                             'Usuń',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(
+                              color: subColor,
+                              fontSize: 20.0,
+                            ),
                           ),
                           shape: StadiumBorder(),
                           onPressed: () {

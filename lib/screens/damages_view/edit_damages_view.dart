@@ -62,6 +62,10 @@ class _EditDamagesState extends State<EditDamages> {
                       height: 10.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       controller: nameController,
                       decoration: InputDecoration(
                         labelText: 'Nazwa szkody',
@@ -88,6 +92,10 @@ class _EditDamagesState extends State<EditDamages> {
                       height: 20.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       controller: dateController,
                       decoration: InputDecoration(
                         labelText: 'Data zajścia szkody',
@@ -115,6 +123,10 @@ class _EditDamagesState extends State<EditDamages> {
                       height: 20.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       controller: placeController,
                       decoration: InputDecoration(
                         labelText: 'Miejsce zajścia szkody',
@@ -142,6 +154,10 @@ class _EditDamagesState extends State<EditDamages> {
                       height: 20.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       controller: isGuiltyController,
                       decoration: InputDecoration(
                         labelText: 'Czy byłeś sprawcą szkody? Tak/Nie',
@@ -170,6 +186,10 @@ class _EditDamagesState extends State<EditDamages> {
                       height: 20.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       controller: insuranceController,
                       decoration: InputDecoration(
                         labelText: 'Ubezpieczenie sprawcy',
@@ -194,6 +214,10 @@ class _EditDamagesState extends State<EditDamages> {
                       height: 20.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       textInputAction: TextInputAction.next,
                       maxLines: 3,
                       keyboardType: TextInputType.multiline,
@@ -227,7 +251,10 @@ class _EditDamagesState extends State<EditDamages> {
                           color: Colors.red[900],
                           child: Text(
                             'Edytuj',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(
+                              color: subColor,
+                              fontSize: 20.0,
+                            ),
                           ),
                           shape: StadiumBorder(),
                           onPressed: () {
@@ -252,7 +279,10 @@ class _EditDamagesState extends State<EditDamages> {
                           color: Colors.red[900],
                           child: Text(
                             'Usuń',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(
+                              color: subColor,
+                              fontSize: 20.0,
+                            ),
                           ),
                           shape: StadiumBorder(),
                           onPressed: () {

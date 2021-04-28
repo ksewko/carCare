@@ -13,8 +13,6 @@ class DBReminders {
   String colId = 'id';
   String colTitle = 'title';
   String colDesc = 'desc';
-  String colPriority = 'priority';
-  String colColor = 'color';
   String colDate = 'date';
 
   DBReminders._createInstance(); // Named constructor to create instance of DBReminders
@@ -40,21 +38,20 @@ class DBReminders {
     String path = directory.path + 'reminders.db';
 
     // Open/create the database at a given path
-    var remindersDB =
-        await openDatabase(path, version: 1, onCreate: _createDb);
+    var remindersDB = await openDatabase(path, version: 1, onCreate: _createDb);
     return remindersDB;
   }
 
   void _createDb(Database db, int newVersion) async {
     await db.execute(
         'CREATE TABLE $remindersTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colTitle TEXT, '
-        '$colDesc TEXT, $colPriority INTEGER, $colColor INTEGER,$colDate TEXT)');
+        '$colDesc TEXT ,$colDate TEXT)');
   }
-  
+
   Future<List<Map<String, dynamic>>> getNoteMapList() async {
     Database db = await this.database;
 
-    var result = await db.query(remindersTable, orderBy: '$colPriority ASC');
+    var result = await db.query(remindersTable, orderBy: '$colDate ASC');
     return result;
   }
 
@@ -92,8 +89,7 @@ class DBReminders {
 
   Future<List<Reminders>> getNoteList() async {
     var remindersMapList = await getNoteMapList();
-    int count =
-        remindersMapList.length;
+    int count = remindersMapList.length;
 
     List<Reminders> remindersList = List<Reminders>();
 

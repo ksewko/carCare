@@ -54,6 +54,10 @@ class _AddDamagesState extends State<AddDamages> {
             child: Column(
               children: <Widget>[
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   autofocus: true,
                   textInputAction: TextInputAction.next,
                   controller: nameController,
@@ -85,6 +89,10 @@ class _AddDamagesState extends State<AddDamages> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   focusNode: dateNode,
                   controller: dateController,
                   decoration: InputDecoration(
@@ -115,6 +123,10 @@ class _AddDamagesState extends State<AddDamages> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   focusNode: placeNode,
                   controller: placeController,
                   decoration: InputDecoration(
@@ -146,6 +158,10 @@ class _AddDamagesState extends State<AddDamages> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   focusNode: isGuiltyNode,
                   controller: isGuiltyController,
                   decoration: InputDecoration(
@@ -178,6 +194,10 @@ class _AddDamagesState extends State<AddDamages> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   focusNode: insuranceNode,
                   controller: insuranceController,
                   decoration: InputDecoration(
@@ -206,6 +226,10 @@ class _AddDamagesState extends State<AddDamages> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   focusNode: descNode,
                   textInputAction: TextInputAction.next,
                   maxLines: 3,
@@ -237,7 +261,10 @@ class _AddDamagesState extends State<AddDamages> {
                   color: Colors.red[900],
                   child: Text(
                     'Dodaj',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(
+                      color: subColor,
+                      fontSize: 20.0,
+                    ),
                   ),
                   shape: StadiumBorder(),
                   onPressed: () {

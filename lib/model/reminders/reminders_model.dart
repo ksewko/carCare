@@ -3,13 +3,10 @@ class Reminders {
   String _title;
   String _desc;
   String _date;
-  int _priority, _color;
 
-  Reminders(this._title, this._date, this._priority, this._color, [this._desc]);
+  Reminders(this._title, this._date, [this._desc]);
 
-  Reminders.withId(
-      this._id, this._title, this._date, this._priority, this._color,
-      [this._desc]);
+  Reminders.withId(this._id, this._title, this._date, [this._desc]);
 
   int get id => _id;
 
@@ -17,8 +14,6 @@ class Reminders {
 
   String get desc => _desc;
 
-  int get priority => _priority;
-  int get color => _color;
   String get date => _date;
 
   set title(String newTitle) {
@@ -30,18 +25,6 @@ class Reminders {
   set desc(String newDesc) {
     if (newDesc.length <= 255) {
       this._desc = newDesc;
-    }
-  }
-
-  set priority(int newPriority) {
-    if (newPriority >= 1 && newPriority <= 3) {
-      this._priority = newPriority;
-    }
-  }
-
-  set color(int newColor) {
-    if (newColor >= 0 && newColor <= 9) {
-      this._color = newColor;
     }
   }
 
@@ -57,8 +40,6 @@ class Reminders {
     }
     map['title'] = _title;
     map['desc'] = _desc;
-    map['priority'] = _priority;
-    map['color'] = _color;
     map['date'] = _date;
 
     return map;
@@ -69,8 +50,6 @@ class Reminders {
     this._id = map['id'];
     this._title = map['title'];
     this._desc = map['desc'];
-    this._priority = map['priority'];
-    this._color = map['color'];
     this._date = map['date'];
   }
 }

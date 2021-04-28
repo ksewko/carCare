@@ -60,6 +60,10 @@ class _EditTiresState extends State<EditTires> {
                       height: 10.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       controller: rimsController,
                       decoration: InputDecoration(
                         labelText: 'Felgi',
@@ -86,6 +90,10 @@ class _EditTiresState extends State<EditTires> {
                       height: 20.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       controller: tireSizeController,
                       decoration: InputDecoration(
                         labelText: 'Rozmiar opon',
@@ -112,6 +120,10 @@ class _EditTiresState extends State<EditTires> {
                       height: 20.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       controller: frontPressureController,
                       decoration: InputDecoration(
                         labelText: 'Ciśnienie w przedniej osi',
@@ -136,6 +148,10 @@ class _EditTiresState extends State<EditTires> {
                       height: 20.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       controller: backPressureController,
                       decoration: InputDecoration(
                         labelText: 'Ciśnienie w tylnej osi',
@@ -161,6 +177,10 @@ class _EditTiresState extends State<EditTires> {
                     ),
                     // dodać przełącznik na zimowe i letnie
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       controller: isSummerController,
                       decoration: InputDecoration(
                         labelText: 'Letnie/Zimowe',
@@ -192,7 +212,10 @@ class _EditTiresState extends State<EditTires> {
                           color: Colors.red[900],
                           child: Text(
                             'Edytuj',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(
+                              color: subColor,
+                              fontSize: 20.0,
+                            ),
                           ),
                           shape: StadiumBorder(),
                           onPressed: () {
@@ -216,7 +239,10 @@ class _EditTiresState extends State<EditTires> {
                           color: Colors.red[900],
                           child: Text(
                             'Usuń',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(
+                              color: subColor,
+                              fontSize: 20.0,
+                            ),
                           ),
                           shape: StadiumBorder(),
                           onPressed: () {

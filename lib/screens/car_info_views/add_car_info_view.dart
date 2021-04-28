@@ -55,6 +55,10 @@ class _AddCarInfoState extends State<AddCarInfo> {
             child: Column(
               children: <Widget>[
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   autofocus: true,
                   textInputAction: TextInputAction.next,
                   controller: brandController,
@@ -86,6 +90,10 @@ class _AddCarInfoState extends State<AddCarInfo> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   focusNode: modelNode,
                   controller: modelController,
                   decoration: InputDecoration(
@@ -116,6 +124,10 @@ class _AddCarInfoState extends State<AddCarInfo> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   focusNode: yearNode,
                   keyboardType: TextInputType.number,
                   controller: yearController,
@@ -148,9 +160,12 @@ class _AddCarInfoState extends State<AddCarInfo> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   focusNode: registrationNode,
                   controller: registrationController,
-                  style: TextStyle(color: subColor),
                   decoration: InputDecoration(
                     labelText: 'Numer rejestracyjny',
                     labelStyle: TextStyle(color: subColor),
@@ -179,6 +194,10 @@ class _AddCarInfoState extends State<AddCarInfo> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   focusNode: engineCapacityNode,
                   controller: engineCapacityController,
                   decoration: InputDecoration(
@@ -207,6 +226,10 @@ class _AddCarInfoState extends State<AddCarInfo> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   focusNode: policyNumberNode,
                   keyboardType: TextInputType.number,
                   controller: policyNumberController,
@@ -236,7 +259,10 @@ class _AddCarInfoState extends State<AddCarInfo> {
                   color: Colors.red[900],
                   child: Text(
                     'Dodaj',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(
+                      color: subColor,
+                      fontSize: 20.0,
+                    ),
                   ),
                   shape: StadiumBorder(),
                   onPressed: () {

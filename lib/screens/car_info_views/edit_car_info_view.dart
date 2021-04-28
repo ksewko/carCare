@@ -62,6 +62,10 @@ class _EditCarInfoState extends State<EditCarInfo> {
                       height: 10.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       controller: brandController,
                       decoration: InputDecoration(
                         labelText: 'Marka',
@@ -88,6 +92,10 @@ class _EditCarInfoState extends State<EditCarInfo> {
                       height: 20.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       controller: modelController,
                       decoration: InputDecoration(
                         labelText: 'Model',
@@ -114,6 +122,10 @@ class _EditCarInfoState extends State<EditCarInfo> {
                       height: 20.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       keyboardType: TextInputType.number,
                       controller: yearController,
                       decoration: InputDecoration(
@@ -142,6 +154,10 @@ class _EditCarInfoState extends State<EditCarInfo> {
                       height: 20.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       controller: registrationController,
                       decoration: InputDecoration(
                         labelText: 'Numer rejestracyjny',
@@ -169,6 +185,10 @@ class _EditCarInfoState extends State<EditCarInfo> {
                       height: 20.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       controller: engineCapacityController,
                       decoration: InputDecoration(
                         labelText: 'Pojemność Silnika',
@@ -193,6 +213,10 @@ class _EditCarInfoState extends State<EditCarInfo> {
                       height: 20.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       keyboardType: TextInputType.number,
                       controller: policyNumberController,
                       decoration: InputDecoration(
@@ -224,7 +248,10 @@ class _EditCarInfoState extends State<EditCarInfo> {
                           color: Colors.red[900],
                           child: Text(
                             'Edytuj',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(
+                              color: subColor,
+                              fontSize: 20.0,
+                            ),
                           ),
                           shape: StadiumBorder(),
                           onPressed: () {
@@ -251,7 +278,10 @@ class _EditCarInfoState extends State<EditCarInfo> {
                           color: Colors.red[900],
                           child: Text(
                             'Usuń',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(
+                              color: subColor,
+                              fontSize: 20.0,
+                            ),
                           ),
                           shape: StadiumBorder(),
                           onPressed: () {

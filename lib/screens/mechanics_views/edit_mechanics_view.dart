@@ -56,8 +56,13 @@ class _EditMechanicsState extends State<EditMechanics> {
                       height: 10.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       controller: nameController,
                       decoration: InputDecoration(
+                        labelText: 'Nazwa Warsztatu',
                         labelStyle: TextStyle(color: subColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
@@ -81,6 +86,10 @@ class _EditMechanicsState extends State<EditMechanics> {
                       height: 20.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       controller: addressController,
                       decoration: InputDecoration(
                         labelText: 'Adres Warsztatu',
@@ -107,6 +116,10 @@ class _EditMechanicsState extends State<EditMechanics> {
                       height: 20.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       textInputAction: TextInputAction.next,
                       maxLines: 3,
                       keyboardType: TextInputType.multiline,
@@ -134,6 +147,10 @@ class _EditMechanicsState extends State<EditMechanics> {
                       height: 20.0,
                     ),
                     TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
                       keyboardType: TextInputType.number,
                       controller: phoneNumberController,
                       decoration: InputDecoration(
@@ -167,7 +184,10 @@ class _EditMechanicsState extends State<EditMechanics> {
                           color: Colors.red[900],
                           child: Text(
                             'Edytuj',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(
+                              color: subColor,
+                              fontSize: 20.0,
+                            ),
                           ),
                           shape: StadiumBorder(),
                           onPressed: () {
@@ -190,7 +210,10 @@ class _EditMechanicsState extends State<EditMechanics> {
                           color: Colors.red[900],
                           child: Text(
                             'Usuń',
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(
+                              color: subColor,
+                              fontSize: 20.0,
+                            ),
                           ),
                           shape: StadiumBorder(),
                           onPressed: () {

@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:carcare/model/reminders/db_reminders.dart';
 import 'package:carcare/model/reminders/reminders_model.dart';
 import 'package:carcare/screens/reminders_views/reminders_details.dart';
-import 'package:carcare/screens/reminders_views/reminders_search.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:carcare/utils/widgets.dart';
 import 'package:sqflite/sqflite.dart';
 
 class RemindersMain extends StatefulWidget {
@@ -20,6 +18,10 @@ class RemindersMainState extends State<RemindersMain> {
   List<Reminders> remindersList;
   int count = 0;
   int axisCount = 2;
+  Color mainColor = Colors.grey[900];
+  Color subColor = Colors.grey[50];
+  Color reminderColor = Colors.red[500];
+  String bgImage = 'bg.png';
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +34,16 @@ class RemindersMainState extends State<RemindersMain> {
       appBar: AppBar(
         centerTitle: true,
         title: Text('Przypomnienia'),
-        backgroundColor: Colors.blue[900],
+        backgroundColor: mainColor,
       ),
       body: remindersList.length == 0
           ? Container(
-              color: Colors.white,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                image: AssetImage('assets/$bgImage'),
+                fit: BoxFit
+                    .cover, //zasłoni cały background, -> umiejscowienie image w bgc
+              )),
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -45,17 +52,22 @@ class RemindersMainState extends State<RemindersMain> {
               ),
             )
           : Container(
-              color: Colors.white,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                image: AssetImage('assets/$bgImage'),
+                fit: BoxFit
+                    .cover, //zasłoni cały background, -> umiejscowienie image w bgc
+              )),
               child: getRemindersList(),
             ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          navigateToDetail(Reminders('', '', 3, 0), 'Dodaj przypomnienie');
+          navigateToDetail(Reminders('', ''), 'Dodaj przypomnienie');
         },
         tooltip: 'Add Note',
         shape: CircleBorder(side: BorderSide(color: Colors.black, width: 2.0)),
         child: Icon(Icons.add, color: Colors.black),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.red[900],
       ),
     );
   }
@@ -74,7 +86,7 @@ class RemindersMainState extends State<RemindersMain> {
           child: Container(
             padding: EdgeInsets.all(8.0),
             decoration: BoxDecoration(
-                color: colors[this.remindersList[index].color],
+                color: reminderColor,
                 border: Border.all(width: 2, color: Colors.black),
                 borderRadius: BorderRadius.circular(8.0)),
             child: Column(
@@ -87,14 +99,13 @@ class RemindersMainState extends State<RemindersMain> {
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
                           this.remindersList[index].title,
+                          style: TextStyle(
+                            color: mainColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20.0,
+                          ),
                         ),
                       ),
-                    ),
-                    Text(
-                      getPriorityText(this.remindersList[index].priority),
-                      style: TextStyle(
-                          color: getPriorityColor(
-                              this.remindersList[index].priority)),
                     ),
                   ],
                 ),
@@ -108,6 +119,10 @@ class RemindersMainState extends State<RemindersMain> {
                           this.remindersList[index].desc == null
                               ? ''
                               : this.remindersList[index].desc,
+                          style: TextStyle(
+                            color: mainColor,
+                            fontSize: 18.0,
+                          ),
                         ),
                       )
                     ],
@@ -118,6 +133,9 @@ class RemindersMainState extends State<RemindersMain> {
                     children: <Widget>[
                       Text(
                         this.remindersList[index].date,
+                        style: TextStyle(
+                          fontSize: 16.0,
+                        ),
                       ),
                     ])
               ],
@@ -130,55 +148,6 @@ class RemindersMainState extends State<RemindersMain> {
       crossAxisSpacing: 4.0,
     );
   }
-
-  // Returns the priority color
-  Color getPriorityColor(int priority) {
-    switch (priority) {
-      case 1:
-        return Colors.red;
-        break;
-      case 2:
-        return Colors.yellow;
-        break;
-      case 3:
-        return Colors.green;
-        break;
-
-      default:
-        return Colors.yellow;
-    }
-  }
-
-  // Returns the priority icon
-  String getPriorityText(int priority) {
-    switch (priority) {
-      case 1:
-        return '!!!';
-        break;
-      case 2:
-        return '!!';
-        break;
-      case 3:
-        return '!';
-        break;
-
-      default:
-        return '!';
-    }
-  }
-
-  // void _delete(BuildContext context, Note note) async {
-  //   int result = await databaseHelper.deleteNote(note.id);
-  //   if (result != 0) {
-  //     _showSnackBar(context, 'Note Deleted Successfully');
-  //     updateListView();
-  //   }
-  // }
-
-  // void _showSnackBar(BuildContext context, String message) {
-  //   final snackBar = SnackBar(content: Text(message));
-  //   Scaffold.of(context).showSnackBar(snackBar);
-  // }
 
   void navigateToDetail(Reminders note, String title) async {
     bool result = await Navigator.push(context,

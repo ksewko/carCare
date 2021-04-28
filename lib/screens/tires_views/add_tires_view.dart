@@ -53,6 +53,10 @@ class _AddTiresState extends State<AddTires> {
             child: Column(
               children: <Widget>[
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   autofocus: true,
                   textInputAction: TextInputAction.next,
                   controller: rimsController,
@@ -84,6 +88,10 @@ class _AddTiresState extends State<AddTires> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   focusNode: tireSizeNode,
                   controller: tireSizeController,
                   decoration: InputDecoration(
@@ -114,6 +122,10 @@ class _AddTiresState extends State<AddTires> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   focusNode: frontPressureNode,
                   controller: frontPressureController,
                   decoration: InputDecoration(
@@ -142,6 +154,10 @@ class _AddTiresState extends State<AddTires> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   focusNode: backPressureNode,
                   controller: backPressureController,
                   decoration: InputDecoration(
@@ -170,6 +186,10 @@ class _AddTiresState extends State<AddTires> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   focusNode: isSummerNode,
                   controller: isSummerController,
                   decoration: InputDecoration(
@@ -199,7 +219,10 @@ class _AddTiresState extends State<AddTires> {
                   color: Colors.red[900],
                   child: Text(
                     'Dodaj',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(
+                      color: subColor,
+                      fontSize: 20.0,
+                    ),
                   ),
                   shape: StadiumBorder(),
                   onPressed: () {

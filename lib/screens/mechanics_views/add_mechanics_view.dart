@@ -45,6 +45,10 @@ class _AddMechanicsState extends State<AddMechanics> {
             child: Column(
               children: <Widget>[
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   autofocus: true,
                   textInputAction: TextInputAction.next,
                   controller: nameController,
@@ -76,6 +80,10 @@ class _AddMechanicsState extends State<AddMechanics> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   focusNode: addressNode,
                   controller: addressController,
                   decoration: InputDecoration(
@@ -106,6 +114,10 @@ class _AddMechanicsState extends State<AddMechanics> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   focusNode: descNode,
                   textInputAction: TextInputAction.next,
                   maxLines: 3,
@@ -137,6 +149,10 @@ class _AddMechanicsState extends State<AddMechanics> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   focusNode: phoneNumberNode,
                   keyboardType: TextInputType.number,
                   controller: phoneNumberController,
@@ -168,7 +184,10 @@ class _AddMechanicsState extends State<AddMechanics> {
                   color: Colors.red[900],
                   child: Text(
                     'Dodaj',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(
+                      color: subColor,
+                      fontSize: 20.0,
+                    ),
                   ),
                   shape: StadiumBorder(),
                   onPressed: () {

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:carcare/model/reminders/db_reminders.dart';
 import 'package:carcare/model/reminders/reminders_model.dart';
-import 'package:carcare/utils/widgets.dart';
 
 class RemindersDetail extends StatefulWidget {
   final String appBarTitle;
@@ -19,11 +18,16 @@ class RemindersDetail extends StatefulWidget {
 class NoteDetailState extends State<RemindersDetail> {
   DBReminders dbReminders = DBReminders();
 
+  Color mainColor = Colors.grey[900];
+  Color subColor = Colors.grey[50];
+  String bgImage = 'bg.png';
+  Color redColor = Colors.red[900];
+
   String appBarTitle;
   Reminders reminders;
   TextEditingController titleController = TextEditingController();
   TextEditingController descController = TextEditingController();
-  int color;
+  // int color;
   bool isEdited = false;
 
   NoteDetailState(this.reminders, this.appBarTitle);
@@ -32,7 +36,6 @@ class NoteDetailState extends State<RemindersDetail> {
   Widget build(BuildContext context) {
     titleController.text = reminders.title;
     descController.text = reminders.desc;
-    color = reminders.color;
     return WillPopScope(
         onWillPop: () {
           isEdited ? showDiscardDialog(context) : moveToLastScreen();
@@ -43,9 +46,9 @@ class NoteDetailState extends State<RemindersDetail> {
             title: Text(
               appBarTitle,
             ),
-            backgroundColor: colors[color],
+            backgroundColor: mainColor,
             leading: IconButton(
-                icon: Icon(Icons.arrow_back_ios, color: Colors.black),
+                icon: Icon(Icons.arrow_back_ios, color: Colors.white),
                 onPressed: () {
                   isEdited ? showDiscardDialog(context) : moveToLastScreen();
                 }),
@@ -53,7 +56,7 @@ class NoteDetailState extends State<RemindersDetail> {
               IconButton(
                 icon: Icon(
                   Icons.save,
-                  color: Colors.black,
+                  color: Colors.white,
                 ),
                 onPressed: () {
                   titleController.text.length == 0
@@ -62,7 +65,7 @@ class NoteDetailState extends State<RemindersDetail> {
                 },
               ),
               IconButton(
-                icon: Icon(Icons.delete, color: Colors.black),
+                icon: Icon(Icons.delete, color: Colors.white),
                 onPressed: () {
                   showDeleteDialog(context);
                 },
@@ -70,29 +73,22 @@ class NoteDetailState extends State<RemindersDetail> {
             ],
           ),
           body: Container(
-            color: colors[color],
+            decoration: BoxDecoration(
+                image: DecorationImage(
+              image: AssetImage('assets/$bgImage'),
+              fit: BoxFit
+                  .cover, //zasłoni cały background, -> umiejscowienie image w bgc
+            )),
             child: Column(
               children: <Widget>[
-                PriorityPicker(
-                  selectedIndex: 3 - reminders.priority,
-                  onTap: (index) {
-                    isEdited = true;
-                    reminders.priority = 3 - index;
-                  },
-                ),
-                ColorPicker(
-                  selectedIndex: reminders.color,
-                  onTap: (index) {
-                    setState(() {
-                      color = index;
-                    });
-                    isEdited = true;
-                    reminders.color = index;
-                  },
-                ),
                 Padding(
                   padding: EdgeInsets.all(16.0),
                   child: TextField(
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                     controller: titleController,
                     maxLength: 255,
                     onChanged: (value) {
@@ -100,6 +96,10 @@ class NoteDetailState extends State<RemindersDetail> {
                     },
                     decoration: InputDecoration.collapsed(
                       hintText: 'Tytuł',
+                      hintStyle: TextStyle(
+                        color: subColor,
+                        fontSize: 22.0,
+                      ),
                     ),
                   ),
                 ),
@@ -107,6 +107,10 @@ class NoteDetailState extends State<RemindersDetail> {
                   child: Padding(
                     padding: EdgeInsets.all(16.0),
                     child: TextField(
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18.0,
+                      ),
                       keyboardType: TextInputType.multiline,
                       maxLines: 10,
                       maxLength: 255,
@@ -116,6 +120,10 @@ class NoteDetailState extends State<RemindersDetail> {
                       },
                       decoration: InputDecoration.collapsed(
                         hintText: 'Opis',
+                        hintStyle: TextStyle(
+                          color: subColor,
+                          fontSize: 18.0,
+                        ),
                       ),
                     ),
                   ),
@@ -135,22 +143,42 @@ class NoteDetailState extends State<RemindersDetail> {
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
           title: Text(
             "Odrzucić zmiany?",
+            style: TextStyle(
+              color: redColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 22.0,
+            ),
           ),
-          content: Text("Jesteś pewien, że chcesz odrzucić zmiany?",
-              ),
+          content: Text(
+            "Jesteś pewien, że chcesz odrzucić zmiany?",
+            style: TextStyle(
+              color: mainColor,
+              fontSize: 18.0,
+            ),
+          ),
           actions: <Widget>[
             FlatButton(
-              child: Text("Nie",
-                  style: TextStyle(color: Colors.purple),
-                  ),
+              child: Text(
+                "Nie",
+                style: TextStyle(
+                  color: redColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22.0,
+                ),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             FlatButton(
-              child: Text("Tak",
-                  style: TextStyle(color: Colors.purple),
-                  ),
+              child: Text(
+                "Tak",
+                style: TextStyle(
+                  color: redColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22.0,
+                ),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
                 moveToLastScreen();
@@ -171,15 +199,28 @@ class NoteDetailState extends State<RemindersDetail> {
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
           title: Text(
             "Tytuł jest pusty",
-            
+            style: TextStyle(
+              color: redColor,
+              fontSize: 18.0,
+            ),
           ),
-          content: Text('Tytuł przypomnienia nie może pozostać pusty',
-              ),
+          content: Text(
+            'Tytuł przypomnienia nie może pozostać pusty',
+            style: TextStyle(
+              color: redColor,
+              fontSize: 18.0,
+            ),
+          ),
           actions: <Widget>[
             FlatButton(
-              child: Text("Ok",
-                  style: TextStyle(color: Colors.purple),
-                  ),
+              child: Text(
+                "Ok",
+                style: TextStyle(
+                  color: redColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22.0,
+                ),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -199,22 +240,42 @@ class NoteDetailState extends State<RemindersDetail> {
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
           title: Text(
             "Usunąć przypomnienie?",
+            style: TextStyle(
+              color: redColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 22.0,
+            ),
           ),
-          content: Text("Jesteś pewien, że chcesz usunąć przypomnienie?",
-              ),
+          content: Text(
+            "Jesteś pewien, że chcesz usunąć przypomnienie?",
+            style: TextStyle(
+              color: redColor,
+              fontSize: 18.0,
+            ),
+          ),
           actions: <Widget>[
             FlatButton(
-              child: Text("Nie",
-                  style: TextStyle(color: Colors.purple),
-                  ),
+              child: Text(
+                "Nie",
+                style: TextStyle(
+                  color: redColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22.0,
+                ),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             FlatButton(
-              child: Text("Tak",
-                  style: TextStyle(color: Colors.purple),
-                  ),
+              child: Text(
+                "Tak",
+                style: TextStyle(
+                  color: redColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22.0,
+                ),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
                 _delete();

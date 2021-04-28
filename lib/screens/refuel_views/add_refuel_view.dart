@@ -54,6 +54,10 @@ class _AddRefuelState extends State<AddRefuel> {
             child: Column(
               children: <Widget>[
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   autofocus: true,
                   textInputAction: TextInputAction.next,
                   controller: typeController,
@@ -85,6 +89,10 @@ class _AddRefuelState extends State<AddRefuel> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   focusNode: dateNode,
                   controller: dateController,
                   decoration: InputDecoration(
@@ -115,6 +123,10 @@ class _AddRefuelState extends State<AddRefuel> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   focusNode: meterNode,
                   controller: meterController,
                   decoration: InputDecoration(
@@ -143,6 +155,10 @@ class _AddRefuelState extends State<AddRefuel> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   focusNode: filledNode,
                   controller: filledController,
                   decoration: InputDecoration(
@@ -174,6 +190,10 @@ class _AddRefuelState extends State<AddRefuel> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   focusNode: priceNode,
                   controller: priceController,
                   decoration: InputDecoration(
@@ -204,6 +224,10 @@ class _AddRefuelState extends State<AddRefuel> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
                   focusNode: isFullNode,
                   controller: isFullController,
                   decoration: InputDecoration(
@@ -236,7 +260,10 @@ class _AddRefuelState extends State<AddRefuel> {
                   color: Colors.red[900],
                   child: Text(
                     'Dodaj',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(
+                      color: subColor,
+                      fontSize: 20.0,
+                    ),
                   ),
                   shape: StadiumBorder(),
                   onPressed: () {
