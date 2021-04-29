@@ -7,6 +7,9 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  Color mainColor = Colors.grey[900];
+  Color subColor = Colors.grey[50];
+  String bgImage = 'bg.png';
   @override
   void initState() {
     super.initState();
@@ -25,6 +28,12 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: SafeArea(
         child: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage('assets/$bgImage'),
+            fit: BoxFit
+                .cover, //zasłoni cały background, -> umiejscowienie image w bgc
+          )),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -33,11 +42,17 @@ class _SplashScreenState extends State<SplashScreen> {
                   'Welcome',
                   style: TextStyle(fontSize: 24.0),
                 ),
-                FlutterLogo(
-                  size: 300.0,
+                Container(
+                  height: 150.0,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                    image: AssetImage('assets/logo.png'),
+                    fit: BoxFit
+                        .fill, //zasłoni cały background, -> umiejscowienie image w bgc
+                  )),
                 ),
                 Text(
-                  'Movie Rental App',
+                  'Car Care',
                   style: TextStyle(fontSize: 24.0),
                 )
               ],

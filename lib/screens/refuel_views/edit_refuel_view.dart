@@ -14,6 +14,7 @@ class _EditRefuelState extends State<EditRefuel> {
   final DBRefuel getDB = DBRefuel();
   Color mainColor = Colors.grey[900];
   Color subColor = Colors.grey[50];
+  Color redColor = Colors.red[900];
   String bgImage = 'bg.png';
 
   // capture input from TextField
@@ -248,7 +249,7 @@ class _EditRefuelState extends State<EditRefuel> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         RaisedButton(
-                          color: Colors.blue,
+                          color: redColor,
                           child: Text(
                             'Edytuj',
                             style: TextStyle(
@@ -275,7 +276,7 @@ class _EditRefuelState extends State<EditRefuel> {
                           width: 30.0,
                         ),
                         RaisedButton(
-                          color: Colors.red,
+                          color: redColor,
                           child: Text(
                             'Usuń',
                             style: TextStyle(

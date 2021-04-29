@@ -53,9 +53,9 @@ flutter:
     - assets/help.png
     - assets/bg.png
     - assets/logo.png
-    - assets/benzyna.jpg
-    - assets/olej.jpg
-    - assets/gaz.jpg
+    - assets/benzyna.png
+    - assets/olej.png
+    - assets/gaz.png
     - assets/tires.jpg
     - assets/tires.png
 

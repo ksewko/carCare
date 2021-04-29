@@ -15,6 +15,7 @@ class _EditTiresState extends State<EditTires> {
   final DBTires getDB = DBTires();
   Color mainColor = Colors.grey[900];
   Color subColor = Colors.grey[50];
+  Color redColor = Colors.red[900];
   String bgImage = 'bg.png';
 
   // capture input from TextField
@@ -209,7 +210,7 @@ class _EditTiresState extends State<EditTires> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         RaisedButton(
-                          color: Colors.red[900],
+                          color: redColor,
                           child: Text(
                             'Edytuj',
                             style: TextStyle(
@@ -236,7 +237,7 @@ class _EditTiresState extends State<EditTires> {
                           width: 30.0,
                         ),
                         RaisedButton(
-                          color: Colors.red[900],
+                          color: redColor,
                           child: Text(
                             'Usuń',
                             style: TextStyle(

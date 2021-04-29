@@ -13,6 +13,7 @@ class _AddMechanicsState extends State<AddMechanics> {
 
   Color mainColor = Colors.grey[900];
   Color subColor = Colors.grey[50];
+  Color redColor = Colors.red[900];
   String bgImage = 'bg.png';
 
   final FocusNode nameNode = FocusNode();
@@ -181,7 +182,7 @@ class _AddMechanicsState extends State<AddMechanics> {
                   height: 20.0,
                 ),
                 RaisedButton(
-                  color: Colors.red[900],
+                  color: redColor,
                   child: Text(
                     'Dodaj',
                     style: TextStyle(

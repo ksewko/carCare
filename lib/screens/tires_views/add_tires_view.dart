@@ -13,6 +13,7 @@ class _AddTiresState extends State<AddTires> {
   final DBTires getDB = DBTires();
   Color mainColor = Colors.grey[900];
   Color subColor = Colors.grey[50];
+  Color redColor = Colors.red[900];
   String bgImage = 'bg.png';
 
   final FocusNode rimsNode = FocusNode();
@@ -216,7 +217,7 @@ class _AddTiresState extends State<AddTires> {
                           : null,
                 ),
                 RaisedButton(
-                  color: Colors.red[900],
+                  color: redColor,
                   child: Text(
                     'Dodaj',
                     style: TextStyle(

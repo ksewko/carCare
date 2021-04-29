@@ -73,7 +73,7 @@ class _HomeState extends State<Home> {
                       children: <Widget>[
                         CircleAvatar(
                           radius: 15.0,
-                          backgroundImage: AssetImage('assets/benzyna.jpg'),
+                          backgroundImage: AssetImage('assets/benzyna.png'),
                         ),
                         SizedBox(width: 20.0),
                         Text(
@@ -90,7 +90,7 @@ class _HomeState extends State<Home> {
                       children: <Widget>[
                         CircleAvatar(
                           radius: 15.0,
-                          backgroundImage: AssetImage('assets/olej.jpg'),
+                          backgroundImage: AssetImage('assets/olej.png'),
                         ),
                         SizedBox(width: 20.0),
                         Text(
@@ -107,7 +107,7 @@ class _HomeState extends State<Home> {
                       children: <Widget>[
                         CircleAvatar(
                           radius: 15.0,
-                          backgroundImage: AssetImage('assets/gaz.jpg'),
+                          backgroundImage: AssetImage('assets/gaz.png'),
                         ),
                         SizedBox(width: 20.0),
                         Text(

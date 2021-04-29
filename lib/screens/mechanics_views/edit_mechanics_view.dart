@@ -14,6 +14,7 @@ class _EditMechanicsState extends State<EditMechanics> {
   final DBMechanics getDB = DBMechanics();
   Color mainColor = Colors.grey[900];
   Color subColor = Colors.grey[50];
+  Color redColor = Colors.red[900];
   String bgImage = 'bg.png';
   // capture input from TextField
   var nameController = TextEditingController();
@@ -181,7 +182,7 @@ class _EditMechanicsState extends State<EditMechanics> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         RaisedButton(
-                          color: Colors.red[900],
+                          color: redColor,
                           child: Text(
                             'Edytuj',
                             style: TextStyle(
@@ -207,7 +208,7 @@ class _EditMechanicsState extends State<EditMechanics> {
                           width: 30.0,
                         ),
                         RaisedButton(
-                          color: Colors.red[900],
+                          color: redColor,
                           child: Text(
                             'Usuń',
                             style: TextStyle(

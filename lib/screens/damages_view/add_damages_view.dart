@@ -12,6 +12,7 @@ class _AddDamagesState extends State<AddDamages> {
   final DBDamages getDB = DBDamages();
   Color mainColor = Colors.grey[900];
   Color subColor = Colors.grey[50];
+  Color redColor = Colors.red[900];
   String bgImage = 'bg.png';
 
   final FocusNode nameNode = FocusNode();
@@ -258,7 +259,7 @@ class _AddDamagesState extends State<AddDamages> {
                   height: 20.0,
                 ),
                 RaisedButton(
-                  color: Colors.red[900],
+                  color: redColor,
                   child: Text(
                     'Dodaj',
                     style: TextStyle(
