@@ -5,14 +5,15 @@ class CarInfoModel {
   String _model;
   int _year;
   String _registration;
+  String _vin;
   String _engineCapacity;
   int _policyNumber;
 
   // Constructor
   CarInfoModel(this._brand, this._model, this._year, this._registration,
-      this._engineCapacity, this._policyNumber);
+      this._vin, this._engineCapacity, this._policyNumber);
   CarInfoModel.withId(this._id, this._brand, this._model, this._year,
-      this._registration, this._engineCapacity, this._policyNumber);
+      this._registration, this._vin, this._engineCapacity, this._policyNumber);
 
   // getters
   int get id => _id;
@@ -20,6 +21,7 @@ class CarInfoModel {
   String get model => _model;
   int get year => _year;
   String get registration => _registration;
+  String get vin => _vin;
   String get engineCapacity => _engineCapacity;
   int get policyNumber => _policyNumber;
 
@@ -44,6 +46,12 @@ class CarInfoModel {
     }
   }
 
+  set vin(String newVin) {
+    if (newVin.length <= 255) {
+      _registration = newVin;
+    }
+  }
+
   set engineCapacity(String newEngineCapacity) {
     if (newEngineCapacity.length <= 255) {
       _engineCapacity = newEngineCapacity;
@@ -58,6 +66,7 @@ class CarInfoModel {
     carInfoMap['model'] = _model;
     carInfoMap['year'] = _year;
     carInfoMap['registration'] = _registration;
+    carInfoMap['vin'] = _vin;
     carInfoMap['engineCapacity'] = _engineCapacity;
     carInfoMap['policyNumber'] = _policyNumber;
     if (_id != null) {

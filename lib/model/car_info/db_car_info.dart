@@ -17,6 +17,7 @@ class DBCarInfo with ChangeNotifier {
   final colModel = 'model';
   final colYear = 'year';
   final colRegistration = 'registration';
+  final colVin = 'vin';
   final colEngineCapacity = 'engineCapacity';
   final colPolicyNumber = 'policyNumber';
 
@@ -24,10 +25,10 @@ class DBCarInfo with ChangeNotifier {
 
   Future<Database> initializeDB() async {
     if (db == null) {
-      db = await openDatabase(join(await getDatabasesPath(), "carinfo.db"),
+      db = await openDatabase(join(await getDatabasesPath(), "carinfos.db"),
           version: 1, onCreate: (db, int version) {
         return db.execute(
-            "CREATE TABLE $tblCarInfo($colId INTEGER PRIMARY KEY, $colBrand TEXT, $colModel TEXT,  $colYear INTEGER, $colRegistration TEXT, $colEngineCapacity TEXT, $colPolicyNumber INTEGER)");
+            "CREATE TABLE $tblCarInfo($colId INTEGER PRIMARY KEY, $colBrand TEXT, $colModel TEXT,  $colYear INTEGER, $colRegistration TEXT, $colVin TEXT, $colEngineCapacity TEXT, $colPolicyNumber INTEGER)");
       });
     }
     return db;
@@ -54,6 +55,7 @@ class DBCarInfo with ChangeNotifier {
         allCarInfo[i][colModel],
         allCarInfo[i][colYear],
         allCarInfo[i][colRegistration],
+        allCarInfo[i][colVin],
         allCarInfo[i][colEngineCapacity],
         allCarInfo[i][colPolicyNumber],
       );

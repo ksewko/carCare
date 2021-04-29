@@ -144,7 +144,7 @@ class _CarInfoMainState extends State<CarInfoMain> {
                                 color: mainColor,
                               ),
                               title: Text(
-                                'Numer rejestracyjny: ',
+                                'Numer Rejestracyjny: ',
                                 style: TextStyle(
                                   color: mainColor,
                                   fontSize: 18.0,
@@ -153,6 +153,35 @@ class _CarInfoMainState extends State<CarInfoMain> {
                               ),
                               subtitle: Text(
                                 (carinfo[0].registration),
+                                style: TextStyle(
+                                  color: subColor,
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 10.0),
+                          Card(
+                            // color: Theme.of(context).primaryColorLight,
+                            color: Colors.grey[300],
+                            elevation: 6.0,
+                            shape: StadiumBorder(),
+                            child: ListTile(
+                              leading: Icon(
+                                Icons.label_important,
+                                color: mainColor,
+                              ),
+                              title: Text(
+                                'Numer VIN: ',
+                                style: TextStyle(
+                                  color: mainColor,
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              subtitle: Text(
+                                (carinfo[0].vin),
                                 style: TextStyle(
                                   color: subColor,
                                   fontSize: 14.0,

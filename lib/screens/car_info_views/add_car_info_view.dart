@@ -20,6 +20,7 @@ class _AddCarInfoState extends State<AddCarInfo> {
   final FocusNode modelNode = FocusNode();
   final FocusNode yearNode = FocusNode();
   final FocusNode registrationNode = FocusNode();
+  final FocusNode vinNode = FocusNode();
   final FocusNode engineCapacityNode = FocusNode();
   final FocusNode policyNumberNode = FocusNode();
 
@@ -28,6 +29,7 @@ class _AddCarInfoState extends State<AddCarInfo> {
   var modelController = TextEditingController();
   var yearController = TextEditingController();
   var registrationController = TextEditingController();
+  var vinController = TextEditingController();
   var engineCapacityController = TextEditingController();
   var policyNumberController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -186,10 +188,44 @@ class _AddCarInfoState extends State<AddCarInfo> {
                     ),
                   ),
                   onEditingComplete: () {
-                    FocusScope.of(context).requestFocus(engineCapacityNode);
+                    FocusScope.of(context).requestFocus(vinNode);
                   },
                   validator: (val) =>
                       val.isEmpty ? 'Musisz dodać numer rejestracyjny!' : null,
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
+                  focusNode: vinNode,
+                  controller: vinController,
+                  decoration: InputDecoration(
+                    labelText: 'Numer VIN',
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  onEditingComplete: () {
+                    FocusScope.of(context).requestFocus(engineCapacityNode);
+                  },
+                  validator: (val) =>
+                      val.isEmpty ? 'Musisz dodać numer VIN!' : null,
                 ),
                 SizedBox(
                   height: 20.0,
@@ -273,6 +309,7 @@ class _AddCarInfoState extends State<AddCarInfo> {
                           modelController.text,
                           int.parse(yearController.text),
                           registrationController.text,
+                          vinController.text,
                           engineCapacityController.text ?? '',
                           int.parse(policyNumberController.text) ?? '');
 
@@ -281,6 +318,7 @@ class _AddCarInfoState extends State<AddCarInfo> {
                         modelController.clear();
                         yearController.clear();
                         registrationController.clear();
+                        vinController.clear();
                         engineCapacityController.clear();
                         policyNumberController.clear();
                         newCarInfo = null;

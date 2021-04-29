@@ -23,6 +23,7 @@ class _EditCarInfoState extends State<EditCarInfo> {
   var modelController = TextEditingController();
   var yearController = TextEditingController();
   var registrationController = TextEditingController();
+  var vinController = TextEditingController();
   var engineCapacityController = TextEditingController();
   var policyNumberController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -35,6 +36,7 @@ class _EditCarInfoState extends State<EditCarInfo> {
     modelController.text = widget.carinfo.model;
     yearController.text = widget.carinfo.year.toString();
     registrationController.text = widget.carinfo.registration;
+    vinController.text = widget.carinfo.vin;
     engineCapacityController.text = widget.carinfo.engineCapacity;
     policyNumberController.text = widget.carinfo.policyNumber.toString();
 
@@ -181,6 +183,36 @@ class _EditCarInfoState extends State<EditCarInfo> {
                       validator: (val) => val.isEmpty
                           ? 'Musisz dodać numer rejestracyjny!'
                           : null,
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
+                      controller: vinController,
+                      decoration: InputDecoration(
+                        labelText: 'Numer VIN',
+                        labelStyle: TextStyle(color: subColor),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          borderSide: BorderSide(
+                            color: subColor,
+                            width: 2.0,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: subColor,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      validator: (val) =>
+                          val.isEmpty ? 'Musisz dodać numer VIN!' : null,
                     ),
                     SizedBox(
                       height: 20.0,
