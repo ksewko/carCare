@@ -22,7 +22,7 @@ class _CarViewState extends State<CarView> {
       //ustanienie paska na górze aplikacji w zależności od dnia i nocy
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Twoje auto'),
+        title: Text('Moje auto'),
         backgroundColor: mainColor,
         elevation: 0.0,
       ),

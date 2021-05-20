@@ -251,7 +251,7 @@ class _AddRefuelState extends State<AddRefuel> {
                   ),
                   validator: (val) =>
                       (!val.contains('Tak') && !val.contains('Nie'))
-                          ? 'Musisz wpisać słowo Tak lub Nie'
+                          ? 'Musisz wpisać Tak lub Nie!'
                           : null,
                 ),
                 SizedBox(

@@ -85,7 +85,7 @@ class _EditTiresState extends State<EditTires> {
                         ),
                       ),
                       validator: (val) =>
-                          val.isEmpty ? 'Musisz dodać felgi!' : null,
+                          val.isEmpty ? 'Musisz dodać rodzaj felg!' : null,
                     ),
                     SizedBox(
                       height: 20.0,
@@ -176,7 +176,6 @@ class _EditTiresState extends State<EditTires> {
                     SizedBox(
                       height: 20.0,
                     ),
-                    // dodać przełącznik na zimowe i letnie
                     TextFormField(
                       style: TextStyle(
                         color: subColor,
@@ -184,7 +183,7 @@ class _EditTiresState extends State<EditTires> {
                       ),
                       controller: isSummerController,
                       decoration: InputDecoration(
-                        labelText: 'Letnie/Zimowe',
+                        labelText: 'Letnie/Zimowe/Wielosezonowe',
                         labelStyle: TextStyle(color: subColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
@@ -201,10 +200,11 @@ class _EditTiresState extends State<EditTires> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      validator: (val) =>
-                          (!val.contains('Zimowe') && !val.contains('Letnie'))
-                              ? 'Musisz wpisać słowo Letnie lub Zimowe'
-                              : null,
+                      validator: (val) => (!val.contains('Zimowe') &&
+                              !val.contains('Letnie') &&
+                              !val.contains('Wielosezonowe'))
+                          ? 'Musisz wpisać - Letnie, Zimowe lub Wielosezonowe!'
+                          : null,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -212,7 +212,7 @@ class _EditTiresState extends State<EditTires> {
                         RaisedButton(
                           color: redColor,
                           child: Text(
-                            'Edytuj',
+                            'Zapisz',
                             style: TextStyle(
                               color: subColor,
                               fontSize: 20.0,
@@ -268,14 +268,15 @@ class _EditTiresState extends State<EditTires> {
                                     actions: <Widget>[
                                       OutlineButton(
                                         borderSide:
-                                            BorderSide(color: Colors.blue),
+                                            BorderSide(color: Colors.black),
                                         shape: StadiumBorder(),
                                         child: Text(
                                           'Tak',
                                           style: TextStyle(
                                               fontSize: 18.0,
                                               letterSpacing: 1.0,
-                                              fontWeight: FontWeight.bold),
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black),
                                         ),
                                         onPressed: () async {
                                           await getDB.deleteTires(tires.id);

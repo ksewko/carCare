@@ -21,7 +21,6 @@ class _HomeState extends State<Home> {
     double gaz = 2.11;
 
     return Scaffold(
-      //ustanienie paska na górze aplikacji w zależności od dnia i nocy
       backgroundColor: bgColor,
       appBar: AppBar(
         centerTitle: true,
@@ -165,7 +164,7 @@ class _HomeState extends State<Home> {
                         color: mainColor,
                       ),
                       label: Text(
-                        'Twoje auto',
+                        'Moje auto',
                         style: TextStyle(
                           color: mainColor,
                           fontSize: 18.0,

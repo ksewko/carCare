@@ -83,7 +83,7 @@ class _AddTiresState extends State<AddTires> {
                     FocusScope.of(context).requestFocus(tireSizeNode);
                   },
                   validator: (val) =>
-                      val.isEmpty ? 'Musisz dodać felgi!' : null,
+                      val.isEmpty ? 'Musisz dodać rodzaj felg!' : null,
                 ),
                 SizedBox(
                   height: 20.0,
@@ -194,7 +194,7 @@ class _AddTiresState extends State<AddTires> {
                   focusNode: isSummerNode,
                   controller: isSummerController,
                   decoration: InputDecoration(
-                    labelText: 'Letnie/Zimowe',
+                    labelText: 'Letnie/Zimowe/Wielosezonowe',
                     labelStyle: TextStyle(color: subColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -211,10 +211,11 @@ class _AddTiresState extends State<AddTires> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                   ),
-                  validator: (val) =>
-                      (!val.contains('Zimowe') && !val.contains('Letnie'))
-                          ? 'Musisz wpisać słowo Letnie lub Zimowe'
-                          : null,
+                  validator: (val) => (!val.contains('Zimowe') &&
+                          !val.contains('Letnie') &&
+                          !val.contains('Wielosezonowe'))
+                      ? 'Musisz wpisać - Letnie, Zimowe lub Wielosezonowe!'
+                      : null,
                 ),
                 RaisedButton(
                   color: redColor,

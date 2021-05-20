@@ -31,10 +31,8 @@ class _CarInfoMainState extends State<CarInfoMain> {
           decoration: BoxDecoration(
               image: DecorationImage(
             image: AssetImage('assets/$bgImage'),
-            fit: BoxFit
-                .cover, //zasłoni cały background, -> umiejscowienie image w bgc
+            fit: BoxFit.cover,
           )),
-          //color: Colors.blue[300],
           child: FutureBuilder(
             future: getDB.getCarInfo(),
             builder: (context, snapshot) {

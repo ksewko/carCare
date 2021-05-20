@@ -142,7 +142,7 @@ class NoteDetailState extends State<RemindersDetail> {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
           title: Text(
-            "Odrzucić zmiany?",
+            "Odrzuć zmiany!",
             style: TextStyle(
               color: redColor,
               fontWeight: FontWeight.bold,
@@ -150,7 +150,7 @@ class NoteDetailState extends State<RemindersDetail> {
             ),
           ),
           content: Text(
-            "Jesteś pewien, że chcesz odrzucić zmiany?",
+            "Czy chcesz odrzucić zmiany?",
             style: TextStyle(
               color: mainColor,
               fontSize: 18.0,
@@ -198,14 +198,14 @@ class NoteDetailState extends State<RemindersDetail> {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
           title: Text(
-            "Tytuł jest pusty",
+            "Brak Tytułu!",
             style: TextStyle(
               color: redColor,
               fontSize: 18.0,
             ),
           ),
           content: Text(
-            'Tytuł przypomnienia nie może pozostać pusty',
+            'Musisz dodać tytuł Przypomnienia!',
             style: TextStyle(
               color: redColor,
               fontSize: 18.0,
@@ -239,7 +239,7 @@ class NoteDetailState extends State<RemindersDetail> {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
           title: Text(
-            "Usunąć przypomnienie?",
+            "Usuń przypomnienie!",
             style: TextStyle(
               color: redColor,
               fontWeight: FontWeight.bold,
@@ -247,26 +247,13 @@ class NoteDetailState extends State<RemindersDetail> {
             ),
           ),
           content: Text(
-            "Jesteś pewien, że chcesz usunąć przypomnienie?",
+            "Czy chcesz usunąć przypomnienie?",
             style: TextStyle(
               color: redColor,
               fontSize: 18.0,
             ),
           ),
           actions: <Widget>[
-            FlatButton(
-              child: Text(
-                "Nie",
-                style: TextStyle(
-                  color: redColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22.0,
-                ),
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
             FlatButton(
               child: Text(
                 "Tak",

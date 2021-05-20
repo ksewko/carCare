@@ -40,6 +40,12 @@ class _AddMechanicsState extends State<AddMechanics> {
       body: SafeArea(
           child: SingleChildScrollView(
         child: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage('assets/$bgImage'),
+            fit: BoxFit
+                .cover, //zasłoni cały background, -> umiejscowienie image w bgc
+          )),
           padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 20.0),
           child: Form(
             key: _formKey,

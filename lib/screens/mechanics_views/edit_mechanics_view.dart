@@ -184,7 +184,7 @@ class _EditMechanicsState extends State<EditMechanics> {
                         RaisedButton(
                           color: redColor,
                           child: Text(
-                            'Edytuj',
+                            'Zapisz',
                             style: TextStyle(
                               color: subColor,
                               fontSize: 20.0,
@@ -239,14 +239,15 @@ class _EditMechanicsState extends State<EditMechanics> {
                                     actions: <Widget>[
                                       OutlineButton(
                                         borderSide:
-                                            BorderSide(color: Colors.blue),
+                                            BorderSide(color: Colors.black),
                                         shape: StadiumBorder(),
                                         child: Text(
                                           'Tak',
                                           style: TextStyle(
                                               fontSize: 18.0,
                                               letterSpacing: 1.0,
-                                              fontWeight: FontWeight.bold),
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black),
                                         ),
                                         onPressed: () async {
                                           await getDB

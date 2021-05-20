@@ -188,7 +188,7 @@ class _AddDamagesState extends State<AddDamages> {
                   },
                   validator: (val) => (!val.contains('Tak') &&
                           !val.contains('Nie'))
-                      ? 'Musisz wskazać czy byłeś sprawcą, wpisz Tak lub Nie'
+                      ? 'Musisz wskazać czy byłeś sprawcą - wpisz Tak lub Nie!'
                       : null,
                 ),
                 SizedBox(

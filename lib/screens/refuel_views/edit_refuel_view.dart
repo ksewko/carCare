@@ -239,7 +239,7 @@ class _EditRefuelState extends State<EditRefuel> {
                       ),
                       validator: (val) =>
                           (!val.contains('Tak') && !val.contains('Nie'))
-                              ? 'Musisz wpisać słowo Tak lub Nie'
+                              ? 'Musisz wpisać - Tak lub Nie!'
                               : null,
                     ),
                     SizedBox(
@@ -251,7 +251,7 @@ class _EditRefuelState extends State<EditRefuel> {
                         RaisedButton(
                           color: redColor,
                           child: Text(
-                            'Edytuj',
+                            'Zapisz',
                             style: TextStyle(
                               color: subColor,
                               fontSize: 20.0,
@@ -307,14 +307,15 @@ class _EditRefuelState extends State<EditRefuel> {
                                     actions: <Widget>[
                                       OutlineButton(
                                         borderSide:
-                                            BorderSide(color: Colors.blue),
+                                            BorderSide(color: Colors.black),
                                         shape: StadiumBorder(),
                                         child: Text(
                                           'Tak',
                                           style: TextStyle(
                                               fontSize: 18.0,
                                               letterSpacing: 1.0,
-                                              fontWeight: FontWeight.bold),
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black),
                                         ),
                                         onPressed: () async {
                                           await getDB.deleteRefuel(refuel.id);

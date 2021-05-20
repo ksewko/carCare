@@ -180,7 +180,7 @@ class _EditDamagesState extends State<EditDamages> {
                       ),
                       validator: (val) => (!val.contains('Tak') &&
                               !val.contains('Nie'))
-                          ? 'Musisz wskazać czy byłeś sprawcą, wpisz Tak lub Nie'
+                          ? 'Musisz wskazać czy byłeś sprawcą - wpisz Tak lub Nie!'
                           : null,
                     ),
                     SizedBox(
@@ -251,7 +251,7 @@ class _EditDamagesState extends State<EditDamages> {
                         RaisedButton(
                           color: redColor,
                           child: Text(
-                            'Edytuj',
+                            'Zapisz',
                             style: TextStyle(
                               color: subColor,
                               fontSize: 20.0,
@@ -307,14 +307,16 @@ class _EditDamagesState extends State<EditDamages> {
                                     ),
                                     actions: <Widget>[
                                       OutlineButton(
-                                        borderSide: BorderSide(color: subColor),
+                                        borderSide:
+                                            BorderSide(color: Colors.black),
                                         shape: StadiumBorder(),
                                         child: Text(
                                           'Tak',
                                           style: TextStyle(
                                               fontSize: 18.0,
                                               letterSpacing: 1.0,
-                                              fontWeight: FontWeight.bold),
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black),
                                         ),
                                         onPressed: () async {
                                           await getDB.deleteDamages(damages.id);
