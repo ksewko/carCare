@@ -14,7 +14,7 @@ description: A Car Care Flutter application.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -32,6 +32,7 @@ dependencies:
   url_launcher: ^6.0.3
   path_provider:
   path:
+  http: ^0.12.2
 
 dev_dependencies:
   flutter_test:

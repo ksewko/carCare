@@ -1,3 +1,5 @@
+import 'package:carcare/model/weather/weather_data_api.dart';
+import 'package:carcare/model/weather/weather_model.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -8,6 +10,11 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   Map data = {};
+
+  final _cityTextController = TextEditingController();
+  final _dataService = DataAPI();
+
+  WeatherResponse _response;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +28,7 @@ class _HomeState extends State<Home> {
     double gaz = 2.11;
 
     return Scaffold(
+      //ustanienie paska na górze aplikacji w zależności od dnia i nocy
       backgroundColor: bgColor,
       appBar: AppBar(
         centerTitle: true,
@@ -53,76 +61,69 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
-              SizedBox(height: 15.0),
               Container(
-                width: 350.0,
-                child: Column(
-                  children: <Widget>[
-                    SizedBox(height: 8.0),
-                    Text(
-                      'Ceny paliw:',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25.0,
+                width: 350,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    if (_response != null)
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.network(_response.iconUrl),
+                            Text(
+                              '${((_response.tempInfo.temperature - 32) / 1.8).toStringAsFixed(1)}°C',
+                              style: TextStyle(
+                                fontSize: 40,
+                                color: Colors.white,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                              child: Text(
+                                'Wilgotność ${_response.tempInfo.humidity}%',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    Expanded(
+                      child: Column(
+                        children: [
+                          Container(
+                            width: 120,
+                            child: TextField(
+                                style: TextStyle(
+                                  color: Colors.grey[300],
+                                  fontSize: 20.0,
+                                ),
+                                controller: _cityTextController,
+                                decoration: InputDecoration(
+                                    labelText: 'Miasto',
+                                    labelStyle: TextStyle(
+                                      fontSize: 16.0,
+                                      color: Colors.grey[400],
+                                    )),
+                                textAlign: TextAlign.center),
+                          ),
+                          FlatButton(
+                            onPressed: _search,
+                            child: Text(
+                              'Szukaj',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            color: Colors.red[900],
+                            shape: StadiumBorder(),
+                          ),
+                        ],
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        CircleAvatar(
-                          radius: 15.0,
-                          backgroundImage: AssetImage('assets/benzyna.png'),
-                        ),
-                        SizedBox(width: 20.0),
-                        Text(
-                          'Benzyna E95: ${benzyna} zł',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
-                          ),
-                        )
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        CircleAvatar(
-                          radius: 15.0,
-                          backgroundImage: AssetImage('assets/olej.png'),
-                        ),
-                        SizedBox(width: 20.0),
-                        Text(
-                          'Olej Napędowy: ${olej} zł',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        CircleAvatar(
-                          radius: 15.0,
-                          backgroundImage: AssetImage('assets/gaz.png'),
-                        ),
-                        SizedBox(width: 20.0),
-                        Text(
-                          'LPG E95: ${gaz} zł',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(height: 8.0),
                   ],
-                ),
-                decoration: BoxDecoration(
-                  color: mainColor,
                 ),
               ),
 
@@ -164,7 +165,7 @@ class _HomeState extends State<Home> {
                         color: mainColor,
                       ),
                       label: Text(
-                        'Moje auto',
+                        'Twoje auto',
                         style: TextStyle(
                           color: mainColor,
                           fontSize: 18.0,
@@ -259,5 +260,10 @@ class _HomeState extends State<Home> {
         ),
       ),
     );
+  }
+
+  void _search() async {
+    final response = await _dataService.getWeather(_cityTextController.text);
+    setState(() => _response = response);
   }
 }
