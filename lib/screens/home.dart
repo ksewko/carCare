@@ -230,21 +230,16 @@ class _HomeState extends State<Home> {
                   Expanded(
                     child: FlatButton.icon(
                       height: 50.0,
-                      onPressed: () async {
-                        final url = 'https://historiapojazdu.gov.pl/';
-                        if (await canLaunch(url)) {
-                          await launch(
-                            url,
-                            forceSafariVC: false,
-                          );
-                        }
+                      onPressed:() async {
+                        dynamic result =
+                            await Navigator.pushNamed(context, '/parking');
                       },
                       icon: Icon(
                         Icons.source,
                         color: mainColor,
                       ),
                       label: Text(
-                        'CEPIK',
+                        'Gdzie Zaparkowałeś?',
                         style: TextStyle(
                           color: mainColor,
                           fontSize: 18.0,

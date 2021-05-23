@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CarView extends StatefulWidget {
   @override
@@ -175,15 +176,20 @@ class _CarViewState extends State<CarView> {
                     child: FlatButton.icon(
                       height: 50.0,
                       onPressed: () async {
-                        dynamic result =
-                            await Navigator.pushNamed(context, '/mechanics');
+                        final url = 'https://historiapojazdu.gov.pl/';
+                        if (await canLaunch(url)) {
+                          await launch(
+                            url,
+                            forceSafariVC: false,
+                          );
+                        }
                       },
                       icon: Icon(
                         Icons.insert_chart,
                         color: mainColor,
                       ),
                       label: Text(
-                        'Statystyki',
+                        'CEPIK',
                         style: TextStyle(
                           color: mainColor,
                           fontSize: 18.0,
