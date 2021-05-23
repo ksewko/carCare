@@ -1,6 +1,9 @@
 import 'package:carcare/model/parking/db_parking_provider.dart';
+import 'package:carcare/model/photos/db_photos_provider.dart';
 import 'package:carcare/screens/parking_view/add_parking_view.dart';
 import 'package:carcare/screens/parking_view/parking_view.dart';
+import 'package:carcare/screens/photos_views/add_photos_view.dart';
+import 'package:carcare/screens/photos_views/photos_view.dart';
 import 'package:flutter/material.dart';
 import 'package:carcare/model/car_info/db_car_info.dart';
 import 'package:carcare/model/damages/db_damages.dart';
@@ -15,7 +18,6 @@ import 'package:carcare/screens/help_view/assistance_view.dart';
 import 'package:carcare/screens/help_view/form_view.dart';
 import 'package:carcare/screens/help_view/help_view.dart';
 import 'package:carcare/screens/mechanics_views/mechanics_view.dart';
-import 'package:carcare/screens/home.dart';
 import 'package:carcare/screens/refuel_views/refuel_view.dart';
 import 'package:carcare/screens/reminders_views/reminders_view.dart';
 import 'package:carcare/screens/serwis_views/sewis_view.dart';
@@ -41,6 +43,7 @@ class MovieRental extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => DBDamages()),
         ChangeNotifierProvider(create: (context) => DBMechanics()),
         ChangeNotifierProvider(create: (context) => DBParkingProvider()),
+        ChangeNotifierProvider(create: (context) => DBPhotosProvider()),
         // ChangeNotifierProvider(create: (context) => DBReminders()),
       ],
       child: MaterialApp(
@@ -63,7 +66,8 @@ class MovieRental extends StatelessWidget {
           '/reminders': (context) => RemindersMain(),
           '/parking': (context) => ParkingView(),
           '/add-parking': (context) => AddParking(),
-
+          '/photos': (context) => PhotosView(),
+          '/add-photos': (context) => AddPhotos(),
           // '/location': (context) => ChooseLocation()
         },
       ),

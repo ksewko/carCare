@@ -1,47 +1,37 @@
 import 'dart:io';
 
-import 'package:carcare/model/parking/parking_loc.dart';
-import 'package:carcare/model/parking/db_parking_provider.dart';
 import 'package:carcare/model/widgets/picture_widget.dart';
-import 'package:carcare/model/widgets/loc_widget.dart';
+import 'package:carcare/model/photos/db_photos_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class AddParking extends StatefulWidget {
-  static const routeName = "/add-parking";
+class AddPhotos extends StatefulWidget {
+  static const routeName = "/add-photos";
   @override
-  _AddParkingState createState() => _AddParkingState();
+  _AddPhotosState createState() => _AddPhotosState();
 }
 
-class _AddParkingState extends State<AddParking> {
+class _AddPhotosState extends State<AddPhotos> {
   Color mainColor = Colors.grey[900];
   Color subColor = Colors.grey[50];
   Color redColor = Colors.red[900];
   String bgImage = 'bg.png';
 
-  final _titleController = TextEditingController();
   File _imagePicked;
-  ParkingLoc _locationPicked;
 
   void _selectImage(File imagePicked) {
     _imagePicked = imagePicked;
   }
 
-  void _selectLocation(double latitude, double longitude) {
-    _locationPicked = ParkingLoc(latitude: latitude, longitude: longitude);
-  }
-
   void _savePlace() {
-    if (_titleController.text.isEmpty ||
-        _imagePicked == null ||
-        _locationPicked == null) {
+    if (_imagePicked == null) {
       showCupertinoDialog(
           context: context,
           builder: (context) => CupertinoAlertDialog(
                 title: Text("Uwaga"),
                 content: Text(
-                    "Musisz dodać nazwę, zdjęcie i zaznaczyć lokalizację zaparkowanego auta!"),
+                    "Musisz dodać zdjęcie auta!"),
                 actions: [
                   CupertinoButton(
                     child: Text("Ok"),
@@ -51,14 +41,13 @@ class _AddParkingState extends State<AddParking> {
               ));
       return;
     }
-    Provider.of<DBParkingProvider>(context, listen: false)
-        .addNewPlace(_titleController.text, _imagePicked, _locationPicked);
+    Provider.of<DBPhotosProvider>(context, listen: false)
+        .addNewPhoto(_imagePicked);
     Navigator.of(context).pop();
   }
 
   @override
   void dispose() {
-    _titleController.dispose();
     super.dispose();
   }
 
@@ -68,7 +57,7 @@ class _AddParkingState extends State<AddParking> {
       appBar: AppBar(
         backgroundColor: mainColor,
         centerTitle: true,
-        title: Text("Dodaj Parking"),
+        title: Text("Dodaj Zdjęcie"),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -86,38 +75,8 @@ class _AddParkingState extends State<AddParking> {
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
                     children: [
-                      TextField(
-                        style: TextStyle(
-                          color: subColor,
-                          fontSize: 16.0,
-                        ),
-                        controller: _titleController,
-                        textCapitalization: TextCapitalization.words,
-                        decoration: InputDecoration(
-                          labelText: "Nazwa Miejsca postojowego",
-                          labelStyle: TextStyle(color: subColor),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                            borderSide: BorderSide(
-                              color: subColor,
-                              width: 2.0,
-                            ),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: subColor,
-                              width: 2.0,
-                            ),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
                       PictureWidget(onImageSaved: _selectImage),
                       SizedBox(height: 16),
-                      LocWidget(_selectLocation),
                     ],
                   ),
                 ),

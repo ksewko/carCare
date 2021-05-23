@@ -209,7 +209,7 @@ class _CarViewState extends State<CarView> {
                       height: 50.0,
                       onPressed: () async {
                         dynamic result =
-                            await Navigator.pushNamed(context, '/mechanics');
+                            await Navigator.pushNamed(context, '/photos');
                       },
                       icon: Icon(
                         Icons.add_a_photo,
