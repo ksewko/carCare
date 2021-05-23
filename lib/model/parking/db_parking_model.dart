@@ -1,7 +1,7 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class DBHelper {
+class DBParkingModel {
   static Future<Database> database() async {
     final String dbPath = await getDatabasesPath();
     final String createTabelQuery = """
@@ -24,25 +24,17 @@ class DBHelper {
   }
 
   static Future insert(String table, Map<String, Object> data) async {
-    final Database db = await DBHelper.database();
+    final Database db = await DBParkingModel.database();
     db.insert(table, data, conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
-  // static Future<int> delete(String table, Map<String, Object> data) async {
-  //   final Database db = await DBHelper.database();
-  //   db.delete(table, data, conflictAlgorithm: ConflictAlgorithm.replace);
-  //   // int result =
-  //   //     await db.rawDelete('DELETE FROM PLACES WHERE id = $id');
-  //   // return result;
-  // }
-
   static Future<int> delete(String table, String id) async {
-   final Database db = await DBHelper.database();
-   db.delete(table, where: "id = ?", whereArgs: [id]);
+    final Database db = await DBParkingModel.database();
+    db.delete(table, where: "id = ?", whereArgs: [id]);
   }
 
   static Future<List<Map<String, dynamic>>> read(String table) async {
-    final Database db = await DBHelper.database();
+    final Database db = await DBParkingModel.database();
     return db.query(table);
   }
 }

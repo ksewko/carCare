@@ -1,23 +1,22 @@
-import 'package:carcare/model/places/place_location.dart';
+import 'package:carcare/model/parking/parking_loc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-// import 'package:teman_tempat/helpers/api_key.dart';
 import 'package:latlong/latlong.dart';
 
-class MapScreen extends StatefulWidget {
-  final PlaceLocation location;
+class MapView extends StatefulWidget {
+  final ParkingLoc location;
   final bool isSelecting;
   final String appBarTitle;
 
-  MapScreen(
+  MapView(
       {@required this.location,
       this.isSelecting = false,
-      this.appBarTitle = "Pilih Melalui Peta"});
+      this.appBarTitle = "Zaznacz na Mapie"});
   @override
-  _MapScreenState createState() => _MapScreenState();
+  _MapViewState createState() => _MapViewState();
 }
 
-class _MapScreenState extends State<MapScreen> {
+class _MapViewState extends State<MapView> {
   final String token =
       'pk.eyJ1Ijoia3Nld2tvOTgiLCJhIjoiY2tvenZsdGY3MDh3aTJvbzZqcm9oNnY4eCJ9.CsZ4n-2ClKDohPV0eM8h_w';
   LatLng _pickedLocation;
@@ -37,8 +36,11 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Color mainColor = Colors.grey[900];
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: mainColor,
+        centerTitle: true,
         title: Text(widget.appBarTitle),
         actions: widget.isSelecting
             ? [

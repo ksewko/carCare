@@ -1,11 +1,11 @@
-import 'package:carcare/model/places/place_provider.dart';
-import 'package:carcare/model/places/widgets/place_item.dart';
-import 'package:carcare/screens/places_views/add_place_screen.dart';
+import 'package:carcare/model/parking/db_parking_provider.dart';
+import 'package:carcare/model/parking/widgets/parking_widget.dart';
+import 'package:carcare/screens/parking_view/add_parking_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget {
+class ParkingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color mainColor = Colors.grey[900];
@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () {
-              Navigator.of(context).pushNamed(AddPlaceScreen.routeName);
+              Navigator.of(context).pushNamed(AddParking.routeName);
             },
           ),
         ],
@@ -34,14 +34,14 @@ class HomeScreen extends StatelessWidget {
               .cover, //zasłoni cały background, -> umiejscowienie image w bgc
         )),
         child: FutureBuilder(
-          future:
-              Provider.of<PlaceProvider>(context, listen: false).fetchPlaces(),
+          future: Provider.of<DBParkingProvider>(context, listen: false)
+              .fetchPlaces(),
           builder: (context, snapshot) =>
               (snapshot.connectionState == ConnectionState.waiting)
                   ? SpinKitFadingCircle(
                       color: mainColor,
                     )
-                  : Consumer<PlaceProvider>(
+                  : Consumer<DBParkingProvider>(
                       child: Center(
                         child: Text(
                           "Brak danych do wyświetlenia",
@@ -49,15 +49,17 @@ class HomeScreen extends StatelessWidget {
                               fontSize: 18.0, fontWeight: FontWeight.bold),
                         ),
                       ),
-                      builder: (context, place, child) {
-                        return (place.places.isEmpty)
+                      builder: (context, parking, child) {
+                        return (parking.parkings.isEmpty)
                             ? child
                             : ListView.builder(
                                 padding: const EdgeInsets.all(16),
-                                itemCount: place.places.length,
+                                itemCount: parking.parkings.length,
                                 itemBuilder: (BuildContext context, int index) {
-                                  final currentPlace = place.places[index];
-                                  return PlaceItem(currentPlace: currentPlace);
+                                  final currentParking =
+                                      parking.parkings[index];
+                                  return ParkingWidget(
+                                      currentParking: currentParking);
                                 },
                               );
                       },

@@ -1,20 +1,20 @@
-import 'package:carcare/model/places/location_helper.dart';
-import 'package:carcare/model/places/place_location.dart';
-import 'package:carcare/screens/places_views/map_screen.dart';
+import 'package:carcare/model/parking/location_helper.dart';
+import 'package:carcare/model/parking/parking_loc.dart';
+import 'package:carcare/screens/parking_view/map_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:location/location.dart';
 import 'package:latlong/latlong.dart';
 
-class LocationInput extends StatefulWidget {
+class LocWidget extends StatefulWidget {
   final Function onMapSelected;
-  LocationInput(this.onMapSelected);
+  LocWidget(this.onMapSelected);
 
   @override
-  _LocationInputState createState() => _LocationInputState();
+  _LocWidgetState createState() => _LocWidgetState();
 }
 
-class _LocationInputState extends State<LocationInput> {
+class _LocWidgetState extends State<LocWidget> {
   Color mainColor = Colors.grey[900];
   Color subColor = Colors.grey[50];
   Color redColor = Colors.red[900];
@@ -45,8 +45,8 @@ class _LocationInputState extends State<LocationInput> {
     final LocationData locationData = await Location().getLocation();
     final LatLng selectMap = await Navigator.of(context).push(MaterialPageRoute(
       fullscreenDialog: true,
-      builder: (context) => MapScreen(
-        location: PlaceLocation(
+      builder: (context) => MapView(
+        location: ParkingLoc(
             latitude: locationData.latitude, longitude: locationData.longitude),
         isSelecting: true,
       ),

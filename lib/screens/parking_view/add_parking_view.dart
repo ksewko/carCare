@@ -1,20 +1,20 @@
 import 'dart:io';
 
-import 'package:carcare/model/places/place_location.dart';
-import 'package:carcare/model/places/place_provider.dart';
-import 'package:carcare/model/places/widgets/image_input.dart';
-import 'package:carcare/model/places/widgets/location_input.dart';
+import 'package:carcare/model/parking/parking_loc.dart';
+import 'package:carcare/model/parking/db_parking_provider.dart';
+import 'package:carcare/model/parking/widgets/picture_widget.dart';
+import 'package:carcare/model/parking/widgets/loc_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class AddPlaceScreen extends StatefulWidget {
-  static const routeName = "/add-place";
+class AddParking extends StatefulWidget {
+  static const routeName = "/add-parking";
   @override
-  _AddPlaceScreenState createState() => _AddPlaceScreenState();
+  _AddParkingState createState() => _AddParkingState();
 }
 
-class _AddPlaceScreenState extends State<AddPlaceScreen> {
+class _AddParkingState extends State<AddParking> {
   Color mainColor = Colors.grey[900];
   Color subColor = Colors.grey[50];
   Color redColor = Colors.red[900];
@@ -22,14 +22,14 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
 
   final _titleController = TextEditingController();
   File _imagePicked;
-  PlaceLocation _locationPicked;
+  ParkingLoc _locationPicked;
 
   void _selectImage(File imagePicked) {
     _imagePicked = imagePicked;
   }
 
   void _selectLocation(double latitude, double longitude) {
-    _locationPicked = PlaceLocation(latitude: latitude, longitude: longitude);
+    _locationPicked = ParkingLoc(latitude: latitude, longitude: longitude);
   }
 
   void _savePlace() {
@@ -51,7 +51,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
               ));
       return;
     }
-    Provider.of<PlaceProvider>(context, listen: false)
+    Provider.of<DBParkingProvider>(context, listen: false)
         .addNewPlace(_titleController.text, _imagePicked, _locationPicked);
     Navigator.of(context).pop();
   }
@@ -115,9 +115,9 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                       SizedBox(
                         height: 16,
                       ),
-                      ImageInput(onImageSaved: _selectImage),
+                      PictureWidget(onImageSaved: _selectImage),
                       SizedBox(height: 16),
-                      LocationInput(_selectLocation),
+                      LocWidget(_selectLocation),
                     ],
                   ),
                 ),

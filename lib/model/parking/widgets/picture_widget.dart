@@ -5,15 +5,15 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
-class ImageInput extends StatefulWidget {
+class PictureWidget extends StatefulWidget {
   final Function onImageSaved;
 
-  ImageInput({@required this.onImageSaved});
+  PictureWidget({@required this.onImageSaved});
   @override
-  _ImageInputState createState() => _ImageInputState();
+  _PictureWidgetState createState() => _PictureWidgetState();
 }
 
-class _ImageInputState extends State<ImageInput> {
+class _PictureWidgetState extends State<PictureWidget> {
   File _storedImage;
 
   Future<void> takePhoto() async {

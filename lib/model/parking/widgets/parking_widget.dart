@@ -1,20 +1,20 @@
-import 'package:carcare/model/places/place.dart';
-import 'package:carcare/model/places/place_provider.dart';
+import 'package:carcare/model/parking/parking_model.dart';
+import 'package:carcare/model/parking/db_parking_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class PlaceItem extends StatefulWidget {
-  PlaceItem({
-    @required this.currentPlace,
+class ParkingWidget extends StatefulWidget {
+  ParkingWidget({
+    @required this.currentParking,
   });
 
-  final Place currentPlace;
+  final ParkingModel currentParking;
 
   @override
-  _PlaceItemState createState() => _PlaceItemState();
+  _ParkingWidgetState createState() => _ParkingWidgetState();
 }
 
-class _PlaceItemState extends State<PlaceItem> {
+class _ParkingWidgetState extends State<ParkingWidget> {
   final _titleController = TextEditingController();
   Color mainColor = Colors.grey[900];
   Color subColor = Colors.grey[50];
@@ -38,7 +38,7 @@ class _PlaceItemState extends State<PlaceItem> {
                 topRight: Radius.circular(16),
               ),
               child: Image.file(
-                widget.currentPlace.image,
+                widget.currentParking.image,
                 fit: BoxFit.cover,
                 height: 200,
                 width: double.infinity,
@@ -47,7 +47,7 @@ class _PlaceItemState extends State<PlaceItem> {
             Padding(
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 5),
               child: Text(
-                widget.currentPlace.title,
+                widget.currentParking.title,
                 style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
               ),
             ),
@@ -64,7 +64,7 @@ class _PlaceItemState extends State<PlaceItem> {
                   SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      widget.currentPlace.location.address,
+                      widget.currentParking.location.address,
                       style: TextStyle(
                           fontSize: 14.0,
                           fontWeight: FontWeight.normal,
@@ -86,7 +86,7 @@ class _PlaceItemState extends State<PlaceItem> {
                                 textAlign: TextAlign.center,
                               ),
                               content: Text(
-                                'Czy chcesz usunąć parking \n${widget.currentPlace.title} z listy?',
+                                'Czy chcesz usunąć parking \n${widget.currentParking.title} z listy?',
                                 textAlign: TextAlign.center,
                               ),
                               backgroundColor: Colors.red,
@@ -107,9 +107,11 @@ class _PlaceItemState extends State<PlaceItem> {
                                         color: Colors.black),
                                   ),
                                   onPressed: () async {
-                                    await Provider.of<PlaceProvider>(context,
+                                    await Provider.of<DBParkingProvider>(
+                                            context,
                                             listen: false)
-                                        .deletePlace(widget.currentPlace.title);
+                                        .deletePlace(
+                                            widget.currentParking.title);
                                     Navigator.pop(context);
                                   },
                                 ),
