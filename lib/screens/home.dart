@@ -22,10 +22,6 @@ class _HomeState extends State<Home> {
     Color bgColor = Colors.blue;
     Color mainColor = Colors.grey[900];
 
-    //ceny paliw
-    double benzyna = 4.67;
-    double olej = 4.69;
-    double gaz = 2.11;
 
     return Scaffold(
       //ustanienie paska na górze aplikacji w zależności od dnia i nocy

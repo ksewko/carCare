@@ -233,45 +233,43 @@ class NoteDetailState extends State<RemindersDetail> {
 
   void showDeleteDialog(BuildContext context) {
     showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(10.0))),
-          title: Text(
-            "Usuń przypomnienie!",
-            style: TextStyle(
-              color: redColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 22.0,
+        context: context,
+        barrierDismissible: true,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(
+              'Usuń Przypomnienie!',
+              textAlign: TextAlign.center,
             ),
-          ),
-          content: Text(
-            "Czy chcesz usunąć przypomnienie?",
-            style: TextStyle(
-              color: redColor,
-              fontSize: 18.0,
+            content: Text(
+              'Czy chcesz usunąć przypomnienie?',
+              textAlign: TextAlign.center,
             ),
-          ),
-          actions: <Widget>[
-            FlatButton(
-              child: Text(
-                "Tak",
-                style: TextStyle(
-                  color: redColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22.0,
+            backgroundColor: Colors.red,
+            elevation: 8.0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0),
+            ),
+            actions: <Widget>[
+              OutlineButton(
+                borderSide: BorderSide(color: Colors.black),
+                shape: StadiumBorder(),
+                child: Text(
+                  'Tak',
+                  style: TextStyle(
+                      fontSize: 18.0,
+                      letterSpacing: 1.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black),
                 ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  _delete();
+                },
               ),
-              onPressed: () {
-                Navigator.of(context).pop();
-                _delete();
-              },
-            ),
-          ],
-        );
-      },
-    );
+            ],
+          );
+        });
   }
 
   void moveToLastScreen() {
