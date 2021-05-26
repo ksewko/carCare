@@ -27,18 +27,38 @@ class _AddPhotosState extends State<AddPhotos> {
   void _savePlace() {
     if (_imagePicked == null) {
       showCupertinoDialog(
-          context: context,
-          builder: (context) => CupertinoAlertDialog(
-                title: Text("Uwaga"),
-                content: Text(
-                    "Musisz dodać zdjęcie auta!"),
-                actions: [
-                  CupertinoButton(
-                    child: Text("Ok"),
-                    onPressed: () => Navigator.of(context).pop(),
-                  )
-                ],
-              ));
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(
+            'Uwaga!',
+            textAlign: TextAlign.center,
+          ),
+          content: Text(
+            'Musisz dodać zdjęcie!',
+            textAlign: TextAlign.center,
+          ),
+          backgroundColor: Colors.red,
+          elevation: 8.0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.0),
+          ),
+          actions: <Widget>[
+            OutlineButton(
+              borderSide: BorderSide(color: Colors.black),
+              shape: StadiumBorder(),
+              child: Text(
+                'Ok',
+                style: TextStyle(
+                    fontSize: 18.0,
+                    letterSpacing: 1.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black),
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        ),
+      );
       return;
     }
     Provider.of<DBPhotosProvider>(context, listen: false)

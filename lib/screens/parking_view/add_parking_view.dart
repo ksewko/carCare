@@ -32,23 +32,87 @@ class _AddParkingState extends State<AddParking> {
     _locationPicked = ParkingLoc(latitude: latitude, longitude: longitude);
   }
 
+// onPressed: () {
+//                             showDialog(
+//                                 context: context,
+//                                 barrierDismissible: true,
+//                                 builder: (context) {
+//                                   return AlertDialog(
+//                                     title: Text(
+//                                       'Usuń Warsztat!',
+//                                       textAlign: TextAlign.center,
+//                                     ),
+//                                     content: Text(
+//                                       'Czy chcesz usunąć warsztat \n${nameController.text} z listy?',
+//                                       textAlign: TextAlign.center,
+//                                     ),
+//                                     backgroundColor: Colors.red,
+//                                     elevation: 8.0,
+//                                     shape: RoundedRectangleBorder(
+//                                       borderRadius: BorderRadius.circular(30.0),
+//                                     ),
+//                                     actions: <Widget>[
+//                                       OutlineButton(
+//                                         borderSide:
+//                                             BorderSide(color: Colors.black),
+//                                         shape: StadiumBorder(),
+//                                         child: Text(
+//                                           'Tak',
+//                                           style: TextStyle(
+//                                               fontSize: 18.0,
+//                                               letterSpacing: 1.0,
+//                                               fontWeight: FontWeight.bold,
+//                                               color: Colors.black),
+//                                         ),
+//                                         onPressed: () async {
+//                                           await getDB
+//                                               .deleteMechanics(mechanics.id);
+//                                           Navigator.pop(context);
+//                                           Navigator.pop(context);
+//                                         },
+//                                       ),
+//                                     ],
+//                                   );
+//                                 });
+//                           },
+
   void _savePlace() {
     if (_titleController.text.isEmpty ||
         _imagePicked == null ||
         _locationPicked == null) {
       showCupertinoDialog(
-          context: context,
-          builder: (context) => CupertinoAlertDialog(
-                title: Text("Uwaga"),
-                content: Text(
-                    "Musisz dodać nazwę, zdjęcie i zaznaczyć lokalizację zaparkowanego auta!"),
-                actions: [
-                  CupertinoButton(
-                    child: Text("Ok"),
-                    onPressed: () => Navigator.of(context).pop(),
-                  )
-                ],
-              ));
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(
+            'Uwaga!',
+            textAlign: TextAlign.center,
+          ),
+          content: Text(
+            'Musisz wpisać nazwę, dodać zdjęcie i wybrać lokalizację!',
+            textAlign: TextAlign.center,
+          ),
+          backgroundColor: Colors.red,
+          elevation: 8.0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.0),
+          ),
+          actions: <Widget>[
+            OutlineButton(
+              borderSide: BorderSide(color: Colors.black),
+              shape: StadiumBorder(),
+              child: Text(
+                'Ok',
+                style: TextStyle(
+                    fontSize: 18.0,
+                    letterSpacing: 1.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black),
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        ),
+      );
       return;
     }
     Provider.of<DBParkingProvider>(context, listen: false)
