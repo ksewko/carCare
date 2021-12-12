@@ -1,17 +1,16 @@
 import 'package:carcare/model/parking/db_parking_provider.dart';
 import 'package:carcare/model/photos/db_photos_provider.dart';
+import 'package:carcare/screens/hive_info_views/hive_info_view.dart';
 import 'package:carcare/screens/parking_view/add_parking_view.dart';
 import 'package:carcare/screens/parking_view/parking_view.dart';
 import 'package:carcare/screens/photos_views/add_photos_view.dart';
 import 'package:carcare/screens/photos_views/photos_view.dart';
 import 'package:flutter/material.dart';
-import 'package:carcare/model/car_info/db_car_info.dart';
 import 'package:carcare/model/damages/db_damages.dart';
 import 'package:carcare/model/mechanics/db_mechanics.dart';
 import 'package:carcare/model/refuel/db_refuel.dart';
 import 'package:carcare/model/serwis/db_serwis.dart';
 import 'package:carcare/model/tires/db_tires.dart';
-import 'package:carcare/screens/car_info_views/car_info_view.dart';
 import 'package:carcare/screens/car_views/car_main_view.dart';
 import 'package:carcare/screens/damages_view/damages_view.dart';
 import 'package:carcare/screens/help_view/assistance_view.dart';
@@ -24,6 +23,8 @@ import 'package:carcare/screens/serwis_views/sewis_view.dart';
 import 'package:carcare/screens/tires_views/tires_view.dart';
 import 'package:provider/provider.dart';
 import 'package:carcare/screens/splash_screen.dart';
+
+import 'model/hive_info/db_hive_info.dart';
 // import 'package:carcare/utils/theme.dart';
 
 void main() {
@@ -36,7 +37,7 @@ class MovieRental extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => DBCarInfo()),
+        ChangeNotifierProvider(create: (context) => DBHiveInfo()),
         ChangeNotifierProvider(create: (context) => DBTires()),
         ChangeNotifierProvider(create: (context) => DBSerwis()),
         ChangeNotifierProvider(create: (context) => DBRefuel()),
@@ -54,17 +55,17 @@ class MovieRental extends StatelessWidget {
         routes: {
           // '/': (context) => Loading(),
           '/car': (context) => CarView(),
-          '/carinfo': (context) => CarInfoMain(),
-          '/tires': (context) => TiresMain(),
+          '/hiveinfo': (context) => HiveInfoMain(),
+          '/famielies': (context) => TiresMain(),
           '/service': (context) => SerwisMain(),
-          '/refuel': (context) => RefuelMain(),
+          '/honey': (context) => RefuelMain(),
           '/damages': (context) => DamagesMain(),
           '/mechanics': (context) => MechanicsMain(),
           '/help': (context) => HelpView(),
           '/assistance': (context) => AssistanceView(),
           '/form': (context) => FormView(),
           '/reminders': (context) => RemindersMain(),
-          '/parking': (context) => ParkingView(),
+          '/location': (context) => ParkingView(),
           '/add-parking': (context) => AddParking(),
           '/photos': (context) => PhotosView(),
           '/add-photos': (context) => AddPhotos(),

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:carcare/model/car_info/car_info_model.dart';
-import 'package:carcare/model/car_info/db_car_info.dart';
+import 'package:carcare/model/hive_info/hive_info_model.dart';
+import 'package:carcare/model/hive_info/db_hive_info.dart';
 
 class EditCarInfo extends StatefulWidget {
-  final CarInfoModel carinfo;
+  final HiveInfoModel carinfo;
   EditCarInfo(this.carinfo);
 
   @override
-  _EditCarInfoState createState() => _EditCarInfoState();
+  _EditHiveInfoState createState() => _EditHiveInfoState();
 }
 
-class _EditCarInfoState extends State<EditCarInfo> {
-  final DBCarInfo getDB = DBCarInfo();
+class _EditHiveInfoState extends State<EditCarInfo> {
+  final DBHiveInfo getDB = DBHiveInfo();
 
   Color mainColor = Colors.grey[900];
   Color subColor = Colors.grey[50];
@@ -30,7 +30,7 @@ class _EditCarInfoState extends State<EditCarInfo> {
 
   @override
   Widget build(BuildContext context) {
-    CarInfoModel carinfo = widget.carinfo;
+    HiveInfoModel carinfo = widget.carinfo;
     // filled values to Form input field
     brandController.text = widget.carinfo.brand;
     modelController.text = widget.carinfo.model;

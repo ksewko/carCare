@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:carcare/model/car_info/car_info_model.dart';
-import 'package:carcare/model/car_info/db_car_info.dart';
+import 'package:carcare/model/hive_info/hive_info_model.dart';
+import 'package:carcare/model/hive_info/db_hive_info.dart';
 import 'package:provider/provider.dart';
 
 class AddCarInfo extends StatefulWidget {
@@ -9,7 +9,7 @@ class AddCarInfo extends StatefulWidget {
 }
 
 class _AddCarInfoState extends State<AddCarInfo> {
-  final DBCarInfo getDB = DBCarInfo();
+  final DBHiveInfo getDB = DBHiveInfo();
 
   Color mainColor = Colors.grey[900];
   Color subColor = Colors.grey[50];
@@ -36,7 +36,7 @@ class _AddCarInfoState extends State<AddCarInfo> {
 
   @override
   Widget build(BuildContext context) {
-    final getDB = Provider.of<DBCarInfo>(context);
+    final getDB = Provider.of<DBHiveInfo>(context);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -304,7 +304,7 @@ class _AddCarInfoState extends State<AddCarInfo> {
                   shape: StadiumBorder(),
                   onPressed: () {
                     if (_formKey.currentState.validate()) {
-                      CarInfoModel newCarInfo = CarInfoModel(
+                      HiveInfoModel newCarInfo = HiveInfoModel(
                           brandController.text,
                           modelController.text,
                           int.parse(yearController.text),

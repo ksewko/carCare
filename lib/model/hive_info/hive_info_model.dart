@@ -1,4 +1,4 @@
-class CarInfoModel {
+class HiveInfoModel {
   // moduł informacje:
   int _id;
   String _brand;
@@ -10,9 +10,9 @@ class CarInfoModel {
   int _policyNumber;
 
   // Constructor
-  CarInfoModel(this._brand, this._model, this._year, this._registration,
+  HiveInfoModel(this._brand, this._model, this._year, this._registration,
       this._vin, this._engineCapacity, this._policyNumber);
-  CarInfoModel.withId(this._id, this._brand, this._model, this._year,
+  HiveInfoModel.withId(this._id, this._brand, this._model, this._year,
       this._registration, this._vin, this._engineCapacity, this._policyNumber);
 
   // getters

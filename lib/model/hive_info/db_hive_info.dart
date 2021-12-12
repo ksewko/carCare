@@ -1,14 +1,14 @@
 import 'package:flutter/foundation.dart';
-import 'package:carcare/model/car_info/car_info_model.dart';
+import 'package:carcare/model/hive_info/hive_info_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 
-class DBCarInfo with ChangeNotifier {
+class DBHiveInfo with ChangeNotifier {
   // Transform DBManager to singleton class.
-  DBCarInfo._internal();
-  static final DBCarInfo _dbManager = DBCarInfo._internal();
-  factory DBCarInfo() => _dbManager;
+  DBHiveInfo._internal();
+  static final DBHiveInfo _dbManager = DBHiveInfo._internal();
+  factory DBHiveInfo() => _dbManager;
 
   // constant class properties
   final tblCarInfo = 'carinfo';
@@ -35,7 +35,7 @@ class DBCarInfo with ChangeNotifier {
   }
 
   // insert data into DB
-  Future<int> addCarInfo(CarInfoModel carinfo) async {
+  Future<int> addCarInfo(HiveInfoModel carinfo) async {
     await initializeDB();
     var newCarInfo = await db.insert(tblCarInfo, carinfo.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
@@ -44,12 +44,12 @@ class DBCarInfo with ChangeNotifier {
   }
 
   // retrieve all carinfos
-  Future<List<CarInfoModel>> getCarInfo() async {
+  Future<List<HiveInfoModel>> getCarInfo() async {
     await initializeDB();
     final List<Map<String, dynamic>> allCarInfo =
         await db.rawQuery("SELECT * FROM $tblCarInfo ORDER BY $colBrand ASC");
     return List.generate(allCarInfo.length, (i) {
-      return CarInfoModel.withId(
+      return HiveInfoModel.withId(
         allCarInfo[i][colId],
         allCarInfo[i][colBrand],
         allCarInfo[i][colModel],
@@ -63,7 +63,7 @@ class DBCarInfo with ChangeNotifier {
   }
 
   // update carinfo
-  Future<int> updateCarInfo(CarInfoModel carinfo) async {
+  Future<int> updateCarInfo(HiveInfoModel carinfo) async {
     await initializeDB();
     notifyListeners();
     return await db.update(tblCarInfo, carinfo.toMap(),

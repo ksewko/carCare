@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:carcare/model/car_info/car_info_model.dart';
-import 'package:carcare/model/car_info/db_car_info.dart';
-import 'package:carcare/screens/car_info_views/add_car_info_view.dart';
-import 'package:carcare/screens/car_info_views/edit_car_info_view.dart';
+import 'package:carcare/model/hive_info/hive_info_model.dart';
+import 'package:carcare/model/hive_info/db_hive_info.dart';
+import 'package:carcare/screens/hive_info_views/add_hive_info_view.dart';
+import 'package:carcare/screens/hive_info_views/edit_hive_info_view.dart';
 import 'package:provider/provider.dart';
 
-class CarInfoMain extends StatefulWidget {
+class HiveInfoMain extends StatefulWidget {
   @override
-  _CarInfoMainState createState() => _CarInfoMainState();
+  _HiveInfoMainState createState() => _HiveInfoMainState();
 }
 
-class _CarInfoMainState extends State<CarInfoMain> {
-  List<CarInfoModel> carinfo;
-  Color mainColor = Colors.grey[900];
-  Color subColor = Colors.black;
-  String bgImage = 'bg.png';
+class _HiveInfoMainState extends State<HiveInfoMain> {
+  List<HiveInfoModel> carinfo;
+    String bgImage = 'bg_bee.png';
+    Color mainColor = Colors.orange[700];
+    Color subColor = Colors.yellow[200];
 
   @override
   Widget build(BuildContext context) {
-    final getDB = Provider.of<DBCarInfo>(context);
+    final getDB = Provider.of<DBHiveInfo>(context);
 
     return Scaffold(
       appBar: AppBar(
