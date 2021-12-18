@@ -1,48 +1,46 @@
+import 'package:carcare/model/families/db_family.dart';
+import 'package:carcare/model/families/family_model.dart';
 import 'package:flutter/material.dart';
-import 'package:carcare/model/damages/damages_model.dart';
-import 'package:carcare/model/damages/db_damages.dart';
+import 'package:form_validators/form_validators.dart';
 
-class EditDamages extends StatefulWidget {
-  final DamagesModel damages;
-  EditDamages(this.damages);
+class EditFamilies extends StatefulWidget {
+  final FamilyModel families;
+  EditFamilies(this.families);
 
   @override
-  _EditDamagesState createState() => _EditDamagesState();
+  _EditFamiliesState createState() => _EditFamiliesState();
 }
 
-class _EditDamagesState extends State<EditDamages> {
-  final DBDamages getDB = DBDamages();
-
-  Color mainColor = Colors.grey[900];
-  Color subColor = Colors.grey[50];
+class _EditFamiliesState extends State<EditFamilies> {
+  final DBFamily getDB = DBFamily();
   Color redColor = Colors.red[900];
-  String bgImage = 'bg.png';
+  String bgImage = 'bg_bee.png';
+  Color mainColor = Colors.orange[700];
+  Color subColor = Colors.yellow[200];
 
   // capture input from TextField
   var nameController = TextEditingController();
-  var dateController = TextEditingController();
-  var placeController = TextEditingController();
-  var isGuiltyController = TextEditingController();
-  var insuranceController = TextEditingController();
-  var descController = TextEditingController();
+  var hivesNumberController = TextEditingController();
+  var honeyController = TextEditingController();
+  var locationController = TextEditingController();
+  var litersNumberController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    DamagesModel damages = widget.damages;
+    FamilyModel families = widget.families;
     // filled values to Form input field
-    nameController.text = widget.damages.name;
-    dateController.text = widget.damages.date;
-    placeController.text = widget.damages.place;
-    isGuiltyController.text = widget.damages.isGuilty;
-    insuranceController.text = widget.damages.insurance;
-    descController.text = widget.damages.desc;
+    nameController.text = widget.families.name;
+    hivesNumberController.text = widget.families.hivesNumber.toString();
+    honeyController.text = widget.families.honey;
+    locationController.text = widget.families.location;
+    litersNumberController.text = widget.families.litersNumber.toString();
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: mainColor,
         centerTitle: true,
-        title: Text(widget.damages.name),
+        title: Text('Rodzina ${families.name}'),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -69,7 +67,7 @@ class _EditDamagesState extends State<EditDamages> {
                       ),
                       controller: nameController,
                       decoration: InputDecoration(
-                        labelText: 'Nazwa szkody',
+                        labelText: 'Nazwa',
                         labelStyle: TextStyle(color: subColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
@@ -87,7 +85,7 @@ class _EditDamagesState extends State<EditDamages> {
                         ),
                       ),
                       validator: (val) =>
-                          val.isEmpty ? 'Musisz dodać nazwę szkody!' : null,
+                          val.isEmpty ? 'Musisz dodać nazwę rodziny!' : null,
                     ),
                     SizedBox(
                       height: 20.0,
@@ -97,9 +95,9 @@ class _EditDamagesState extends State<EditDamages> {
                         color: subColor,
                         fontSize: 16.0,
                       ),
-                      controller: dateController,
+                      controller: hivesNumberController,
                       decoration: InputDecoration(
-                        labelText: 'Data zajścia szkody',
+                        labelText: 'Liczba uli',
                         labelStyle: TextStyle(color: subColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
@@ -116,9 +114,8 @@ class _EditDamagesState extends State<EditDamages> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      validator: (val) => val.isEmpty
-                          ? 'Musisz dodać datę zajścia szkody!'
-                          : null,
+                      validator: (val) =>
+                          val.isEmpty ? 'Musisz dodać liczbe uli!' : null,
                     ),
                     SizedBox(
                       height: 20.0,
@@ -128,72 +125,9 @@ class _EditDamagesState extends State<EditDamages> {
                         color: subColor,
                         fontSize: 16.0,
                       ),
-                      controller: placeController,
+                      controller: honeyController,
                       decoration: InputDecoration(
-                        labelText: 'Miejsce zajścia szkody',
-                        labelStyle: TextStyle(color: subColor),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                          borderSide: BorderSide(
-                            color: subColor,
-                            width: 2.0,
-                          ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: subColor,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
-                      validator: (val) => val.isEmpty
-                          ? 'Musisz dodać miejsce zajścia szkody!'
-                          : null,
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    TextFormField(
-                      style: TextStyle(
-                        color: subColor,
-                        fontSize: 16.0,
-                      ),
-                      controller: isGuiltyController,
-                      decoration: InputDecoration(
-                        labelText: 'Czy byłeś sprawcą szkody? Tak/Nie',
-                        labelStyle: TextStyle(color: subColor),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                          borderSide: BorderSide(
-                            color: subColor,
-                            width: 2.0,
-                          ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: subColor,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
-                      validator: (val) => (!val.contains('Tak') &&
-                              !val.contains('Nie'))
-                          ? 'Musisz wskazać czy byłeś sprawcą - wpisz Tak lub Nie!'
-                          : null,
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    TextFormField(
-                      style: TextStyle(
-                        color: subColor,
-                        fontSize: 16.0,
-                      ),
-                      controller: insuranceController,
-                      decoration: InputDecoration(
-                        labelText: 'Ubezpieczenie sprawcy',
+                        labelText: 'Rodzaj miodu',
                         labelStyle: TextStyle(color: subColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
@@ -219,12 +153,9 @@ class _EditDamagesState extends State<EditDamages> {
                         color: subColor,
                         fontSize: 16.0,
                       ),
-                      textInputAction: TextInputAction.next,
-                      maxLines: 3,
-                      keyboardType: TextInputType.multiline,
-                      controller: descController,
+                      controller: locationController,
                       decoration: InputDecoration(
-                        labelText: 'Opis',
+                        labelText: 'Lokalizacja rodziny',
                         labelStyle: TextStyle(color: subColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
@@ -244,6 +175,31 @@ class _EditDamagesState extends State<EditDamages> {
                     ),
                     SizedBox(
                       height: 20.0,
+                    ),
+                    TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
+                      controller: litersNumberController,
+                      decoration: InputDecoration(
+                        labelText: 'Liczba ltrów wyprodukowanego miodu',
+                        labelStyle: TextStyle(color: subColor),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          borderSide: BorderSide(
+                            color: subColor,
+                            width: 2.0,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: subColor,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -260,15 +216,13 @@ class _EditDamagesState extends State<EditDamages> {
                           shape: StadiumBorder(),
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
-                              damages.name = nameController.text;
-                              damages.date = dateController.text;
-                              damages.place = placeController.text;
-                              damages.isGuilty = isGuiltyController.text;
-                              damages.insurance =
-                                  insuranceController.text ?? '';
-                              damages.desc = descController.text ?? '';
-
-                              getDB.updateDamages(damages);
+                              families.name = nameController.text;
+                              families.hivesNumber = int.parse(hivesNumberController.text);
+                              families.honey =
+                                  honeyController.text ?? '';
+                              families.location =
+                                  locationController.text ?? '';
+                              getDB.updateFamilies(families);
                               Navigator.pop(context);
                             }
                           },
@@ -293,11 +247,11 @@ class _EditDamagesState extends State<EditDamages> {
                                 builder: (context) {
                                   return AlertDialog(
                                     title: Text(
-                                      'Usuń Szkodę!',
+                                      'Usuń Opony!',
                                       textAlign: TextAlign.center,
                                     ),
                                     content: Text(
-                                      'Czy chcesz usunąć szkodę \n${nameController.text} z listy?',
+                                      'Czy chcesz usunąć opony z listy?',
                                       textAlign: TextAlign.center,
                                     ),
                                     backgroundColor: Colors.red,
@@ -319,7 +273,7 @@ class _EditDamagesState extends State<EditDamages> {
                                               color: Colors.black),
                                         ),
                                         onPressed: () async {
-                                          await getDB.deleteDamages(damages.id);
+                                          await getDB.deleteFamilies(families.id);
                                           Navigator.pop(context);
                                           Navigator.pop(context);
                                         },

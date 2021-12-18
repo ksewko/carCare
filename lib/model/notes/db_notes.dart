@@ -1,28 +1,30 @@
 import 'dart:io';
 
-import 'package:carcare/model/reminders/reminders_model.dart';
+import 'package:carcare/model/notes/notes_model.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 import 'package:path_provider/path_provider.dart';
 
-class DBReminders {
-  static DBReminders _dbReminders; // Singleton DBReminders
+import 'notes_model.dart';
+
+class DBNotes {
+  static DBNotes _dbNotes; // Singleton DBNotes
   static Database _database; // Singleton Database
 
-  String remindersTable = 'reminder_table';
+  String notesTable = 'note_table';
   String colId = 'id';
   String colTitle = 'title';
   String colDesc = 'desc';
   String colDate = 'date';
 
-  DBReminders._createInstance(); // Named constructor to create instance of DBReminders
+  DBNotes._createInstance(); // Named constructor to create instance of DBNotes
 
-  factory DBReminders() {
-    if (_dbReminders == null) {
-      _dbReminders = DBReminders
+  factory DBNotes() {
+    if (_dbNotes == null) {
+      _dbNotes = DBNotes
           ._createInstance(); // This is executed only once, singleton object
     }
-    return _dbReminders;
+    return _dbNotes;
   }
 
   Future<Database> get database async {
@@ -35,46 +37,46 @@ class DBReminders {
   Future<Database> initializeDatabase() async {
     // Get the directory path for both Android and iOS to store database.
     Directory directory = await getApplicationDocumentsDirectory();
-    String path = directory.path + 'reminders.db';
+    String path = directory.path + 'notes.db';
 
     // Open/create the database at a given path
-    var remindersDB = await openDatabase(path, version: 1, onCreate: _createDb);
-    return remindersDB;
+    var notesDB = await openDatabase(path, version: 1, onCreate: _createDb);
+    return notesDB;
   }
 
   void _createDb(Database db, int newVersion) async {
     await db.execute(
-        'CREATE TABLE $remindersTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colTitle TEXT, '
+        'CREATE TABLE $notesTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colTitle TEXT, '
         '$colDesc TEXT ,$colDate TEXT)');
   }
 
   Future<List<Map<String, dynamic>>> getNoteMapList() async {
     Database db = await this.database;
 
-    var result = await db.query(remindersTable, orderBy: '$colDate ASC');
+    var result = await db.query(notesTable, orderBy: '$colDate ASC');
     return result;
   }
 
   // Insert Operation: Insert a object to database
-  Future<int> insertReminder(Reminders reminders) async {
+  Future<int> insert(Notes notes) async {
     Database db = await this.database;
-    var result = await db.insert(remindersTable, reminders.toMap());
+    var result = await db.insert(notesTable, notes.toMap());
     return result;
   }
 
   // Update Operation: Update a object and save it to database
-  Future<int> updateReminder(Reminders reminders) async {
+  Future<int> update(Notes notes) async {
     var db = await this.database;
-    var result = await db.update(remindersTable, reminders.toMap(),
-        where: '$colId = ?', whereArgs: [reminders.id]);
+    var result = await db.update(notesTable, notes.toMap(),
+        where: '$colId = ?', whereArgs: [notes.id]);
     return result;
   }
 
   // Delete Operation: Delete a object from database
-  Future<int> deleteReminder(int id) async {
+  Future<int> delete(int id) async {
     var db = await this.database;
     int result =
-        await db.rawDelete('DELETE FROM $remindersTable WHERE $colId = $id');
+        await db.rawDelete('DELETE FROM $notesTable WHERE $colId = $id');
     return result;
   }
 
@@ -82,21 +84,21 @@ class DBReminders {
   Future<int> getCount() async {
     Database db = await this.database;
     List<Map<String, dynamic>> x =
-        await db.rawQuery('SELECT COUNT (*) from $remindersTable');
+        await db.rawQuery('SELECT COUNT (*) from $notesTable');
     int result = Sqflite.firstIntValue(x);
     return result;
   }
 
-  Future<List<Reminders>> getNoteList() async {
-    var remindersMapList = await getNoteMapList();
-    int count = remindersMapList.length;
+  Future<List<Notes>> getNoteList() async {
+    var notesMapList = await getNoteMapList();
+    int count = notesMapList.length;
 
-    List<Reminders> remindersList = List<Reminders>();
+    List<Notes> notesList = List<Notes>();
 
     for (int i = 0; i < count; i++) {
-      remindersList.add(Reminders.fromMapObject(remindersMapList[i]));
+      notesList.add(Notes.fromMapObject(notesMapList[i]));
     }
 
-    return remindersList;
+    return notesList;
   }
 }

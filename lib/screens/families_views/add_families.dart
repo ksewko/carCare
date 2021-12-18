@@ -1,41 +1,44 @@
+import 'package:carcare/model/families/db_family.dart';
+import 'package:carcare/model/families/family_model.dart';
 import 'package:flutter/material.dart';
-import 'package:carcare/model/mechanics/db_mechanics.dart';
-import 'package:carcare/model/mechanics/mechanics_model.dart';
+import 'package:form_validators/form_validators.dart';
 import 'package:provider/provider.dart';
 
-class AddMechanics extends StatefulWidget {
+class AddFamilies extends StatefulWidget {
   @override
-  _AddMechanicsState createState() => _AddMechanicsState();
+  _AddFamiliesState createState() => _AddFamiliesState();
 }
 
-class _AddMechanicsState extends State<AddMechanics> {
-  final DBMechanics getDB = DBMechanics();
+class _AddFamiliesState extends State<AddFamilies> {
+  final DBFamily getDB = DBFamily();
 
-  Color mainColor = Colors.grey[900];
-  Color subColor = Colors.grey[50];
   Color redColor = Colors.red[900];
-  String bgImage = 'bg.png';
+  String bgImage = 'bg_bee.png';
+  Color mainColor = Colors.orange[700];
+  Color subColor = Colors.yellow[200];
 
   final FocusNode nameNode = FocusNode();
-  final FocusNode addressNode = FocusNode();
-  final FocusNode descNode = FocusNode();
-  final FocusNode phoneNumberNode = FocusNode();
+  final FocusNode hivesNumberNode = FocusNode();
+  final FocusNode honeyNode = FocusNode();
+  final FocusNode locationNode = FocusNode();
+  final FocusNode litersNumberNode = FocusNode();
 
   // capture input from TextField
   var nameController = TextEditingController();
-  var addressController = TextEditingController();
-  var descController = TextEditingController();
-  var phoneNumberController = TextEditingController();
+  var hivesNumberController = TextEditingController();
+  var honeyController = TextEditingController();
+  var locationController = TextEditingController();
+  var litersNumberController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    final getDB = Provider.of<DBMechanics>(context);
+    final getDB = Provider.of<DBFamily>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: mainColor,
         centerTitle: true,
-        title: Text('Dodaj nowy Warsztat'),
+        title: Text('Dodaj nową rodzinę'),
       ),
       body: SafeArea(
           child: SingleChildScrollView(
@@ -60,7 +63,7 @@ class _AddMechanicsState extends State<AddMechanics> {
                   textInputAction: TextInputAction.next,
                   controller: nameController,
                   decoration: InputDecoration(
-                    labelText: 'Nazwa Warsztatu',
+                    labelText: 'Nazwa',
                     labelStyle: TextStyle(color: subColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -78,10 +81,10 @@ class _AddMechanicsState extends State<AddMechanics> {
                     ),
                   ),
                   onEditingComplete: () {
-                    FocusScope.of(context).requestFocus(addressNode);
+                    FocusScope.of(context).requestFocus(hivesNumberNode);
                   },
                   validator: (val) =>
-                      val.isEmpty ? 'Musisz dodać nazwę Warsztatu!' : null,
+                      val.isEmpty ? 'Musisz dodać nazwę rodziny!' : null,
                 ),
                 SizedBox(
                   height: 20.0,
@@ -91,10 +94,10 @@ class _AddMechanicsState extends State<AddMechanics> {
                     color: subColor,
                     fontSize: 16.0,
                   ),
-                  focusNode: addressNode,
-                  controller: addressController,
+                  focusNode: hivesNumberNode,
+                  controller: hivesNumberController,
                   decoration: InputDecoration(
-                    labelText: 'Adres Warsztatu',
+                    labelText: 'Liczba uli',
                     labelStyle: TextStyle(color: subColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -112,10 +115,10 @@ class _AddMechanicsState extends State<AddMechanics> {
                     ),
                   ),
                   onEditingComplete: () {
-                    FocusScope.of(context).requestFocus(descNode);
+                    FocusScope.of(context).requestFocus(honeyNode);
                   },
                   validator: (val) =>
-                      val.isEmpty ? 'Musisz dodać adres Warsztatu!' : null,
+                      val.isEmpty ? 'Musisz dodać liczbę uli!' : null,
                 ),
                 SizedBox(
                   height: 20.0,
@@ -125,13 +128,10 @@ class _AddMechanicsState extends State<AddMechanics> {
                     color: subColor,
                     fontSize: 16.0,
                   ),
-                  focusNode: descNode,
-                  textInputAction: TextInputAction.next,
-                  maxLines: 3,
-                  keyboardType: TextInputType.multiline,
-                  controller: descController,
+                  focusNode: honeyNode,
+                  controller: honeyController,
                   decoration: InputDecoration(
-                    labelText: 'Opis',
+                    labelText: 'Rodzaj miodu',
                     labelStyle: TextStyle(color: subColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -149,7 +149,7 @@ class _AddMechanicsState extends State<AddMechanics> {
                     ),
                   ),
                   onEditingComplete: () {
-                    FocusScope.of(context).requestFocus(phoneNumberNode);
+                    FocusScope.of(context).requestFocus(locationNode);
                   },
                 ),
                 SizedBox(
@@ -160,11 +160,10 @@ class _AddMechanicsState extends State<AddMechanics> {
                     color: subColor,
                     fontSize: 16.0,
                   ),
-                  focusNode: phoneNumberNode,
-                  keyboardType: TextInputType.number,
-                  controller: phoneNumberController,
+                  focusNode: locationNode,
+                  controller: locationController,
                   decoration: InputDecoration(
-                    labelText: 'Numer telefonu',
+                    labelText: 'Lokalizacja rodziny',
                     labelStyle: TextStyle(color: subColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -181,11 +180,38 @@ class _AddMechanicsState extends State<AddMechanics> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                   ),
-                  validator: (val) =>
-                      val.isEmpty ? 'Musisz dodać numer telefonu!' : null,
+                  onEditingComplete: () {
+                    FocusScope.of(context).requestFocus(litersNumberNode);
+                  },
                 ),
                 SizedBox(
                   height: 20.0,
+                ),
+                TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
+                  focusNode: litersNumberNode,
+                  controller: litersNumberController,
+                  decoration: InputDecoration(
+                    labelText: 'Liczba litrów wprodukowanego miodu',
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
                 ),
                 RaisedButton(
                   color: redColor,
@@ -199,18 +225,20 @@ class _AddMechanicsState extends State<AddMechanics> {
                   shape: StadiumBorder(),
                   onPressed: () {
                     if (_formKey.currentState.validate()) {
-                      MechanicsModel newMechanics = MechanicsModel(
+                      FamilyModel newFamilies = FamilyModel(
                           nameController.text,
-                          addressController.text,
-                          int.parse(phoneNumberController.text),
-                          descController.text ?? "");
+                          int.parse(hivesNumberController.text),
+                          honeyController.text ?? '',
+                          locationController.text ?? '',
+                          int.parse(litersNumberController.text));
 
-                      getDB.addMechanics(newMechanics).then((i) {
+                      getDB.addFamilies(newFamilies).then((i) {
                         nameController.clear();
-                        addressController.clear();
-                        phoneNumberController.clear();
-                        descController.clear();
-                        newMechanics = null;
+                        hivesNumberController.clear();
+                        honeyController.clear();
+                        locationController.clear();
+                        litersNumberController.clear();
+                        newFamilies = null;
                       });
                       Navigator.pop(context);
                     }

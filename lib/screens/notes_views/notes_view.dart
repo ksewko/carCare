@@ -1,42 +1,43 @@
 import 'dart:async';
+import 'package:carcare/model/notes/db_notes.dart';
+import 'package:carcare/model/notes/notes_model.dart';
+import 'package:carcare/screens/notes_views/notes_details.dart';
 import 'package:flutter/material.dart';
-import 'package:carcare/model/reminders/db_reminders.dart';
-import 'package:carcare/model/reminders/reminders_model.dart';
-import 'package:carcare/screens/reminders_views/reminders_details.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:sqflite/sqflite.dart';
 
-class RemindersMain extends StatefulWidget {
+class NotesMain extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return RemindersMainState();
+    return NotesMainState();
   }
 }
 
-class RemindersMainState extends State<RemindersMain> {
-  DBReminders dbReminders = DBReminders();
-  List<Reminders> remindersList;
+class NotesMainState extends State<NotesMain> {
+  DBNotes dbNotes = DBNotes();
+  List<Notes> notesList;
   int count = 0;
   int axisCount = 2;
-  Color mainColor = Colors.grey[900];
-  Color subColor = Colors.grey[50];
-  Color reminderColor = Colors.red[500];
-  String bgImage = 'bg.png';
+  Color reminderColor = Colors.yellow[400];
+  String bgImage = 'bg_bee.png';
+  Color mainColor = Colors.orange[700];
+  Color subColor = Colors.yellow[200];
+  Color secondSubColor = Colors.yellow[50];
 
   @override
   Widget build(BuildContext context) {
-    if (remindersList == null) {
-      remindersList = List<Reminders>();
+    if (notesList == null) {
+     notesList = List<Notes>();
       updateListView();
     }
 
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Przypomnienia'),
+        title: Text('Notatki'),
         backgroundColor: mainColor,
       ),
-      body: remindersList.length == 0
+      body: notesList.length == 0
           ? Container(
               decoration: BoxDecoration(
                   image: DecorationImage(
@@ -58,11 +59,11 @@ class RemindersMainState extends State<RemindersMain> {
                 fit: BoxFit
                     .cover, //zasłoni cały background, -> umiejscowienie image w bgc
               )),
-              child: getRemindersList(),
+              child: getList(),
             ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          navigateToDetail(Reminders('', ''), 'Dodaj przypomnienie');
+          navigateToDetail(Notes('', ''), 'Dodaj przypomnienie');
         },
         tooltip: 'Add Note',
         shape: CircleBorder(side: BorderSide(color: Colors.black, width: 2.0)),
@@ -72,14 +73,14 @@ class RemindersMainState extends State<RemindersMain> {
     );
   }
 
-  Widget getRemindersList() {
+  Widget getList() {
     return StaggeredGridView.countBuilder(
       physics: BouncingScrollPhysics(),
       crossAxisCount: 4,
       itemCount: count,
       itemBuilder: (BuildContext context, int index) => GestureDetector(
         onTap: () {
-          navigateToDetail(this.remindersList[index], 'Edytuj przypomnienie');
+          navigateToDetail(this.notesList[index], 'Edytuj przypomnienie');
         },
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -98,7 +99,7 @@ class RemindersMainState extends State<RemindersMain> {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          this.remindersList[index].title,
+                          this.notesList[index].title,
                           style: TextStyle(
                             color: mainColor,
                             fontWeight: FontWeight.bold,
@@ -116,9 +117,9 @@ class RemindersMainState extends State<RemindersMain> {
                     children: <Widget>[
                       Expanded(
                         child: Text(
-                          this.remindersList[index].desc == null
+                          this.notesList[index].desc == null
                               ? ''
-                              : this.remindersList[index].desc,
+                              : this.notesList[index].desc,
                           style: TextStyle(
                             color: mainColor,
                             fontSize: 18.0,
@@ -132,7 +133,7 @@ class RemindersMainState extends State<RemindersMain> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       Text(
-                        this.remindersList[index].date,
+                        this.notesList[index].date,
                         style: TextStyle(
                           fontSize: 16.0,
                         ),
@@ -149,9 +150,9 @@ class RemindersMainState extends State<RemindersMain> {
     );
   }
 
-  void navigateToDetail(Reminders note, String title) async {
+  void navigateToDetail(Notes note, String title) async {
     bool result = await Navigator.push(context,
-        MaterialPageRoute(builder: (context) => RemindersDetail(note, title)));
+        MaterialPageRoute(builder: (context) => NotesDetail(note, title)));
 
     if (result == true) {
       updateListView();
@@ -159,13 +160,13 @@ class RemindersMainState extends State<RemindersMain> {
   }
 
   void updateListView() {
-    final Future<Database> dbFuture = dbReminders.initializeDatabase();
+    final Future<Database> dbFuture = dbNotes.initializeDatabase();
     dbFuture.then((database) {
-      Future<List<Reminders>> noteListFuture = dbReminders.getNoteList();
-      noteListFuture.then((remindersList) {
+      Future<List<Notes>> noteListFuture = dbNotes.getNoteList();
+      noteListFuture.then((notesList) {
         setState(() {
-          this.remindersList = remindersList;
-          this.count = remindersList.length;
+          this.notesList = notesList;
+          this.count = notesList.length;
         });
       });
     });

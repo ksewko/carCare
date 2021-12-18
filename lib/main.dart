@@ -1,31 +1,23 @@
+import 'package:carcare/model/families/db_family.dart';
 import 'package:carcare/model/parking/db_parking_provider.dart';
 import 'package:carcare/model/photos/db_photos_provider.dart';
-import 'package:carcare/screens/hive_info_views/hive_info_view.dart';
+import 'package:carcare/screens/bee_info_views/bee_info_view.dart';
+import 'package:carcare/screens/families_views/familiy_view.dart';
+import 'package:carcare/screens/hive_views/hive_main_view.dart';
+import 'package:carcare/screens/notes_views/notes_view.dart';
 import 'package:carcare/screens/parking_view/add_parking_view.dart';
 import 'package:carcare/screens/parking_view/parking_view.dart';
 import 'package:carcare/screens/photos_views/add_photos_view.dart';
 import 'package:carcare/screens/photos_views/photos_view.dart';
 import 'package:flutter/material.dart';
-import 'package:carcare/model/damages/db_damages.dart';
-import 'package:carcare/model/mechanics/db_mechanics.dart';
 import 'package:carcare/model/refuel/db_refuel.dart';
 import 'package:carcare/model/serwis/db_serwis.dart';
-import 'package:carcare/model/tires/db_tires.dart';
-import 'package:carcare/screens/car_views/car_main_view.dart';
-import 'package:carcare/screens/damages_view/damages_view.dart';
-import 'package:carcare/screens/help_view/assistance_view.dart';
-import 'package:carcare/screens/help_view/form_view.dart';
-import 'package:carcare/screens/help_view/help_view.dart';
-import 'package:carcare/screens/mechanics_views/mechanics_view.dart';
 import 'package:carcare/screens/refuel_views/refuel_view.dart';
-import 'package:carcare/screens/reminders_views/reminders_view.dart';
 import 'package:carcare/screens/serwis_views/sewis_view.dart';
-import 'package:carcare/screens/tires_views/tires_view.dart';
 import 'package:provider/provider.dart';
 import 'package:carcare/screens/splash_screen.dart';
 
-import 'model/hive_info/db_hive_info.dart';
-// import 'package:carcare/utils/theme.dart';
+import 'model/bee_info/db_bee_info.dart';
 
 void main() {
   runApp(MovieRental());
@@ -37,34 +29,26 @@ class MovieRental extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => DBHiveInfo()),
-        ChangeNotifierProvider(create: (context) => DBTires()),
+        ChangeNotifierProvider(create: (context) => DBBeeInfo()),
+        ChangeNotifierProvider(create: (context) => DBFamily()),
         ChangeNotifierProvider(create: (context) => DBSerwis()),
         ChangeNotifierProvider(create: (context) => DBRefuel()),
-        ChangeNotifierProvider(create: (context) => DBDamages()),
-        ChangeNotifierProvider(create: (context) => DBMechanics()),
         ChangeNotifierProvider(create: (context) => DBParkingProvider()),
         ChangeNotifierProvider(create: (context) => DBPhotosProvider()),
-        // ChangeNotifierProvider(create: (context) => DBReminders()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'CarCare',
+        title: 'To bee happy',
         // theme: MyTheme().buildTheme(),
         home: SplashScreen(),
         routes: {
           // '/': (context) => Loading(),
-          '/car': (context) => CarView(),
-          '/hiveinfo': (context) => HiveInfoMain(),
-          '/famielies': (context) => TiresMain(),
+          '/hive': (context) => HiveView(),
+          '/beeinfo': (context) => BeeInfoMain(),
+          '/families': (context) => FamiliesMain(),
           '/service': (context) => SerwisMain(),
           '/honey': (context) => RefuelMain(),
-          '/damages': (context) => DamagesMain(),
-          '/mechanics': (context) => MechanicsMain(),
-          '/help': (context) => HelpView(),
-          '/assistance': (context) => AssistanceView(),
-          '/form': (context) => FormView(),
-          '/reminders': (context) => RemindersMain(),
+          '/notes': (context) => NotesMain(),
           '/location': (context) => ParkingView(),
           '/add-parking': (context) => AddParking(),
           '/photos': (context) => PhotosView(),

@@ -1,41 +1,41 @@
+import 'package:carcare/model/notes/db_notes.dart';
+import 'package:carcare/model/notes/notes_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:carcare/model/reminders/db_reminders.dart';
-import 'package:carcare/model/reminders/reminders_model.dart';
 
-class RemindersDetail extends StatefulWidget {
+class NotesDetail extends StatefulWidget {
   final String appBarTitle;
-  final Reminders reminders;
+  final Notes notes;
 
-  RemindersDetail(this.reminders, this.appBarTitle);
+  NotesDetail(this.notes, this.appBarTitle);
 
   @override
   State<StatefulWidget> createState() {
-    return NoteDetailState(this.reminders, this.appBarTitle);
+    return NoteDetailState(this.notes, this.appBarTitle);
   }
 }
 
-class NoteDetailState extends State<RemindersDetail> {
-  DBReminders dbReminders = DBReminders();
+class NoteDetailState extends State<NotesDetail> {
+  DBNotes dbNotes = DBNotes();
 
-  Color mainColor = Colors.grey[900];
-  Color subColor = Colors.grey[50];
-  String bgImage = 'bg.png';
-  Color redColor = Colors.red[900];
+  String bgImage = 'bg_bee.png';
+  Color mainColor = Colors.orange[700];
+  Color subColor = Colors.yellow[200];
+  Color secondSubColor = Colors.yellow[50];
 
   String appBarTitle;
-  Reminders reminders;
+  Notes notes;
   TextEditingController titleController = TextEditingController();
   TextEditingController descController = TextEditingController();
   // int color;
   bool isEdited = false;
 
-  NoteDetailState(this.reminders, this.appBarTitle);
+  NoteDetailState(this.notes, this.appBarTitle);
 
   @override
   Widget build(BuildContext context) {
-    titleController.text = reminders.title;
-    descController.text = reminders.desc;
+    titleController.text = notes.title;
+    descController.text = notes.desc;
     return WillPopScope(
         onWillPop: () {
           isEdited ? showDiscardDialog(context) : moveToLastScreen();
@@ -144,7 +144,7 @@ class NoteDetailState extends State<RemindersDetail> {
           title: Text(
             "Odrzuć zmiany!",
             style: TextStyle(
-              color: redColor,
+              color: secondSubColor,
               fontWeight: FontWeight.bold,
               fontSize: 22.0,
             ),
@@ -161,7 +161,7 @@ class NoteDetailState extends State<RemindersDetail> {
               child: Text(
                 "Nie",
                 style: TextStyle(
-                  color: redColor,
+                  color: secondSubColor,
                   fontWeight: FontWeight.bold,
                   fontSize: 22.0,
                 ),
@@ -174,7 +174,7 @@ class NoteDetailState extends State<RemindersDetail> {
               child: Text(
                 "Tak",
                 style: TextStyle(
-                  color: redColor,
+                  color: secondSubColor,
                   fontWeight: FontWeight.bold,
                   fontSize: 22.0,
                 ),
@@ -200,14 +200,14 @@ class NoteDetailState extends State<RemindersDetail> {
           title: Text(
             "Brak Tytułu!",
             style: TextStyle(
-              color: redColor,
+              color: secondSubColor,
               fontSize: 18.0,
             ),
           ),
           content: Text(
             'Musisz dodać tytuł Przypomnienia!',
             style: TextStyle(
-              color: redColor,
+              color: secondSubColor,
               fontSize: 18.0,
             ),
           ),
@@ -216,7 +216,7 @@ class NoteDetailState extends State<RemindersDetail> {
               child: Text(
                 "Ok",
                 style: TextStyle(
-                  color: redColor,
+                  color: secondSubColor,
                   fontWeight: FontWeight.bold,
                   fontSize: 22.0,
                 ),
@@ -238,14 +238,14 @@ class NoteDetailState extends State<RemindersDetail> {
         builder: (context) {
           return AlertDialog(
             title: Text(
-              'Usuń Przypomnienie!',
+              'Usuń Notatkę!',
               textAlign: TextAlign.center,
             ),
             content: Text(
-              'Czy chcesz usunąć przypomnienie?',
+              'Czy chcesz usunąć notatkę?',
               textAlign: TextAlign.center,
             ),
-            backgroundColor: Colors.red,
+            backgroundColor: secondSubColor,
             elevation: 8.0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30.0),
@@ -278,29 +278,29 @@ class NoteDetailState extends State<RemindersDetail> {
 
   void updateTitle() {
     isEdited = true;
-    reminders.title = titleController.text;
+    notes.title = titleController.text;
   }
 
   void updateDescription() {
     isEdited = true;
-    reminders.desc = descController.text;
+    notes.desc = descController.text;
   }
 
   // Save data to database
   void _save() async {
     moveToLastScreen();
 
-    reminders.date = DateFormat.yMMMd().format(DateTime.now());
+    notes.date = DateFormat.yMMMd().format(DateTime.now());
 
-    if (reminders.id != null) {
-      await dbReminders.updateReminder(reminders);
+    if (notes.id != null) {
+      await dbNotes.update(notes);
     } else {
-      await dbReminders.insertReminder(reminders);
+      await dbNotes.insert(notes);
     }
   }
 
   void _delete() async {
-    await dbReminders.deleteReminder(reminders.id);
+    await dbNotes.delete(notes.id);
     moveToLastScreen();
   }
 }

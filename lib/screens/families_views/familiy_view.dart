@@ -1,29 +1,29 @@
+import 'package:carcare/model/families/db_family.dart';
+import 'package:carcare/model/families/family_model.dart';
+import 'package:carcare/screens/families_views/add_families.dart';
+import 'package:carcare/screens/families_views/edit_families.dart';
 import 'package:flutter/material.dart';
-import 'package:carcare/model/tires/db_tires.dart';
-import 'package:carcare/model/tires/tires_model.dart';
-import 'package:carcare/screens/tires_views/add_tires_view.dart';
-import 'package:carcare/screens/tires_views/edit_tires_view.dart';
 import 'package:provider/provider.dart';
 
-class TiresMain extends StatefulWidget {
+class FamiliesMain extends StatefulWidget {
   @override
-  _TiresMainState createState() => _TiresMainState();
+  _FamiliesMainState createState() => _FamiliesMainState();
 }
 
-class _TiresMainState extends State<TiresMain> {
-  List<TiresModel> tires;
-  Color mainColor = Colors.grey[900];
-  Color subColor = Colors.black;
-  String bgImage = 'bg.png';
+class _FamiliesMainState extends State<FamiliesMain> {
+  List<FamilyModel> families;
+   String bgImage = 'bg_bee.png';
+    Color mainColor = Colors.orange[700];
+    Color subColor = Colors.yellow[200];
 
   @override
   Widget build(BuildContext context) {
-    final getDB = Provider.of<DBTires>(context);
+    final getDB = Provider.of<DBFamily>(context);
 
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Opony'),
+        title: Text('Rodziny'),
         backgroundColor: mainColor,
       ),
       body: SafeArea(
@@ -35,12 +35,12 @@ class _TiresMainState extends State<TiresMain> {
                 .cover, //zasłoni cały background, -> umiejscowienie image w bgc
           )),
           child: FutureBuilder(
-            future: getDB.getTires(),
+            future: getDB.getFamilies(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                tires = snapshot.data;
+                families = snapshot.data;
                 return ListView.builder(
-                  itemCount: tires.length,
+                  itemCount: families.length,
                   itemBuilder: (context, index) {
                     return Column(
                       children: [
@@ -59,7 +59,7 @@ class _TiresMainState extends State<TiresMain> {
                           ),
                         ),
                         Card(
-                          color: Colors.grey[300],
+                          color: subColor,
                           elevation: 6.0,
                           shape: StadiumBorder(),
                           child: ListTile(
@@ -68,7 +68,7 @@ class _TiresMainState extends State<TiresMain> {
                               color: mainColor,
                             ),
                             title: Text(
-                              tires[index].rims,
+                              families[index].name,
                               style: TextStyle(
                                 color: mainColor,
                                 fontSize: 18.0,
@@ -78,25 +78,25 @@ class _TiresMainState extends State<TiresMain> {
                             subtitle: Column(
                               children: [
                                 Text(
-                                  (tires[index].tireSize),
+                                  (families[index].hivesNumber.toString()),
                                   style: TextStyle(
-                                    color: subColor,
+                                    color: Colors.black,
                                     fontSize: 14.0,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 Text(
-                                  (tires[index].frontPressure),
+                                  (families[index].honey),
                                   style: TextStyle(
-                                    color: subColor,
+                                    color: Colors.black,
                                     fontSize: 14.0,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 Text(
-                                  (tires[index].backPressure),
+                                  (families[index].location),
                                   style: TextStyle(
-                                    color: subColor,
+                                    color: Colors.black,
                                     fontSize: 14.0,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -104,7 +104,7 @@ class _TiresMainState extends State<TiresMain> {
                               ],
                             ),
                             trailing: Text(
-                              tires[index].isSummer,
+                              families[index].litersNumber.toString(),
                               style: TextStyle(
                                 color: mainColor,
                               ),
@@ -114,7 +114,7 @@ class _TiresMainState extends State<TiresMain> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        EditTires(tires[index])),
+                                        EditFamilies(families[index])),
                               );
                             },
                           ),
@@ -136,7 +136,7 @@ class _TiresMainState extends State<TiresMain> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => AddTires()),
+            MaterialPageRoute(builder: (context) => AddFamilies()),
           );
         },
         backgroundColor: Colors.red[900],

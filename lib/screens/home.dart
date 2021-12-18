@@ -2,6 +2,7 @@ import 'package:carcare/model/weather/weather_data_api.dart';
 import 'package:carcare/model/weather/weather_model.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:hexagon/hexagon.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -22,6 +23,8 @@ class _HomeState extends State<Home> {
     Color bgColor = Colors.blue;
     Color mainColor = Colors.orange[700];
     Color subColor = Colors.yellow[200];
+    Color subColor2 = Colors.yellow[50];
+    Color subColor3 = Colors.yellow[100];
 
     return Scaffold(
       //ustanienie paska na górze aplikacji w zależności od dnia i nocy
@@ -96,7 +99,7 @@ class _HomeState extends State<Home> {
                               width: 120,
                               child: TextField(
                                   style: TextStyle(
-                                    color: Colors.grey[300],
+                                    color: Colors.white,
                                     fontSize: 20.0,
                                   ),
                                   controller: _cityTextController,
@@ -104,7 +107,7 @@ class _HomeState extends State<Home> {
                                       labelText: 'Miasto',
                                       labelStyle: TextStyle(
                                         fontSize: 16.0,
-                                        color: Colors.grey[400],
+                                        color: Colors.white,
                                       )),
                                   textAlign: TextAlign.center),
                             ),
@@ -128,94 +131,43 @@ class _HomeState extends State<Home> {
                 SizedBox(height: 25.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: FlatButton.icon(
-                        height: 50.0,
+                  children: <Widget>[
+                    HexagonWidget.flat(
+                      width: 150.0,
+                      color: subColor,
+                      child: FlatButton(
+                        height: 150.0,
                         onPressed: () async {
                           dynamic result =
-                              await Navigator.pushNamed(context, '/reminders');
+                              await Navigator.pushNamed(context, '/notes');
                         },
-                        icon: Icon(
-                          Icons.sticky_note_2,
-                          color: mainColor,
-                        ),
-                        label: Text(
+                        child: Text(
                           'Notatki',
+                          textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: mainColor,
-                            fontSize: 18.0,
-                          ),
+                              color: mainColor,
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold),
                         ),
-                        color: Colors.grey[50],
                       ),
                     ),
-                    Expanded(
-                      child: FlatButton.icon(
-                        height: 50.0,
+                    SizedBox(width: 20.0),
+                    HexagonWidget.flat(
+                      width: 150.0,
+                      color: subColor2,
+                      child: FlatButton(
+                        height: 150.0,
                         onPressed: () async {
                           dynamic result =
-                              await Navigator.pushNamed(context, '/car');
+                              await Navigator.pushNamed(context, '/hive');
                         },
-                        icon: Icon(
-                          Icons.house_siding,
-                          color: mainColor,
-                        ),
-                        label: Text(
+                        child: Text(
                           'Moja pasieka',
                           style: TextStyle(
-                            color: mainColor,
-                            fontSize: 18.0,
-                          ),
+                              color: mainColor,
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold),
                         ),
-                        color: Colors.grey[300],
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 20.0),
-                Row(
-                  children: [
-                    Expanded(
-                      child: FlatButton.icon(
-                        height: 50.0,
-                        onPressed: () async {
-                          dynamic result =
-                              await Navigator.pushNamed(context, '/mechanics');
-                        },
-                        icon: Icon(
-                          Icons.euro,
-                          color: mainColor,
-                        ),
-                        label: Text(
-                          'Normy Unijne',
-                          style: TextStyle(
-                            color: mainColor,
-                            fontSize: 18.0,
-                          ),
-                        ),
-                        color: Colors.grey[300],
-                      ),
-                    ),
-                    Expanded(
-                      child: FlatButton.icon(
-                        height: 50.0,
-                        onPressed: () async {
-                          dynamic result =
-                              await Navigator.pushNamed(context, '/help');
-                        },
-                        icon: Icon(
-                          Icons.assistant,
-                          color: mainColor,
-                        ),
-                        label: Text(
-                          'Pomoc',
-                          style: TextStyle(
-                            color: mainColor,
-                            fontSize: 18.0,
-                          ),
-                        ),
-                        color: Colors.grey[50],
                       ),
                     ),
                   ],
@@ -224,29 +176,34 @@ class _HomeState extends State<Home> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Expanded(
-                      child: FlatButton.icon(
-                        height: 50.0,
+                    HexagonWidget.flat(
+                      width: 150.0,
+                      color: subColor3,
+                      child: FlatButton(
+                        height: 150.0,
                         onPressed: () async {
-                          dynamic result =
-                              await Navigator.pushNamed(context, '/parking');
+                          final url =
+                              'https://www.pasieka24.pl/index.php/pl-pl/pasieka-czasopismo-dla-pszczelarzy/101-pasieka-1-2004/1195-pszczelarstwo-w-unii-europejskiej';
+                          if (await canLaunch(url)) {
+                            await launch(
+                              url,
+                              forceSafariVC: false,
+                            );
+                          }
                         },
-                        icon: Icon(
-                          Icons.location_on,
-                          color: mainColor,
-                        ),
-                        label: Text(
-                          'Lokalizacja Uli',
+                        child: Text(
+                          'Normy Unijne',
+                          textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: mainColor,
-                            fontSize: 18.0,
-                          ),
+                              color: mainColor,
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold),
                         ),
-                        color: Colors.grey[300],
                       ),
                     ),
                   ],
                 ),
+                SizedBox(height: 20.0),
               ],
             ),
           ),

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:hexagon/hexagon.dart';
 
-class CarView extends StatefulWidget {
+class HiveView extends StatefulWidget {
   @override
-  _CarViewState createState() => _CarViewState();
+  _HiveViewState createState() => _HiveViewState();
 }
 
-class _CarViewState extends State<CarView> {
+class _HiveViewState extends State<HiveView> {
   Map data = {};
 
   @override
@@ -63,7 +63,7 @@ class _CarViewState extends State<CarView> {
                         height: 150.0,
                         onPressed: () async {
                           dynamic result =
-                              await Navigator.pushNamed(context, '/hiveinfo');
+                              await Navigator.pushNamed(context, '/beeinfo');
                         },
                         child: Text(
                           'Informacje',

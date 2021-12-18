@@ -1,12 +1,12 @@
-class Reminders {
+class Notes {
   int _id;
   String _title;
   String _desc;
   String _date;
 
-  Reminders(this._title, this._date, [this._desc]);
+  Notes(this._title, this._date, [this._desc]);
 
-  Reminders.withId(this._id, this._title, this._date, [this._desc]);
+  Notes.withId(this._id, this._title, this._date, [this._desc]);
 
   int get id => _id;
 
@@ -46,7 +46,7 @@ class Reminders {
   }
 
   // Extract a Note object from a Map object
-  Reminders.fromMapObject(Map<String, dynamic> map) {
+  Notes.fromMapObject(Map<String, dynamic> map) {
     this._id = map['id'];
     this._title = map['title'];
     this._desc = map['desc'];

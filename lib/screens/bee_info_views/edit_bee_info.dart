@@ -1,51 +1,58 @@
+import 'package:carcare/model/bee_info/bee_info_model.dart';
+import 'package:carcare/model/bee_info/db_bee_info.dart';
 import 'package:flutter/material.dart';
-import 'package:carcare/model/mechanics/db_mechanics.dart';
-import 'package:carcare/model/mechanics/mechanics_model.dart';
 
-class EditMechanics extends StatefulWidget {
-  final MechanicsModel mechanics;
-  EditMechanics(this.mechanics);
+class EditBeeInfo extends StatefulWidget {
+  final BeeInfoModel beeInfo;
+  EditBeeInfo(this.beeInfo);
 
   @override
-  _EditMechanicsState createState() => _EditMechanicsState();
+  _EditBeeInfoState createState() => _EditBeeInfoState();
 }
 
-class _EditMechanicsState extends State<EditMechanics> {
-  final DBMechanics getDB = DBMechanics();
+class _EditBeeInfoState extends State<EditBeeInfo> {
+  final DBBeeInfo getDB = DBBeeInfo();
+
   Color mainColor = Colors.grey[900];
   Color subColor = Colors.grey[50];
   Color redColor = Colors.red[900];
   String bgImage = 'bg.png';
+
   // capture input from TextField
   var nameController = TextEditingController();
-  var addressController = TextEditingController();
-  var descController = TextEditingController();
-  var phoneNumberController = TextEditingController();
+  var hivesNumberController = TextEditingController();
+  var yearController = TextEditingController();
+  var beekeeperController = TextEditingController();
+  var beekeeperNumberController = TextEditingController();
+  var characterController = TextEditingController();
+  var districtController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    MechanicsModel mechanics = widget.mechanics;
+    BeeInfoModel beeInfo = widget.beeInfo;
     // filled values to Form input field
-    nameController.text = widget.mechanics.name;
-    addressController.text = widget.mechanics.address;
-    descController.text = widget.mechanics.description;
-    phoneNumberController.text = widget.mechanics.phoneNumber.toString();
+    nameController.text = widget.beeInfo.name;
+    hivesNumberController.text = widget.beeInfo.hivesNumber.toString();
+    yearController.text = widget.beeInfo.year.toString();
+    beekeeperController.text = widget.beeInfo.beekeeper;
+    beekeeperNumberController.text = widget.beeInfo.beekeeperNumber.toString();
+    characterController.text = widget.beeInfo.character;
+    districtController.text = widget.beeInfo.district;
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: mainColor,
         centerTitle: true,
-        title: Text(widget.mechanics.name),
+        backgroundColor: mainColor,
       ),
-      body: Container(
-        decoration: BoxDecoration(
-            image: DecorationImage(
-          image: AssetImage('assets/$bgImage'),
-          fit: BoxFit
-              .cover, //zasłoni cały background, -> umiejscowienie image w bgc
-        )),
-        child: SafeArea(
+      body: SafeArea(
+        child: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage('assets/$bgImage'),
+            fit: BoxFit
+                .cover, //zasłoni cały background, -> umiejscowienie image w bgc
+          )),
           child: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.all(10.0),
@@ -63,7 +70,7 @@ class _EditMechanicsState extends State<EditMechanics> {
                       ),
                       controller: nameController,
                       decoration: InputDecoration(
-                        labelText: 'Nazwa Warsztatu',
+                        labelText: 'Nazwa',
                         labelStyle: TextStyle(color: subColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
@@ -81,7 +88,7 @@ class _EditMechanicsState extends State<EditMechanics> {
                         ),
                       ),
                       validator: (val) =>
-                          val.isEmpty ? 'Musisz dodać nazwę Warsztatu!' : null,
+                          val.isEmpty ? 'Musisz dodać nazwę pasieki!' : null,
                     ),
                     SizedBox(
                       height: 20.0,
@@ -91,9 +98,9 @@ class _EditMechanicsState extends State<EditMechanics> {
                         color: subColor,
                         fontSize: 16.0,
                       ),
-                      controller: addressController,
+                      controller: hivesNumberController,
                       decoration: InputDecoration(
-                        labelText: 'Adres Warsztatu',
+                        labelText: 'Liczba uli',
                         labelStyle: TextStyle(color: subColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
@@ -111,7 +118,7 @@ class _EditMechanicsState extends State<EditMechanics> {
                         ),
                       ),
                       validator: (val) =>
-                          val.isEmpty ? 'Musisz dodać adres Warsztatu!' : null,
+                          val.isEmpty ? 'Musisz dodać liczbę uli w pasiece!' : null,
                     ),
                     SizedBox(
                       height: 20.0,
@@ -121,12 +128,102 @@ class _EditMechanicsState extends State<EditMechanics> {
                         color: subColor,
                         fontSize: 16.0,
                       ),
-                      textInputAction: TextInputAction.next,
-                      maxLines: 3,
-                      keyboardType: TextInputType.multiline,
-                      controller: descController,
+                      keyboardType: TextInputType.number,
+                      controller: yearController,
                       decoration: InputDecoration(
-                        labelText: 'Opis',
+                        labelText: 'Rok powstania',
+                        labelStyle: TextStyle(color: subColor),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          borderSide: BorderSide(
+                            color: subColor,
+                            width: 2.0,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: subColor,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      validator: (val) => val.isEmpty
+                          ? 'Musisz dodać rok powstania pasieki!'
+                          : null,
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
+                      controller: beekeeperController,
+                      decoration: InputDecoration(
+                        labelText: 'Nazwisko pszczelarza',
+                        labelStyle: TextStyle(color: subColor),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          borderSide: BorderSide(
+                            color: subColor,
+                            width: 2.0,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: subColor,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      validator: (val) => val.isEmpty
+                          ? 'Musisz dodać nazwisko pszczelarza!'
+                          : null,
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
+                      controller: beekeeperNumberController,
+                      decoration: InputDecoration(
+                        labelText: 'Numer rejestracyjny pszczelarza',
+                        labelStyle: TextStyle(color: subColor),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          borderSide: BorderSide(
+                            color: subColor,
+                            width: 2.0,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: subColor,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      validator: (val) =>
+                          val.isEmpty ? 'Musisz dodać numer rejestracyjny pszczelarza!' : null,
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
+                      controller: characterController,
+                      decoration: InputDecoration(
+                        labelText: 'Charakter hodowli pszczół',
                         labelStyle: TextStyle(color: subColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
@@ -153,9 +250,9 @@ class _EditMechanicsState extends State<EditMechanics> {
                         fontSize: 16.0,
                       ),
                       keyboardType: TextInputType.number,
-                      controller: phoneNumberController,
+                      controller: districtController,
                       decoration: InputDecoration(
-                        labelText: 'Numer telefonu',
+                        labelText: 'Nazwa obrębu ewidencyjnego',
                         labelStyle: TextStyle(color: subColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
@@ -172,8 +269,6 @@ class _EditMechanicsState extends State<EditMechanics> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      validator: (val) =>
-                          val.isEmpty ? 'Musisz dodać numer telefonu!' : null,
                     ),
                     SizedBox(
                       height: 30.0,
@@ -193,13 +288,18 @@ class _EditMechanicsState extends State<EditMechanics> {
                           shape: StadiumBorder(),
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
-                              mechanics.name = nameController.text;
-                              mechanics.address = addressController.text;
-                              mechanics.description = descController.text ?? '';
-                              mechanics.phoneNumber =
-                                  int.parse(phoneNumberController.text);
-
-                              getDB.updateMechanics(mechanics);
+                              beeInfo.name = nameController.text;
+                              beeInfo.hivesNumber = int.parse(hivesNumberController.text);
+                              beeInfo.year = int.parse(yearController.text);
+                              beeInfo.beekeeper =
+                                  beekeeperController.text;
+                              beeInfo.beekeeperNumber =
+                                  int.parse(beekeeperNumberController.text ?? '');
+                              beeInfo.character =
+                                  characterController.text ?? '';
+                              beeInfo.district =
+                                  districtController.text ?? '';
+                              getDB.updateBeeInfo(beeInfo);
                               Navigator.pop(context);
                             }
                           },
@@ -224,11 +324,11 @@ class _EditMechanicsState extends State<EditMechanics> {
                                 builder: (context) {
                                   return AlertDialog(
                                     title: Text(
-                                      'Usuń Warsztat!',
+                                      'Usuń Pojazd!',
                                       textAlign: TextAlign.center,
                                     ),
                                     content: Text(
-                                      'Czy chcesz usunąć warsztat \n${nameController.text} z listy?',
+                                      'Czy chcesz usunąć pojazd marki \n${nameController.text}?',
                                       textAlign: TextAlign.center,
                                     ),
                                     backgroundColor: Colors.red,
@@ -250,8 +350,7 @@ class _EditMechanicsState extends State<EditMechanics> {
                                               color: Colors.black),
                                         ),
                                         onPressed: () async {
-                                          await getDB
-                                              .deleteMechanics(mechanics.id);
+                                          await getDB.deleteBeeInfo(beeInfo.id);
                                           Navigator.pop(context);
                                           Navigator.pop(context);
                                         },

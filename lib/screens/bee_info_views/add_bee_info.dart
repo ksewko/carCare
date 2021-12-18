@@ -1,44 +1,47 @@
+import 'package:carcare/model/bee_info/bee_info_model.dart';
+import 'package:carcare/model/bee_info/db_bee_info.dart';
 import 'package:flutter/material.dart';
-import 'package:carcare/model/damages/damages_model.dart';
-import 'package:carcare/model/damages/db_damages.dart';
 import 'package:provider/provider.dart';
 
-class AddDamages extends StatefulWidget {
+class AddBeeInfo extends StatefulWidget {
   @override
-  _AddDamagesState createState() => _AddDamagesState();
+  _AddBeeInfoState createState() => _AddBeeInfoState();
 }
 
-class _AddDamagesState extends State<AddDamages> {
-  final DBDamages getDB = DBDamages();
-  Color mainColor = Colors.grey[900];
-  Color subColor = Colors.grey[50];
-  Color redColor = Colors.red[900];
-  String bgImage = 'bg.png';
+class _AddBeeInfoState extends State<AddBeeInfo> {
+  final DBBeeInfo getDB = DBBeeInfo();
+
+    String bgImage = 'bg_bee.png';
+    Color mainColor = Colors.orange[700];
+    Color subColor = Colors.yellow[200];
+    Color secondSubColor = Colors.yellow[50];
 
   final FocusNode nameNode = FocusNode();
-  final FocusNode dateNode = FocusNode();
-  final FocusNode placeNode = FocusNode();
-  final FocusNode isGuiltyNode = FocusNode();
-  final FocusNode insuranceNode = FocusNode();
-  final FocusNode descNode = FocusNode();
+  final FocusNode hivesNumberNode = FocusNode();
+  final FocusNode yearNode = FocusNode();
+  final FocusNode beekeeperNode = FocusNode();
+  final FocusNode beekeeperNumberNode = FocusNode();
+  final FocusNode characterNode = FocusNode();
+  final FocusNode districtNode = FocusNode();
 
   // capture input from TextField
   var nameController = TextEditingController();
-  var dateController = TextEditingController();
-  var placeController = TextEditingController();
-  var isGuiltyController = TextEditingController();
-  var insuranceController = TextEditingController();
-  var descController = TextEditingController();
+  var hivesNumberController = TextEditingController();
+  var yearController = TextEditingController();
+  var beekeeperController = TextEditingController();
+  var beekeeperNumberController = TextEditingController();
+  var characterController = TextEditingController();
+  var districtController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    final getDB = Provider.of<DBDamages>(context);
+    final getDB = Provider.of<DBBeeInfo>(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: mainColor,
         centerTitle: true,
-        title: Text('Dodaj nową szkodę'),
+        backgroundColor: mainColor,
+        title: Text('Rejestr centralny pasieki'),
       ),
       body: SafeArea(
           child: SingleChildScrollView(
@@ -63,7 +66,7 @@ class _AddDamagesState extends State<AddDamages> {
                   textInputAction: TextInputAction.next,
                   controller: nameController,
                   decoration: InputDecoration(
-                    labelText: 'Nazwa szkody',
+                    labelText: 'Nazwa',
                     labelStyle: TextStyle(color: subColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -81,10 +84,10 @@ class _AddDamagesState extends State<AddDamages> {
                     ),
                   ),
                   onEditingComplete: () {
-                    FocusScope.of(context).requestFocus(dateNode);
+                    FocusScope.of(context).requestFocus(hivesNumberNode);
                   },
                   validator: (val) =>
-                      val.isEmpty ? 'Musisz dodać nazwę szkody!' : null,
+                      val.isEmpty ? 'Musisz dodać nazwę pasieki!' : null,
                 ),
                 SizedBox(
                   height: 20.0,
@@ -94,10 +97,10 @@ class _AddDamagesState extends State<AddDamages> {
                     color: subColor,
                     fontSize: 16.0,
                   ),
-                  focusNode: dateNode,
-                  controller: dateController,
+                  focusNode: hivesNumberNode,
+                  controller: hivesNumberController,
                   decoration: InputDecoration(
-                    labelText: 'Data zajścia szkody',
+                    labelText: 'Liczba uli',
                     labelStyle: TextStyle(color: subColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -115,10 +118,10 @@ class _AddDamagesState extends State<AddDamages> {
                     ),
                   ),
                   onEditingComplete: () {
-                    FocusScope.of(context).requestFocus(placeNode);
+                    FocusScope.of(context).requestFocus(yearNode);
                   },
                   validator: (val) =>
-                      val.isEmpty ? 'Musisz dodać datę zajścia szkody!' : null,
+                      val.isEmpty ? 'Musisz dodać liczbę uli w pasiece!' : null,
                 ),
                 SizedBox(
                   height: 20.0,
@@ -128,10 +131,11 @@ class _AddDamagesState extends State<AddDamages> {
                     color: subColor,
                     fontSize: 16.0,
                   ),
-                  focusNode: placeNode,
-                  controller: placeController,
+                  focusNode: yearNode,
+                  keyboardType: TextInputType.number,
+                  controller: yearController,
                   decoration: InputDecoration(
-                    labelText: 'Miejsce zajścia szkody',
+                    labelText: 'Rok Powstania pasieki',
                     labelStyle: TextStyle(color: subColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -149,10 +153,10 @@ class _AddDamagesState extends State<AddDamages> {
                     ),
                   ),
                   onEditingComplete: () {
-                    FocusScope.of(context).requestFocus(isGuiltyNode);
+                    FocusScope.of(context).requestFocus(beekeeperNode);
                   },
                   validator: (val) => val.isEmpty
-                      ? 'Musisz dodać miejsce zajścia szkody!'
+                      ? 'Musisz dodać rok powstania pasieki!'
                       : null,
                 ),
                 SizedBox(
@@ -163,10 +167,10 @@ class _AddDamagesState extends State<AddDamages> {
                     color: subColor,
                     fontSize: 16.0,
                   ),
-                  focusNode: isGuiltyNode,
-                  controller: isGuiltyController,
+                  focusNode: beekeeperNode,
+                  controller: beekeeperController,
                   decoration: InputDecoration(
-                    labelText: 'Czy byłeś sprawcą szkody? Tak/Nie',
+                    labelText: 'Nazwisko pszczelarza',
                     labelStyle: TextStyle(color: subColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -184,12 +188,10 @@ class _AddDamagesState extends State<AddDamages> {
                     ),
                   ),
                   onEditingComplete: () {
-                    FocusScope.of(context).requestFocus(insuranceNode);
+                    FocusScope.of(context).requestFocus(beekeeperNumberNode);
                   },
-                  validator: (val) => (!val.contains('Tak') &&
-                          !val.contains('Nie'))
-                      ? 'Musisz wskazać czy byłeś sprawcą - wpisz Tak lub Nie!'
-                      : null,
+                  validator: (val) =>
+                      val.isEmpty ? 'Musisz dodać nazwisko pszczelarza!' : null,
                 ),
                 SizedBox(
                   height: 20.0,
@@ -199,10 +201,10 @@ class _AddDamagesState extends State<AddDamages> {
                     color: subColor,
                     fontSize: 16.0,
                   ),
-                  focusNode: insuranceNode,
-                  controller: insuranceController,
+                  focusNode: beekeeperNumberNode,
+                  controller: beekeeperNumberController,
                   decoration: InputDecoration(
-                    labelText: 'Ubezpieczyciel sprawcy',
+                    labelText: 'Numer rejestracyjny pszczelarza',
                     labelStyle: TextStyle(color: subColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -220,7 +222,41 @@ class _AddDamagesState extends State<AddDamages> {
                     ),
                   ),
                   onEditingComplete: () {
-                    FocusScope.of(context).requestFocus(descNode);
+                    FocusScope.of(context).requestFocus(characterNode);
+                  },
+                  validator: (val) =>
+                      val.isEmpty ? 'Musisz dodać numer rejestracyjny pszczelarza!' : null,
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                TextFormField(
+                  style: TextStyle(
+                    color: subColor,
+                    fontSize: 16.0,
+                  ),
+                  focusNode: characterNode,
+                  controller: characterController,
+                  decoration: InputDecoration(
+                    labelText: 'Charakter hodowli pszczół',
+                    labelStyle: TextStyle(color: subColor),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: subColor,
+                        width: 2.0,
+                      ),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  onEditingComplete: () {
+                    FocusScope.of(context).requestFocus(districtNode);
                   },
                 ),
                 SizedBox(
@@ -231,13 +267,10 @@ class _AddDamagesState extends State<AddDamages> {
                     color: subColor,
                     fontSize: 16.0,
                   ),
-                  focusNode: descNode,
-                  textInputAction: TextInputAction.next,
-                  maxLines: 3,
-                  keyboardType: TextInputType.multiline,
-                  controller: descController,
+                  focusNode: districtNode,
+                  controller: districtController,
                   decoration: InputDecoration(
-                    labelText: 'Opis',
+                    labelText: 'Nazwa obrębu ewidencyjnego',
                     labelStyle: TextStyle(color: subColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -259,33 +292,35 @@ class _AddDamagesState extends State<AddDamages> {
                   height: 20.0,
                 ),
                 RaisedButton(
-                  color: redColor,
+                  color: secondSubColor,
                   child: Text(
                     'Dodaj',
                     style: TextStyle(
-                      color: subColor,
+                      color: mainColor,
                       fontSize: 20.0,
                     ),
                   ),
                   shape: StadiumBorder(),
                   onPressed: () {
                     if (_formKey.currentState.validate()) {
-                      DamagesModel newDamages = DamagesModel(
+                      BeeInfoModel newBeeInfo = BeeInfoModel(
                           nameController.text,
-                          dateController.text,
-                          placeController.text,
-                          isGuiltyController.text,
-                          insuranceController.text ?? '',
-                          descController.text ?? "");
+                          int.parse(hivesNumberController.text),
+                          int.parse(yearController.text),
+                          beekeeperController.text,
+                          int.parse(beekeeperNumberController.text),
+                          characterController.text ?? '',
+                          districtController.text ?? '');
 
-                      getDB.addDamages(newDamages).then((i) {
+                      getDB.addBeeInfo(newBeeInfo).then((i) {
                         nameController.clear();
-                        dateController.clear();
-                        placeController.clear();
-                        isGuiltyController.clear();
-                        insuranceController.clear();
-                        descController.clear();
-                        newDamages = null;
+                        hivesNumberController.clear();
+                        yearController.clear();
+                        beekeeperController.clear();
+                        beekeeperNumberController.clear();
+                        characterController.clear();
+                        districtController.clear();
+                        newBeeInfo = null;
                       });
                       Navigator.pop(context);
                     }

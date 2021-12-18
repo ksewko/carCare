@@ -1,24 +1,26 @@
+
+import 'package:carcare/model/bee_info/bee_info_model.dart';
+import 'package:carcare/model/bee_info/db_bee_info.dart';
+import 'package:carcare/screens/bee_info_views/add_bee_info.dart';
+import 'package:carcare/screens/bee_info_views/edit_bee_info.dart';
 import 'package:flutter/material.dart';
-import 'package:carcare/model/hive_info/hive_info_model.dart';
-import 'package:carcare/model/hive_info/db_hive_info.dart';
-import 'package:carcare/screens/hive_info_views/add_hive_info_view.dart';
-import 'package:carcare/screens/hive_info_views/edit_hive_info_view.dart';
 import 'package:provider/provider.dart';
 
-class HiveInfoMain extends StatefulWidget {
+class BeeInfoMain extends StatefulWidget {
   @override
-  _HiveInfoMainState createState() => _HiveInfoMainState();
+  _BeeInfoMainState createState() => _BeeInfoMainState();
 }
 
-class _HiveInfoMainState extends State<HiveInfoMain> {
-  List<HiveInfoModel> carinfo;
+class _BeeInfoMainState extends State<BeeInfoMain> {
+  List<BeeInfoModel> beeInfo;
     String bgImage = 'bg_bee.png';
     Color mainColor = Colors.orange[700];
     Color subColor = Colors.yellow[200];
 
   @override
   Widget build(BuildContext context) {
-    final getDB = Provider.of<DBHiveInfo>(context);
+    final getDB = Provider.of<DBBeeInfo>(context);
+
 
     return Scaffold(
       appBar: AppBar(
@@ -34,14 +36,14 @@ class _HiveInfoMainState extends State<HiveInfoMain> {
             fit: BoxFit.cover,
           )),
           child: FutureBuilder(
-            future: getDB.getCarInfo(),
+            future: getDB.getBeeInfo(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                carinfo = snapshot.data;
+                beeInfo = snapshot.data;
                 return ListView.builder(
-                  itemCount: carinfo.length,
+                  itemCount: beeInfo.length,
                   itemBuilder: (context, index) {
-                    if (carinfo.length == 1) {
+                    if (beeInfo.length == 1) {
                       return Column(
                         children: [
                           Card(
@@ -55,7 +57,7 @@ class _HiveInfoMainState extends State<HiveInfoMain> {
                                 color: mainColor,
                               ),
                               title: Text(
-                                'Marka: ',
+                                'Nazwa: ',
                                 style: TextStyle(
                                   color: mainColor,
                                   fontSize: 18.0,
@@ -63,9 +65,9 @@ class _HiveInfoMainState extends State<HiveInfoMain> {
                                 ),
                               ),
                               subtitle: Text(
-                                (carinfo[0].brand),
+                                (beeInfo[0].name),
                                 style: TextStyle(
-                                  color: subColor,
+                                  color: Colors.black,
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -84,7 +86,7 @@ class _HiveInfoMainState extends State<HiveInfoMain> {
                                 color: mainColor,
                               ),
                               title: Text(
-                                'Model: ',
+                                'Liczba uli: ',
                                 style: TextStyle(
                                   color: mainColor,
                                   fontSize: 18.0,
@@ -92,9 +94,9 @@ class _HiveInfoMainState extends State<HiveInfoMain> {
                                 ),
                               ),
                               subtitle: Text(
-                                (carinfo[0].model),
+                                (beeInfo[0].hivesNumber.toString()),
                                 style: TextStyle(
-                                  color: subColor,
+                                  color: Colors.black,
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -113,7 +115,7 @@ class _HiveInfoMainState extends State<HiveInfoMain> {
                                 color: mainColor,
                               ),
                               title: Text(
-                                'Rok Produkcji: ',
+                                'Rok powstania: ',
                                 style: TextStyle(
                                   color: mainColor,
                                   fontSize: 18.0,
@@ -121,9 +123,9 @@ class _HiveInfoMainState extends State<HiveInfoMain> {
                                 ),
                               ),
                               subtitle: Text(
-                                (carinfo[0].year.toString()),
+                                (beeInfo[0].year.toString()),
                                 style: TextStyle(
-                                  color: subColor,
+                                  color: Colors.black,
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -142,7 +144,7 @@ class _HiveInfoMainState extends State<HiveInfoMain> {
                                 color: mainColor,
                               ),
                               title: Text(
-                                'Numer Rejestracyjny: ',
+                                'Nzwisko pszczelarza: ',
                                 style: TextStyle(
                                   color: mainColor,
                                   fontSize: 18.0,
@@ -150,9 +152,9 @@ class _HiveInfoMainState extends State<HiveInfoMain> {
                                 ),
                               ),
                               subtitle: Text(
-                                (carinfo[0].registration),
+                                (beeInfo[0].beekeeper),
                                 style: TextStyle(
-                                  color: subColor,
+                                  color:Colors.black,
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -171,7 +173,7 @@ class _HiveInfoMainState extends State<HiveInfoMain> {
                                 color: mainColor,
                               ),
                               title: Text(
-                                'Numer VIN: ',
+                                'Numer rejestracyjny pszczelarza: ',
                                 style: TextStyle(
                                   color: mainColor,
                                   fontSize: 18.0,
@@ -179,9 +181,9 @@ class _HiveInfoMainState extends State<HiveInfoMain> {
                                 ),
                               ),
                               subtitle: Text(
-                                (carinfo[0].vin),
+                                (beeInfo[0].beekeeperNumber.toString()),
                                 style: TextStyle(
-                                  color: subColor,
+                                  color: Colors.black,
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -200,7 +202,7 @@ class _HiveInfoMainState extends State<HiveInfoMain> {
                                 color: mainColor,
                               ),
                               title: Text(
-                                'Pojemność silnika: ',
+                                'Charakter hodowli pszczół: ',
                                 style: TextStyle(
                                   color: mainColor,
                                   fontSize: 18.0,
@@ -208,9 +210,9 @@ class _HiveInfoMainState extends State<HiveInfoMain> {
                                 ),
                               ),
                               subtitle: Text(
-                                (carinfo[0].engineCapacity),
+                                (beeInfo[0].character),
                                 style: TextStyle(
-                                  color: subColor,
+                                  color: Colors.black,
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -229,7 +231,7 @@ class _HiveInfoMainState extends State<HiveInfoMain> {
                                 color: mainColor,
                               ),
                               title: Text(
-                                'Numer polisy: ',
+                                'Nazwa obrębu ewidencyjnego: ',
                                 style: TextStyle(
                                   color: mainColor,
                                   fontSize: 18.0,
@@ -237,9 +239,9 @@ class _HiveInfoMainState extends State<HiveInfoMain> {
                                 ),
                               ),
                               subtitle: Text(
-                                (carinfo[0].policyNumber.toString()),
+                                (beeInfo[0].district),
                                 style: TextStyle(
-                                  color: subColor,
+                                  color: Colors.black,
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -265,15 +267,15 @@ class _HiveInfoMainState extends State<HiveInfoMain> {
           color: subColor,
         ),
         onPressed: () {
-          if (carinfo.length == 0) {
+          if (beeInfo.length == 0) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => AddCarInfo()),
+              MaterialPageRoute(builder: (context) => AddBeeInfo()),
             );
           } else {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => EditCarInfo(carinfo[0])),
+              MaterialPageRoute(builder: (context) => EditBeeInfo(beeInfo[0])),
             );
           }
         },
