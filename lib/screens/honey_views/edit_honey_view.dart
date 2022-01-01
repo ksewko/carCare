@@ -1,43 +1,46 @@
+import 'package:carcare/model/honey/db_honey.dart';
+import 'package:carcare/model/honey/honey_model.dart';
 import 'package:flutter/material.dart';
-import 'package:carcare/model/serwis/db_serwis.dart';
-import 'package:carcare/model/serwis/serwis_model.dart';
 
-class EditSerwis extends StatefulWidget {
-  final SerwisModel serwis;
-  EditSerwis(this.serwis);
+class EditHoney extends StatefulWidget {
+  final HoneyModel honey;
+  EditHoney(this.honey);
 
   @override
-  _EditSerwisState createState() => _EditSerwisState();
+  _EditHoneyState createState() => _EditHoneyState();
 }
 
-class _EditSerwisState extends State<EditSerwis> {
-  final DBSerwis getDB = DBSerwis();
-  Color mainColor = Colors.grey[900];
-  Color subColor = Colors.grey[50];
+class _EditHoneyState extends State<EditHoney> {
+  final DBHoney getDB = DBHoney();
   Color redColor = Colors.red[900];
-  String bgImage = 'bg.png';
+ String bgImage = 'bg_bee.png';
+    Color mainColor = Colors.orange[700];
+    Color subColor = Colors.yellow[200];
+    Color secondSubColor = Colors.yellow[50];
 
   // capture input from TextField
-  var nameController = TextEditingController();
+  var typeController = TextEditingController();
   var dateController = TextEditingController();
+  var amountController = TextEditingController();
   var priceController = TextEditingController();
-  var descController = TextEditingController();
+  var percentController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    SerwisModel serwis = widget.serwis;
+    HoneyModel honey = widget.honey;
     // filled values to Form input field
-    nameController.text = widget.serwis.name;
-    dateController.text = widget.serwis.date;
-    priceController.text = widget.serwis.price;
-    descController.text = widget.serwis.description;
+    typeController.text = widget.honey.type;
+    dateController.text = widget.honey.date;
+    amountController.text = widget.honey.amount.toString();
+    priceController.text = widget.honey.price;
+    percentController.text = widget.honey.percent.toString();
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: mainColor,
         centerTitle: true,
-        title: Text('Serwis'),
+        title: Text(widget.honey.type),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -62,9 +65,9 @@ class _EditSerwisState extends State<EditSerwis> {
                         color: subColor,
                         fontSize: 16.0,
                       ),
-                      controller: nameController,
+                      controller: typeController,
                       decoration: InputDecoration(
-                        labelText: 'Nazwa serwisu',
+                        labelText: 'Rodzaj miodu',
                         labelStyle: TextStyle(color: subColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
@@ -82,7 +85,7 @@ class _EditSerwisState extends State<EditSerwis> {
                         ),
                       ),
                       validator: (val) =>
-                          val.isEmpty ? 'Musisz dodać nazwę serwisu!' : null,
+                          val.isEmpty ? 'Musisz dodać rodzaj miodu!' : null,
                     ),
                     SizedBox(
                       height: 20.0,
@@ -94,7 +97,7 @@ class _EditSerwisState extends State<EditSerwis> {
                       ),
                       controller: dateController,
                       decoration: InputDecoration(
-                        labelText: 'Data serwisu',
+                        labelText: 'Data zbioru',
                         labelStyle: TextStyle(color: subColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
@@ -111,9 +114,38 @@ class _EditSerwisState extends State<EditSerwis> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      validator: (val) => val.isEmpty
-                          ? 'Musisz dodać datę wykonania serwisu!'
-                          : null,
+                      validator: (val) =>
+                          val.isEmpty ? 'Musisz dodać datę zbioru!' : null,
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    TextFormField(
+                      style: TextStyle(
+                        color: subColor,
+                        fontSize: 16.0,
+                      ),
+                      controller: amountController,
+                      decoration: InputDecoration(
+                        labelText: 'Liczba litrów',
+                        labelStyle: TextStyle(color: subColor),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                          borderSide: BorderSide(
+                            color: subColor,
+                            width: 2.0,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: subColor,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      validator: (val) =>
+                          val.isEmpty ? 'Musisz dodać liczbę litrów!' : null,
                     ),
                     SizedBox(
                       height: 20.0,
@@ -125,7 +157,7 @@ class _EditSerwisState extends State<EditSerwis> {
                       ),
                       controller: priceController,
                       decoration: InputDecoration(
-                        labelText: 'Koszt',
+                        labelText: 'Cena za litr miodu',
                         labelStyle: TextStyle(color: subColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
@@ -143,23 +175,20 @@ class _EditSerwisState extends State<EditSerwis> {
                         ),
                       ),
                       validator: (val) => val.isEmpty
-                          ? 'Musisz dodać koszt wykonania serwisu!'
+                          ? 'Musisz dodać cenę za litr miodu!'
                           : null,
                     ),
                     SizedBox(
-                      height: 20.0,
+                      height: 30.0,
                     ),
                     TextFormField(
                       style: TextStyle(
                         color: subColor,
                         fontSize: 16.0,
                       ),
-                      textInputAction: TextInputAction.next,
-                      maxLines: 3,
-                      keyboardType: TextInputType.multiline,
-                      controller: descController,
+                      controller: percentController,
                       decoration: InputDecoration(
-                        labelText: 'Opis',
+                        labelText: 'Procent wody w miodzie',
                         labelStyle: TextStyle(color: subColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
@@ -175,7 +204,7 @@ class _EditSerwisState extends State<EditSerwis> {
                           ),
                           borderRadius: BorderRadius.circular(20),
                         ),
-                      ),
+                      )
                     ),
                     SizedBox(
                       height: 30.0,
@@ -195,12 +224,13 @@ class _EditSerwisState extends State<EditSerwis> {
                           shape: StadiumBorder(),
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
-                              serwis.name = nameController.text;
-                              serwis.date = dateController.text;
-                              serwis.price = priceController.text;
-                              serwis.description = descController.text ?? '';
+                              honey.type = typeController.text;
+                              honey.date = dateController.text;
+                              honey.amount = int.parse(amountController.text);
+                              honey.price = priceController.text;
+                              honey.percent = int.parse(percentController.text);
 
-                              getDB.updateSerwis(serwis);
+                              getDB.updateHoney(honey);
                               Navigator.pop(context);
                             }
                           },
@@ -225,11 +255,11 @@ class _EditSerwisState extends State<EditSerwis> {
                                 builder: (context) {
                                   return AlertDialog(
                                     title: Text(
-                                      'Usuń Serwis!',
+                                      'Usuń Ziór!',
                                       textAlign: TextAlign.center,
                                     ),
                                     content: Text(
-                                      'Czy chcesz usunąć serwis ${serwis.name}?',
+                                      'Czy chcesz usunąć zbiór z listy?',
                                       textAlign: TextAlign.center,
                                     ),
                                     backgroundColor: Colors.red,
@@ -251,7 +281,7 @@ class _EditSerwisState extends State<EditSerwis> {
                                               color: Colors.black),
                                         ),
                                         onPressed: () async {
-                                          await getDB.deleteSerwis(serwis.id);
+                                          await getDB.deleteHoney(honey.id);
                                           Navigator.pop(context);
                                           Navigator.pop(context);
                                         },

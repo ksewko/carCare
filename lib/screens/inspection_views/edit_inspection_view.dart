@@ -1,47 +1,42 @@
+import 'package:carcare/model/inspection/db_inspection.dart';
+import 'package:carcare/model/inspection/inspection_model.dart';
 import 'package:flutter/material.dart';
-import 'package:carcare/model/refuel/db_refuel.dart';
-import 'package:carcare/model/refuel/refuel_model.dart';
 
-class EditRefuel extends StatefulWidget {
-  final RefuelModel refuel;
-  EditRefuel(this.refuel);
+class EditInspection extends StatefulWidget {
+  final InspectionModel inspection;
+  EditInspection(this.inspection);
 
   @override
-  _EditRefuelState createState() => _EditRefuelState();
+  _EditInspectionState createState() => _EditInspectionState();
 }
 
-class _EditRefuelState extends State<EditRefuel> {
-  final DBRefuel getDB = DBRefuel();
-  Color mainColor = Colors.grey[900];
-  Color subColor = Colors.grey[50];
+class _EditInspectionState extends State<EditInspection> {
+  final DBInspection getDB = DBInspection();
+  String bgImage = 'bg_bee.png';
+  Color mainColor = Colors.orange[700];
+  Color subColor = Colors.yellow[200];
+  Color secondSubColor = Colors.yellow[50];
   Color redColor = Colors.red[900];
-  String bgImage = 'bg.png';
 
   // capture input from TextField
-  var typeController = TextEditingController();
+  var nameController = TextEditingController();
   var dateController = TextEditingController();
-  var meterController = TextEditingController();
-  var filledController = TextEditingController();
-  var priceController = TextEditingController();
-  var isFullController = TextEditingController();
+  var descController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    RefuelModel refuel = widget.refuel;
+    InspectionModel inspection = widget.inspection;
     // filled values to Form input field
-    typeController.text = widget.refuel.type;
-    dateController.text = widget.refuel.date;
-    meterController.text = widget.refuel.meter;
-    filledController.text = widget.refuel.filled;
-    priceController.text = widget.refuel.price;
-    isFullController.text = widget.refuel.isFull;
+    nameController.text = widget.inspection.name;
+    dateController.text = widget.inspection.date;
+    descController.text = widget.inspection.description;
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: mainColor,
         centerTitle: true,
-        title: Text(widget.refuel.type),
+        title: Text('Przegląd'),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -66,9 +61,9 @@ class _EditRefuelState extends State<EditRefuel> {
                         color: subColor,
                         fontSize: 16.0,
                       ),
-                      controller: typeController,
+                      controller: nameController,
                       decoration: InputDecoration(
-                        labelText: 'Rodzaj paliwa',
+                        labelText: 'Nazwa przeglądu',
                         labelStyle: TextStyle(color: subColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
@@ -86,7 +81,7 @@ class _EditRefuelState extends State<EditRefuel> {
                         ),
                       ),
                       validator: (val) =>
-                          val.isEmpty ? 'Musisz dodać rodzaj paliwa!' : null,
+                          val.isEmpty ? 'Musisz dodać nazwę przeglądu!' : null,
                     ),
                     SizedBox(
                       height: 20.0,
@@ -98,67 +93,7 @@ class _EditRefuelState extends State<EditRefuel> {
                       ),
                       controller: dateController,
                       decoration: InputDecoration(
-                        labelText: 'Data tankowania',
-                        labelStyle: TextStyle(color: subColor),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                          borderSide: BorderSide(
-                            color: subColor,
-                            width: 2.0,
-                          ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: subColor,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
-                      validator: (val) =>
-                          val.isEmpty ? 'Musisz dodać datę tankowania!' : null,
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    TextFormField(
-                      style: TextStyle(
-                        color: subColor,
-                        fontSize: 16.0,
-                      ),
-                      controller: meterController,
-                      decoration: InputDecoration(
-                        labelText: 'Stan licznika',
-                        labelStyle: TextStyle(color: subColor),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                          borderSide: BorderSide(
-                            color: subColor,
-                            width: 2.0,
-                          ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: subColor,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
-                      validator: (val) =>
-                          val.isEmpty ? 'Musisz dodać stan licznika!' : null,
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    TextFormField(
-                      style: TextStyle(
-                        color: subColor,
-                        fontSize: 16.0,
-                      ),
-                      controller: filledController,
-                      decoration: InputDecoration(
-                        labelText: 'Ilość zatankowanego paliwa',
+                        labelText: 'Data przeglądu',
                         labelStyle: TextStyle(color: subColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
@@ -176,20 +111,23 @@ class _EditRefuelState extends State<EditRefuel> {
                         ),
                       ),
                       validator: (val) => val.isEmpty
-                          ? 'Musisz dodać ile litrow zatankowano!'
+                          ? 'Musisz dodać datę wykonania przeglądu!'
                           : null,
                     ),
                     SizedBox(
-                      height: 30.0,
+                      height: 20.0,
                     ),
                     TextFormField(
                       style: TextStyle(
                         color: subColor,
                         fontSize: 16.0,
                       ),
-                      controller: priceController,
+                      textInputAction: TextInputAction.next,
+                      maxLines: 3,
+                      keyboardType: TextInputType.multiline,
+                      controller: descController,
                       decoration: InputDecoration(
-                        labelText: 'Cena za litr paliwa',
+                        labelText: 'Opis',
                         labelStyle: TextStyle(color: subColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
@@ -206,41 +144,6 @@ class _EditRefuelState extends State<EditRefuel> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      validator: (val) => val.isEmpty
-                          ? 'Musisz dodać cenę za litr paliwa!'
-                          : null,
-                    ),
-                    SizedBox(
-                      height: 30.0,
-                    ),
-                    TextFormField(
-                      style: TextStyle(
-                        color: subColor,
-                        fontSize: 16.0,
-                      ),
-                      controller: isFullController,
-                      decoration: InputDecoration(
-                        labelText: 'Czy zatankowano do pełna? Tak/Nie',
-                        labelStyle: TextStyle(color: subColor),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                          borderSide: BorderSide(
-                            color: subColor,
-                            width: 2.0,
-                          ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: subColor,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
-                      validator: (val) =>
-                          (!val.contains('Tak') && !val.contains('Nie'))
-                              ? 'Musisz wpisać - Tak lub Nie!'
-                              : null,
                     ),
                     SizedBox(
                       height: 30.0,
@@ -260,14 +163,11 @@ class _EditRefuelState extends State<EditRefuel> {
                           shape: StadiumBorder(),
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
-                              refuel.type = typeController.text;
-                              refuel.date = dateController.text;
-                              refuel.meter = meterController.text;
-                              refuel.filled = filledController.text;
-                              refuel.price = priceController.text;
-                              refuel.isFull = isFullController.text;
+                              inspection.name = nameController.text;
+                              inspection.date = dateController.text;
+                              inspection.description = descController.text ?? '';
 
-                              getDB.updateRefuel(refuel);
+                              getDB.updateInspection(inspection);
                               Navigator.pop(context);
                             }
                           },
@@ -292,11 +192,11 @@ class _EditRefuelState extends State<EditRefuel> {
                                 builder: (context) {
                                   return AlertDialog(
                                     title: Text(
-                                      'Usuń Tankowanie!',
+                                      'Usuń Przegląd!',
                                       textAlign: TextAlign.center,
                                     ),
                                     content: Text(
-                                      'Czy chcesz usunąć tankowanie z listy?',
+                                      'Czy chcesz usunąć przegląd ${inspection.name}?',
                                       textAlign: TextAlign.center,
                                     ),
                                     backgroundColor: Colors.red,
@@ -318,7 +218,7 @@ class _EditRefuelState extends State<EditRefuel> {
                                               color: Colors.black),
                                         ),
                                         onPressed: () async {
-                                          await getDB.deleteRefuel(refuel.id);
+                                          await getDB.deleteInspection(inspection.id);
                                           Navigator.pop(context);
                                           Navigator.pop(context);
                                         },

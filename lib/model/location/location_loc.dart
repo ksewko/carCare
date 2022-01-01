@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ParkingLoc {
+class LocationLoc {
   final double latitude;
   final double longitude;
   final String address;
 
-  const ParkingLoc({
+  const LocationLoc({
     @required this.latitude,
     @required this.longitude,
     this.address,

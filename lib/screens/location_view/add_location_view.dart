@@ -1,35 +1,36 @@
 import 'dart:io';
 
-import 'package:carcare/model/parking/parking_loc.dart';
-import 'package:carcare/model/parking/db_parking_provider.dart';
+import 'package:carcare/model/location/db_location_provider.dart';
+import 'package:carcare/model/location/location_loc.dart';
 import 'package:carcare/model/widgets/picture_widget.dart';
 import 'package:carcare/model/widgets/loc_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class AddParking extends StatefulWidget {
-  static const routeName = "/add-parking";
+class AddLocation extends StatefulWidget {
+  static const routeName = "/add-location";
   @override
-  _AddParkingState createState() => _AddParkingState();
+  _AddLocationState createState() => _AddLocationState();
 }
 
-class _AddParkingState extends State<AddParking> {
-  Color mainColor = Colors.grey[900];
-  Color subColor = Colors.grey[50];
+class _AddLocationState extends State<AddLocation> {
   Color redColor = Colors.red[900];
-  String bgImage = 'bg.png';
+  String bgImage = 'bg_bee.png';
+  Color mainColor = Colors.orange[700];
+  Color subColor = Colors.yellow[200];
+  Color secondSubColor = Colors.yellow[50];
 
   final _titleController = TextEditingController();
   File _imagePicked;
-  ParkingLoc _locationPicked;
+  LocationLoc _locationPicked;
 
   void _selectImage(File imagePicked) {
     _imagePicked = imagePicked;
   }
 
   void _selectLocation(double latitude, double longitude) {
-    _locationPicked = ParkingLoc(latitude: latitude, longitude: longitude);
+    _locationPicked = LocationLoc(latitude: latitude, longitude: longitude);
   }
 
 // onPressed: () {
@@ -115,7 +116,7 @@ class _AddParkingState extends State<AddParking> {
       );
       return;
     }
-    Provider.of<DBParkingProvider>(context, listen: false)
+    Provider.of<DBLocationProvider>(context, listen: false)
         .addNewPlace(_titleController.text, _imagePicked, _locationPicked);
     Navigator.of(context).pop();
   }
@@ -132,7 +133,7 @@ class _AddParkingState extends State<AddParking> {
       appBar: AppBar(
         backgroundColor: mainColor,
         centerTitle: true,
-        title: Text("Dodaj Parking"),
+        title: Text("Dodaj Lokalizację"),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -158,7 +159,7 @@ class _AddParkingState extends State<AddParking> {
                         controller: _titleController,
                         textCapitalization: TextCapitalization.words,
                         decoration: InputDecoration(
-                          labelText: "Nazwa Miejsca postojowego",
+                          labelText: "Nazwa Lokalizacji",
                           labelStyle: TextStyle(color: subColor),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0),

@@ -1,4 +1,3 @@
-
 import 'package:carcare/model/bee_info/bee_info_model.dart';
 import 'package:carcare/model/bee_info/db_bee_info.dart';
 import 'package:carcare/screens/bee_info_views/add_bee_info.dart';
@@ -13,14 +12,14 @@ class BeeInfoMain extends StatefulWidget {
 
 class _BeeInfoMainState extends State<BeeInfoMain> {
   List<BeeInfoModel> beeInfo;
-    String bgImage = 'bg_bee.png';
-    Color mainColor = Colors.orange[700];
-    Color subColor = Colors.yellow[200];
+  String bgImage = 'bg_bee.png';
+  Color mainColor = Colors.orange[700];
+  Color subColor = Colors.yellow[200];
+  Color secondSubColor = Colors.yellow[50];
 
   @override
   Widget build(BuildContext context) {
     final getDB = Provider.of<DBBeeInfo>(context);
-
 
     return Scaffold(
       appBar: AppBar(
@@ -48,7 +47,7 @@ class _BeeInfoMainState extends State<BeeInfoMain> {
                         children: [
                           Card(
                             // color: Theme.of(context).primaryColorLight,
-                            color: Colors.grey[300],
+                            color: secondSubColor,
                             elevation: 6.0,
                             shape: StadiumBorder(),
                             child: ListTile(
@@ -77,7 +76,7 @@ class _BeeInfoMainState extends State<BeeInfoMain> {
                           SizedBox(height: 10.0),
                           Card(
                             // color: Theme.of(context).primaryColorLight,
-                            color: Colors.grey[300],
+                            color: secondSubColor,
                             elevation: 6.0,
                             shape: StadiumBorder(),
                             child: ListTile(
@@ -106,7 +105,7 @@ class _BeeInfoMainState extends State<BeeInfoMain> {
                           SizedBox(height: 10.0),
                           Card(
                             // color: Theme.of(context).primaryColorLight,
-                            color: Colors.grey[300],
+                            color:secondSubColor,
                             elevation: 6.0,
                             shape: StadiumBorder(),
                             child: ListTile(
@@ -135,7 +134,7 @@ class _BeeInfoMainState extends State<BeeInfoMain> {
                           SizedBox(height: 10.0),
                           Card(
                             // color: Theme.of(context).primaryColorLight,
-                            color: Colors.grey[300],
+                            color: secondSubColor,
                             elevation: 6.0,
                             shape: StadiumBorder(),
                             child: ListTile(
@@ -154,7 +153,7 @@ class _BeeInfoMainState extends State<BeeInfoMain> {
                               subtitle: Text(
                                 (beeInfo[0].beekeeper),
                                 style: TextStyle(
-                                  color:Colors.black,
+                                  color: Colors.black,
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -164,7 +163,7 @@ class _BeeInfoMainState extends State<BeeInfoMain> {
                           SizedBox(height: 10.0),
                           Card(
                             // color: Theme.of(context).primaryColorLight,
-                            color: Colors.grey[300],
+                            color: secondSubColor,
                             elevation: 6.0,
                             shape: StadiumBorder(),
                             child: ListTile(
@@ -193,7 +192,7 @@ class _BeeInfoMainState extends State<BeeInfoMain> {
                           SizedBox(height: 10.0),
                           Card(
                             // color: Theme.of(context).primaryColorLight,
-                            color: Colors.grey[300],
+                            color: secondSubColor,
                             elevation: 6.0,
                             shape: StadiumBorder(),
                             child: ListTile(
@@ -222,7 +221,7 @@ class _BeeInfoMainState extends State<BeeInfoMain> {
                           SizedBox(height: 10.0),
                           Card(
                             // color: Theme.of(context).primaryColorLight,
-                            color: Colors.grey[300],
+                            color: secondSubColor,
                             elevation: 6.0,
                             shape: StadiumBorder(),
                             child: ListTile(

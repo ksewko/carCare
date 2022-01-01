@@ -1,40 +1,39 @@
+import 'package:carcare/model/inspection/db_inspection.dart';
+import 'package:carcare/model/inspection/inspection_model.dart';
 import 'package:flutter/material.dart';
-import 'package:carcare/model/serwis/db_serwis.dart';
-import 'package:carcare/model/serwis/serwis_model.dart';
 import 'package:provider/provider.dart';
 
-class AddSerwis extends StatefulWidget {
+class AddInspection extends StatefulWidget {
   @override
-  _AddSerwisState createState() => _AddSerwisState();
+  _AddInspectionState createState() => _AddInspectionState();
 }
 
-class _AddSerwisState extends State<AddSerwis> {
-  final DBSerwis getDB = DBSerwis();
-  Color mainColor = Colors.grey[900];
-  Color subColor = Colors.grey[50];
+class _AddInspectionState extends State<AddInspection> {
+  final DBInspection getDB = DBInspection();
+  String bgImage = 'bg_bee.png';
+  Color mainColor = Colors.orange[700];
+  Color subColor = Colors.yellow[200];
+  Color secondSubColor = Colors.yellow[50];
   Color redColor = Colors.red[900];
-  String bgImage = 'bg.png';
 
   final FocusNode nameNode = FocusNode();
   final FocusNode dateNode = FocusNode();
-  final FocusNode priceNode = FocusNode();
   final FocusNode descNode = FocusNode();
 
   // capture input from TextField
   var nameController = TextEditingController();
   var dateController = TextEditingController();
-  var priceController = TextEditingController();
   var descController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    final getDB = Provider.of<DBSerwis>(context);
+    final getDB = Provider.of<DBInspection>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: mainColor,
         centerTitle: true,
-        title: Text('Dodaj nowy Serwis'),
+        title: Text('Dodaj nowy przegląd'),
       ),
       body: SafeArea(
           child: SingleChildScrollView(
@@ -59,7 +58,7 @@ class _AddSerwisState extends State<AddSerwis> {
                   textInputAction: TextInputAction.next,
                   controller: nameController,
                   decoration: InputDecoration(
-                    labelText: 'Nazwa Serwisu',
+                    labelText: 'Nazwa przeglądu',
                     labelStyle: TextStyle(color: subColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -80,7 +79,7 @@ class _AddSerwisState extends State<AddSerwis> {
                     FocusScope.of(context).requestFocus(dateNode);
                   },
                   validator: (val) =>
-                      val.isEmpty ? 'Musisz dodać nazwę serwisu!' : null,
+                      val.isEmpty ? 'Musisz dodać nazwę przeglądu!' : null,
                 ),
                 SizedBox(
                   height: 20.0,
@@ -93,42 +92,7 @@ class _AddSerwisState extends State<AddSerwis> {
                   focusNode: dateNode,
                   controller: dateController,
                   decoration: InputDecoration(
-                    labelText: 'Data serwisu',
-                    labelStyle: TextStyle(color: subColor),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                      borderSide: BorderSide(
-                        color: subColor,
-                        width: 2.0,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: subColor,
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                  onEditingComplete: () {
-                    FocusScope.of(context).requestFocus(priceNode);
-                  },
-                  validator: (val) => val.isEmpty
-                      ? 'Musisz dodać datę wykonania serwisu!'
-                      : null,
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                TextFormField(
-                  style: TextStyle(
-                    color: subColor,
-                    fontSize: 16.0,
-                  ),
-                  focusNode: priceNode,
-                  controller: priceController,
-                  decoration: InputDecoration(
-                    labelText: 'Koszt',
+                    labelText: 'Data przeglądu',
                     labelStyle: TextStyle(color: subColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -149,7 +113,7 @@ class _AddSerwisState extends State<AddSerwis> {
                     FocusScope.of(context).requestFocus(descNode);
                   },
                   validator: (val) => val.isEmpty
-                      ? 'Musisz dodać koszt wykonania serwisu!'
+                      ? 'Musisz dodać datę wykonania przeglądu!'
                       : null,
                 ),
                 SizedBox(
@@ -199,18 +163,16 @@ class _AddSerwisState extends State<AddSerwis> {
                   shape: StadiumBorder(),
                   onPressed: () {
                     if (_formKey.currentState.validate()) {
-                      SerwisModel newSerwis = SerwisModel(
+                      InspectionModel newInspection = InspectionModel(
                           nameController.text,
                           dateController.text,
-                          priceController.text ?? '',
                           descController.text ?? "");
 
-                      getDB.addSerwis(newSerwis).then((i) {
+                      getDB.addInspection(newInspection).then((i) {
                         nameController.clear();
                         dateController.clear();
-                        priceController.clear();
                         descController.clear();
-                        newSerwis = null;
+                        newInspection = null;
                       });
                       Navigator.pop(context);
                     }

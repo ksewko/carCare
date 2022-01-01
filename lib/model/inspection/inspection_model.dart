@@ -1,21 +1,18 @@
-class SerwisModel {
+class InspectionModel {
   // class properties
   int _id;
   String _name;
   String _date;
-  String _price;
   String _desc;
 
   // Constructor
-  SerwisModel(this._name, this._date, this._price, [this._desc]);
-  SerwisModel.withId(this._id, this._name, this._date, this._price,
-      [this._desc]);
+  InspectionModel(this._name, this._date, [this._desc]);
+  InspectionModel.withId(this._id, this._name, this._date, [this._desc]);
 
   // getters
   int get id => _id;
   String get name => _name;
   String get date => _date;
-  String get price => _price;
   String get description => _desc;
 
   // setters
@@ -31,12 +28,6 @@ class SerwisModel {
     }
   }
 
-  set price(String newPrice) {
-    if (newPrice.length <= 255) {
-      _date = newPrice;
-    }
-  }
-
   set description(String newDescription) {
     if (newDescription.length <= 255) {
       _desc = newDescription;
@@ -44,14 +35,13 @@ class SerwisModel {
   }
 
   Map<String, dynamic> toMap() {
-    var serwisMap = Map<String, dynamic>();
-    serwisMap['name'] = _name;
-    serwisMap['date'] = _date;
-    serwisMap['price'] = _price;
-    serwisMap['description'] = _desc;
+    var inspectionMap = Map<String, dynamic>();
+    inspectionMap['name'] = _name;
+    inspectionMap['date'] = _date;
+    inspectionMap['description'] = _desc;
     if (_id != null) {
-      serwisMap['id'] = _id;
+      inspectionMap['id'] = _id;
     }
-    return serwisMap;
+    return inspectionMap;
   }
 }

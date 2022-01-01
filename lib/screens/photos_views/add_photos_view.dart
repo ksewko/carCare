@@ -13,10 +13,11 @@ class AddPhotos extends StatefulWidget {
 }
 
 class _AddPhotosState extends State<AddPhotos> {
-  Color mainColor = Colors.grey[900];
-  Color subColor = Colors.grey[50];
   Color redColor = Colors.red[900];
-  String bgImage = 'bg.png';
+ String bgImage = 'bg_bee.png';
+    Color mainColor = Colors.orange[700];
+    Color subColor = Colors.yellow[200];
+    Color secondSubColor = Colors.yellow[50];
 
   File _imagePicked;
 

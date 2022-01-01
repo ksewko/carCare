@@ -1,10 +1,10 @@
-import 'package:carcare/model/parking/parking_loc.dart';
+import 'package:carcare/model/location/location_loc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 
 class MapView extends StatefulWidget {
-  final ParkingLoc location;
+  final LocationLoc location;
   final bool isSelecting;
   final String appBarTitle;
 

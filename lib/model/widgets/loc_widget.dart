@@ -1,6 +1,6 @@
-import 'package:carcare/model/parking/location_helper.dart';
-import 'package:carcare/model/parking/parking_loc.dart';
-import 'package:carcare/screens/parking_view/map_view.dart';
+import 'package:carcare/model/location/location_helper.dart';
+import 'package:carcare/model/location/location_loc.dart';
+import 'package:carcare/screens/location_view/map_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:location/location.dart';
@@ -46,7 +46,7 @@ class _LocWidgetState extends State<LocWidget> {
     final LatLng selectMap = await Navigator.of(context).push(MaterialPageRoute(
       fullscreenDialog: true,
       builder: (context) => MapView(
-        location: ParkingLoc(
+        location: LocationLoc(
             latitude: locationData.latitude, longitude: locationData.longitude),
         isSelecting: true,
       ),
@@ -104,7 +104,7 @@ class _LocWidgetState extends State<LocWidget> {
             TextButton.icon(
               icon: Icon(Icons.location_on, color: subColor),
               label: Text(
-                "Aktualna lokalizacja",
+                "Twoja lokalizacja",
                 style: TextStyle(
                   color: subColor,
                   fontSize: 14.0,

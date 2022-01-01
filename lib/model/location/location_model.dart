@@ -1,15 +1,15 @@
 import 'dart:io';
 
-import 'package:carcare/model/parking/parking_loc.dart';
+import 'package:carcare/model/location/location_loc.dart';
 import 'package:flutter/material.dart';
 
-class ParkingModel {
+class LocationModel {
   final String id;
   final String title;
   final File image;
-  final ParkingLoc location;
+  final LocationLoc location;
 
-  ParkingModel({
+  LocationModel({
     @required this.id,
     @required this.title,
     @required this.image,

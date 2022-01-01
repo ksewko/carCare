@@ -1,44 +1,43 @@
+import 'package:carcare/model/honey/db_honey.dart';
+import 'package:carcare/model/honey/honey_model.dart';
 import 'package:flutter/material.dart';
-import 'package:carcare/model/refuel/db_refuel.dart';
-import 'package:carcare/model/refuel/refuel_model.dart';
 import 'package:provider/provider.dart';
 
-class AddRefuel extends StatefulWidget {
+class AddHoney extends StatefulWidget {
   @override
-  _AddRefuelState createState() => _AddRefuelState();
+  _AddHoneyState createState() => _AddHoneyState();
 }
 
-class _AddRefuelState extends State<AddRefuel> {
-  final DBRefuel getDB = DBRefuel();
-  Color mainColor = Colors.grey[900];
-  Color subColor = Colors.grey[50];
+class _AddHoneyState extends State<AddHoney> {
+  final DBHoney getDB = DBHoney();
   Color redColor = Colors.red[900];
-  String bgImage = 'bg.png';
+  String bgImage = 'bg_bee.png';
+    Color mainColor = Colors.orange[700];
+    Color subColor = Colors.yellow[200];
+    Color secondSubColor = Colors.yellow[50];
 
   final FocusNode typeNode = FocusNode();
   final FocusNode dateNode = FocusNode();
-  final FocusNode meterNode = FocusNode();
-  final FocusNode filledNode = FocusNode();
+  final FocusNode amountNode = FocusNode();
   final FocusNode priceNode = FocusNode();
-  final FocusNode isFullNode = FocusNode();
+  final FocusNode percentNode = FocusNode();
 
   // capture input from TextField
   var typeController = TextEditingController();
   var dateController = TextEditingController();
-  var meterController = TextEditingController();
-  var filledController = TextEditingController();
+  var amountController = TextEditingController();
   var priceController = TextEditingController();
-  var isFullController = TextEditingController();
+  var percentController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    final getDB = Provider.of<DBRefuel>(context);
+    final getDB = Provider.of<DBHoney>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: mainColor,
         centerTitle: true,
-        title: Text('Dodaj tankowanie'),
+        title: Text('Dodaj Miód ze zbioru'),
       ),
       body: SafeArea(
           child: SingleChildScrollView(
@@ -63,7 +62,7 @@ class _AddRefuelState extends State<AddRefuel> {
                   textInputAction: TextInputAction.next,
                   controller: typeController,
                   decoration: InputDecoration(
-                    labelText: 'Rodzaj paliwa',
+                    labelText: 'Rodzaj miodu',
                     labelStyle: TextStyle(color: subColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -84,7 +83,7 @@ class _AddRefuelState extends State<AddRefuel> {
                     FocusScope.of(context).requestFocus(dateNode);
                   },
                   validator: (val) =>
-                      val.isEmpty ? 'Musisz dodać rodzaj paliwa!' : null,
+                      val.isEmpty ? 'Musisz dodać rodzaj miodu!' : null,
                 ),
                 SizedBox(
                   height: 20.0,
@@ -97,7 +96,7 @@ class _AddRefuelState extends State<AddRefuel> {
                   focusNode: dateNode,
                   controller: dateController,
                   decoration: InputDecoration(
-                    labelText: 'Data tankowania',
+                    labelText: 'Data zbioru miodu',
                     labelStyle: TextStyle(color: subColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -115,10 +114,10 @@ class _AddRefuelState extends State<AddRefuel> {
                     ),
                   ),
                   onEditingComplete: () {
-                    FocusScope.of(context).requestFocus(meterNode);
+                    FocusScope.of(context).requestFocus(amountNode);
                   },
                   validator: (val) =>
-                      val.isEmpty ? 'Musisz dodać datę tankowania!' : null,
+                      val.isEmpty ? 'Musisz dodać datę zbioru!' : null,
                 ),
                 SizedBox(
                   height: 20.0,
@@ -128,42 +127,10 @@ class _AddRefuelState extends State<AddRefuel> {
                     color: subColor,
                     fontSize: 16.0,
                   ),
-                  focusNode: meterNode,
-                  controller: meterController,
+                  focusNode: amountNode,
+                  controller: amountController,
                   decoration: InputDecoration(
-                    labelText: 'Stan licznika',
-                    labelStyle: TextStyle(color: subColor),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                      borderSide: BorderSide(
-                        color: subColor,
-                        width: 2.0,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: subColor,
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                  onEditingComplete: () {
-                    FocusScope.of(context).requestFocus(filledNode);
-                  },
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                TextFormField(
-                  style: TextStyle(
-                    color: subColor,
-                    fontSize: 16.0,
-                  ),
-                  focusNode: filledNode,
-                  controller: filledController,
-                  decoration: InputDecoration(
-                    labelText: 'Ilość zatankowanego paliwa',
+                    labelText: 'Liczba litrów zebranego miodu',
                     labelStyle: TextStyle(color: subColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -183,9 +150,6 @@ class _AddRefuelState extends State<AddRefuel> {
                   onEditingComplete: () {
                     FocusScope.of(context).requestFocus(priceNode);
                   },
-                  validator: (val) => val.isEmpty
-                      ? 'Musisz dodać ile litrów paliwa zatankowano!'
-                      : null,
                 ),
                 SizedBox(
                   height: 20.0,
@@ -198,7 +162,7 @@ class _AddRefuelState extends State<AddRefuel> {
                   focusNode: priceNode,
                   controller: priceController,
                   decoration: InputDecoration(
-                    labelText: 'Cena za litr paliwa',
+                    labelText: 'Cena za litr miodu',
                     labelStyle: TextStyle(color: subColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -216,7 +180,7 @@ class _AddRefuelState extends State<AddRefuel> {
                     ),
                   ),
                   onEditingComplete: () {
-                    FocusScope.of(context).requestFocus(isFullNode);
+                    FocusScope.of(context).requestFocus(percentNode);
                   },
                   validator: (val) =>
                       val.isEmpty ? 'Musisz dodać cenę za litr!' : null,
@@ -229,10 +193,10 @@ class _AddRefuelState extends State<AddRefuel> {
                     color: subColor,
                     fontSize: 16.0,
                   ),
-                  focusNode: isFullNode,
-                  controller: isFullController,
+                  focusNode: percentNode,
+                  controller: percentController,
                   decoration: InputDecoration(
-                    labelText: 'Czy zatankowano do pełna? Tak/Nie',
+                    labelText: 'Procent wody w miodzie',
                     labelStyle: TextStyle(color: subColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
@@ -249,10 +213,6 @@ class _AddRefuelState extends State<AddRefuel> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                   ),
-                  validator: (val) =>
-                      (!val.contains('Tak') && !val.contains('Nie'))
-                          ? 'Musisz wpisać Tak lub Nie!'
-                          : null,
                 ),
                 SizedBox(
                   height: 20.0,
@@ -269,23 +229,21 @@ class _AddRefuelState extends State<AddRefuel> {
                   shape: StadiumBorder(),
                   onPressed: () {
                     if (_formKey.currentState.validate()) {
-                      RefuelModel newRefuel = RefuelModel(
+                      HoneyModel newHoney = HoneyModel(
                         typeController.text,
                         dateController.text,
-                        meterController.text,
-                        filledController.text,
+                        int.parse(amountController.text),
                         priceController.text,
-                        isFullController.text ?? '',
+                        int.parse(percentController.text ?? ''),
                       );
 
-                      getDB.addRefuel(newRefuel).then((i) {
+                      getDB.addHoney(newHoney).then((i) {
                         typeController.clear();
                         dateController.clear();
-                        meterController.clear();
-                        filledController.clear();
+                        amountController.clear();
                         priceController.clear();
-                        isFullController.clear();
-                        newRefuel = null;
+                        percentController.clear();
+                        newHoney = null;
                       });
                       Navigator.pop(context);
                     }
