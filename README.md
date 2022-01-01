@@ -1,15 +1,14 @@
-# CarCare
-Aplikacja pozwalająca kontrolować akcje związane z osobistym pojazdem.
+# To Bee happy
+Aplikacja pozwalająca kontrolować akcje związane z pasieką.
 
 Funkcje:
-* Ceny paliw,
-* Przypomniena
-* Pojazdy:
+* Aktualne normy Unijne,
+* Noatki
+* Moja Pasieka:
 - Informacje
-- Opony
-- Serwis
-- Tankowanie
-- Statystyki
-* Lista warsztatów
-* Assistance
-* CEPIK Historia Pojazdów
+- Rodziny pszczele
+- Miód
+- Pzegląd
+- Lokalizacja Uli
+- Zdjęcia
+
