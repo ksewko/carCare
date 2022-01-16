@@ -38,7 +38,7 @@ class MovieRental extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'To bee happy',
+        title: 'Bee happy',
         // theme: MyTheme().buildTheme(),
         home: SplashScreen(),
         routes: {

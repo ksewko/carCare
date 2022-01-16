@@ -5,6 +5,7 @@ import 'package:carcare/screens/notes_views/notes_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:sqflite/sqflite.dart';
+import '../../model/theme.dart' as theme;
 
 class NotesMain extends StatefulWidget {
   @override
@@ -18,30 +19,25 @@ class NotesMainState extends State<NotesMain> {
   List<Notes> notesList;
   int count = 0;
   int axisCount = 2;
-  Color reminderColor = Colors.yellow[400];
-  String bgImage = 'bg_bee.png';
-  Color mainColor = Colors.orange[700];
-  Color subColor = Colors.yellow[200];
-  Color secondSubColor = Colors.yellow[50];
 
   @override
   Widget build(BuildContext context) {
     if (notesList == null) {
-     notesList = List<Notes>();
+      notesList = List<Notes>();
       updateListView();
     }
 
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Notatki'),
-        backgroundColor: mainColor,
+        title: Text('Notatki', style: TextStyle(color: theme.fontColor)),
+        backgroundColor: theme.mainColor,
       ),
       body: notesList.length == 0
           ? Container(
               decoration: BoxDecoration(
                   image: DecorationImage(
-                image: AssetImage('assets/$bgImage'),
+                image: AssetImage('assets/${theme.bgImage}'),
                 fit: BoxFit
                     .cover, //zasłoni cały background, -> umiejscowienie image w bgc
               )),
@@ -55,7 +51,7 @@ class NotesMainState extends State<NotesMain> {
           : Container(
               decoration: BoxDecoration(
                   image: DecorationImage(
-                image: AssetImage('assets/$bgImage'),
+                image: AssetImage('assets/${theme.bgImage}'),
                 fit: BoxFit
                     .cover, //zasłoni cały background, -> umiejscowienie image w bgc
               )),
@@ -87,7 +83,7 @@ class NotesMainState extends State<NotesMain> {
           child: Container(
             padding: EdgeInsets.all(8.0),
             decoration: BoxDecoration(
-                color: reminderColor,
+                color: theme.subColor2,
                 border: Border.all(width: 2, color: Colors.black),
                 borderRadius: BorderRadius.circular(8.0)),
             child: Column(
@@ -101,7 +97,7 @@ class NotesMainState extends State<NotesMain> {
                         child: Text(
                           this.notesList[index].title,
                           style: TextStyle(
-                            color: mainColor,
+                            color: theme.fontColor,
                             fontWeight: FontWeight.bold,
                             fontSize: 20.0,
                           ),
@@ -121,7 +117,7 @@ class NotesMainState extends State<NotesMain> {
                               ? ''
                               : this.notesList[index].desc,
                           style: TextStyle(
-                            color: mainColor,
+                            color: theme.fontColor,
                             fontSize: 18.0,
                           ),
                         ),

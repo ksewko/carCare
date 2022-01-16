@@ -2,6 +2,7 @@ import 'package:carcare/model/families/db_family.dart';
 import 'package:carcare/model/families/family_model.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validators/form_validators.dart';
+import '../../model/theme.dart' as theme;
 
 class EditFamilies extends StatefulWidget {
   final FamilyModel families;
@@ -13,10 +14,6 @@ class EditFamilies extends StatefulWidget {
 
 class _EditFamiliesState extends State<EditFamilies> {
   final DBFamily getDB = DBFamily();
-  Color redColor = Colors.red[900];
-  String bgImage = 'bg_bee.png';
-  Color mainColor = Colors.orange[700];
-  Color subColor = Colors.yellow[200];
 
   // capture input from TextField
   var nameController = TextEditingController();
@@ -38,14 +35,14 @@ class _EditFamiliesState extends State<EditFamilies> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: mainColor,
+        backgroundColor: theme.mainColor,
         centerTitle: true,
-        title: Text('Rodzina ${families.name}'),
+        title: Text('Rodzina ${families.name}', style: TextStyle(color: theme.fontColor)),
       ),
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-          image: AssetImage('assets/$bgImage'),
+          image: AssetImage('assets/${theme.bgImage}'),
           fit: BoxFit
               .cover, //zasłoni cały background, -> umiejscowienie image w bgc
         )),
@@ -62,23 +59,23 @@ class _EditFamiliesState extends State<EditFamilies> {
                     ),
                     TextFormField(
                       style: TextStyle(
-                        color: subColor,
+                        color: theme.fontColor,
                         fontSize: 16.0,
                       ),
                       controller: nameController,
                       decoration: InputDecoration(
                         labelText: 'Nazwa',
-                        labelStyle: TextStyle(color: subColor),
+                        labelStyle: TextStyle(color: theme.fontColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.circular(20),
@@ -92,23 +89,23 @@ class _EditFamiliesState extends State<EditFamilies> {
                     ),
                     TextFormField(
                       style: TextStyle(
-                        color: subColor,
+                        color: theme.fontColor,
                         fontSize: 16.0,
                       ),
                       controller: hivesNumberController,
                       decoration: InputDecoration(
                         labelText: 'Liczba uli',
-                        labelStyle: TextStyle(color: subColor),
+                        labelStyle: TextStyle(color: theme.fontColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.circular(20),
@@ -122,23 +119,23 @@ class _EditFamiliesState extends State<EditFamilies> {
                     ),
                     TextFormField(
                       style: TextStyle(
-                        color: subColor,
+                        color: theme.fontColor,
                         fontSize: 16.0,
                       ),
                       controller: honeyController,
                       decoration: InputDecoration(
                         labelText: 'Rodzaj miodu',
-                        labelStyle: TextStyle(color: subColor),
+                        labelStyle: TextStyle(color: theme.fontColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.circular(20),
@@ -150,23 +147,23 @@ class _EditFamiliesState extends State<EditFamilies> {
                     ),
                     TextFormField(
                       style: TextStyle(
-                        color: subColor,
+                        color: theme.fontColor,
                         fontSize: 16.0,
                       ),
                       controller: locationController,
                       decoration: InputDecoration(
                         labelText: 'Lokalizacja rodziny',
-                        labelStyle: TextStyle(color: subColor),
+                        labelStyle: TextStyle(color: theme.fontColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.circular(20),
@@ -178,23 +175,23 @@ class _EditFamiliesState extends State<EditFamilies> {
                     ),
                     TextFormField(
                       style: TextStyle(
-                        color: subColor,
+                        color: theme.fontColor,
                         fontSize: 16.0,
                       ),
                       controller: litersNumberController,
                       decoration: InputDecoration(
                         labelText: 'Liczba ltrów wyprodukowanego miodu',
-                        labelStyle: TextStyle(color: subColor),
+                        labelStyle: TextStyle(color: theme.fontColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.circular(20),
@@ -205,11 +202,11 @@ class _EditFamiliesState extends State<EditFamilies> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         RaisedButton(
-                          color: redColor,
+                          color: theme.redColor,
                           child: Text(
                             'Zapisz',
                             style: TextStyle(
-                              color: subColor,
+                              color: theme.fontColor,
                               fontSize: 20.0,
                             ),
                           ),
@@ -217,11 +214,10 @@ class _EditFamiliesState extends State<EditFamilies> {
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
                               families.name = nameController.text;
-                              families.hivesNumber = int.parse(hivesNumberController.text);
-                              families.honey =
-                                  honeyController.text ?? '';
-                              families.location =
-                                  locationController.text ?? '';
+                              families.hivesNumber =
+                                  int.parse(hivesNumberController.text);
+                              families.honey = honeyController.text ?? '';
+                              families.location = locationController.text ?? '';
                               getDB.updateFamilies(families);
                               Navigator.pop(context);
                             }
@@ -231,11 +227,11 @@ class _EditFamiliesState extends State<EditFamilies> {
                           width: 30.0,
                         ),
                         RaisedButton(
-                          color: redColor,
+                          color: theme.redColor,
                           child: Text(
                             'Usuń',
                             style: TextStyle(
-                              color: subColor,
+                              color: theme.fontColor,
                               fontSize: 20.0,
                             ),
                           ),
@@ -273,7 +269,8 @@ class _EditFamiliesState extends State<EditFamilies> {
                                               color: Colors.black),
                                         ),
                                         onPressed: () async {
-                                          await getDB.deleteFamilies(families.id);
+                                          await getDB
+                                              .deleteFamilies(families.id);
                                           Navigator.pop(context);
                                           Navigator.pop(context);
                                         },

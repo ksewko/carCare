@@ -3,6 +3,7 @@ import 'package:carcare/model/families/family_model.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validators/form_validators.dart';
 import 'package:provider/provider.dart';
+import '../../model/theme.dart' as theme;
 
 class AddFamilies extends StatefulWidget {
   @override
@@ -11,11 +12,6 @@ class AddFamilies extends StatefulWidget {
 
 class _AddFamiliesState extends State<AddFamilies> {
   final DBFamily getDB = DBFamily();
-
-  Color redColor = Colors.red[900];
-  String bgImage = 'bg_bee.png';
-  Color mainColor = Colors.orange[700];
-  Color subColor = Colors.yellow[200];
 
   final FocusNode nameNode = FocusNode();
   final FocusNode hivesNumberNode = FocusNode();
@@ -36,16 +32,16 @@ class _AddFamiliesState extends State<AddFamilies> {
     final getDB = Provider.of<DBFamily>(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: mainColor,
+        backgroundColor: theme.mainColor,
         centerTitle: true,
-        title: Text('Dodaj nową rodzinę'),
+        title: Text('Dodaj nową rodzinę' , style: TextStyle(color: theme.fontColor)),
       ),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
-            image: AssetImage('assets/$bgImage'),
+            image: AssetImage('assets/${theme.bgImage}'),
             fit: BoxFit
                 .cover, //zasłoni cały background, -> umiejscowienie image w bgc
           )),
@@ -56,7 +52,7 @@ class _AddFamiliesState extends State<AddFamilies> {
               children: <Widget>[
                 TextFormField(
                   style: TextStyle(
-                    color: subColor,
+                    color: theme.fontColor,
                     fontSize: 16.0,
                   ),
                   autofocus: true,
@@ -64,17 +60,17 @@ class _AddFamiliesState extends State<AddFamilies> {
                   controller: nameController,
                   decoration: InputDecoration(
                     labelText: 'Nazwa',
-                    labelStyle: TextStyle(color: subColor),
+                    labelStyle: TextStyle(color: theme.fontColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -91,24 +87,24 @@ class _AddFamiliesState extends State<AddFamilies> {
                 ),
                 TextFormField(
                   style: TextStyle(
-                    color: subColor,
+                    color: theme.fontColor,
                     fontSize: 16.0,
                   ),
                   focusNode: hivesNumberNode,
                   controller: hivesNumberController,
                   decoration: InputDecoration(
                     labelText: 'Liczba uli',
-                    labelStyle: TextStyle(color: subColor),
+                    labelStyle: TextStyle(color: theme.fontColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -125,24 +121,24 @@ class _AddFamiliesState extends State<AddFamilies> {
                 ),
                 TextFormField(
                   style: TextStyle(
-                    color: subColor,
+                    color: theme.fontColor,
                     fontSize: 16.0,
                   ),
                   focusNode: honeyNode,
                   controller: honeyController,
                   decoration: InputDecoration(
                     labelText: 'Rodzaj miodu',
-                    labelStyle: TextStyle(color: subColor),
+                    labelStyle: TextStyle(color: theme.fontColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -157,24 +153,24 @@ class _AddFamiliesState extends State<AddFamilies> {
                 ),
                 TextFormField(
                   style: TextStyle(
-                    color: subColor,
+                    color: theme.fontColor,
                     fontSize: 16.0,
                   ),
                   focusNode: locationNode,
                   controller: locationController,
                   decoration: InputDecoration(
                     labelText: 'Lokalizacja rodziny',
-                    labelStyle: TextStyle(color: subColor),
+                    labelStyle: TextStyle(color: theme.fontColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -189,24 +185,24 @@ class _AddFamiliesState extends State<AddFamilies> {
                 ),
                 TextFormField(
                   style: TextStyle(
-                    color: subColor,
+                    color: theme.fontColor,
                     fontSize: 16.0,
                   ),
                   focusNode: litersNumberNode,
                   controller: litersNumberController,
                   decoration: InputDecoration(
                     labelText: 'Liczba litrów wprodukowanego miodu',
-                    labelStyle: TextStyle(color: subColor),
+                    labelStyle: TextStyle(color: theme.fontColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -214,11 +210,11 @@ class _AddFamiliesState extends State<AddFamilies> {
                   ),
                 ),
                 RaisedButton(
-                  color: redColor,
+                  color: theme.redColor,
                   child: Text(
                     'Dodaj',
                     style: TextStyle(
-                      color: subColor,
+                      color: theme.fontColor,
                       fontSize: 20.0,
                     ),
                   ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:hexagon/hexagon.dart';
+import '../../model/theme.dart' as theme;
 
 class HiveView extends StatefulWidget {
   @override
@@ -12,17 +13,12 @@ class _HiveViewState extends State<HiveView> {
 
   @override
   Widget build(BuildContext context) {
-    String bgImage = 'bg_bee.png';
-    Color mainColor = Colors.orange[700];
-    Color subColor = Colors.yellow[200];
-    Color secondSubColor = Colors.yellow[50];
-
     return Scaffold(
       //ustanienie paska na górze aplikacji w zależności od dnia i nocy
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Moja pasieka'),
-        backgroundColor: mainColor,
+        title: Text('Moja pasieka' , style: TextStyle(color: theme.fontColor)),
+        backgroundColor: theme.mainColor,
         elevation: 0.0,
       ),
       body: SafeArea(
@@ -30,7 +26,7 @@ class _HiveViewState extends State<HiveView> {
           child: Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-              image: AssetImage('assets/$bgImage'),
+              image: AssetImage('assets/${theme.bgImage}'),
               fit: BoxFit
                   .cover, //zasłoni cały background, -> umiejscowienie image w bgc
             )),
@@ -45,20 +41,18 @@ class _HiveViewState extends State<HiveView> {
                       decoration: BoxDecoration(
                           image: DecorationImage(
                         image: AssetImage('assets/logo.png'),
-                        fit: BoxFit
-                            .fill, //zasłoni cały background, -> umiejscowienie image w bgc
                       )),
                     ),
                   ),
                 ),
                 //Lista przycisków -> odniesień na inne screeny
                 SizedBox(height: 25.0),
-                 Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     HexagonWidget.flat(
                       width: 150.0,
-                      color: subColor,
+                      color: theme.subColor,
                       child: FlatButton(
                         height: 150.0,
                         onPressed: () async {
@@ -69,7 +63,7 @@ class _HiveViewState extends State<HiveView> {
                           'Informacje',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              color: mainColor,
+                              color: theme.fontColor,
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold),
                         ),
@@ -78,17 +72,17 @@ class _HiveViewState extends State<HiveView> {
                     SizedBox(width: 20.0),
                     HexagonWidget.flat(
                       width: 150.0,
-                      color: secondSubColor,
+                      color: theme.subColor2,
                       child: FlatButton(
                         height: 150.0,
                         onPressed: () async {
                           dynamic result =
-                             await Navigator.pushNamed(context, '/families');
+                              await Navigator.pushNamed(context, '/families');
                         },
                         child: Text(
                           'Rodziny',
                           style: TextStyle(
-                              color: mainColor,
+                              color: theme.fontColor,
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold),
                         ),
@@ -102,18 +96,18 @@ class _HiveViewState extends State<HiveView> {
                   children: <Widget>[
                     HexagonWidget.flat(
                       width: 150.0,
-                      color: secondSubColor,
+                      color: theme.subColor2,
                       child: FlatButton(
                         height: 150.0,
                         onPressed: () async {
                           dynamic result =
-                             await Navigator.pushNamed(context, '/honey');
+                              await Navigator.pushNamed(context, '/honey');
                         },
                         child: Text(
                           'Miód',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              color: mainColor,
+                              color: theme.fontColor,
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold),
                         ),
@@ -122,17 +116,17 @@ class _HiveViewState extends State<HiveView> {
                     SizedBox(width: 20.0),
                     HexagonWidget.flat(
                       width: 150.0,
-                      color: subColor,
+                      color: theme.subColor,
                       child: FlatButton(
                         height: 150.0,
                         onPressed: () async {
                           dynamic result =
-                             await Navigator.pushNamed(context, '/service');
+                              await Navigator.pushNamed(context, '/service');
                         },
                         child: Text(
                           'Przegląd',
                           style: TextStyle(
-                              color: mainColor,
+                              color: theme.fontColor,
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold),
                         ),
@@ -146,7 +140,7 @@ class _HiveViewState extends State<HiveView> {
                   children: <Widget>[
                     HexagonWidget.flat(
                       width: 150.0,
-                      color: subColor,
+                      color: theme.subColor,
                       child: FlatButton(
                         height: 150.0,
                         onPressed: () async {
@@ -157,7 +151,7 @@ class _HiveViewState extends State<HiveView> {
                           'Lokalizacja\n Uli',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              color: mainColor,
+                              color: theme.fontColor,
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold),
                         ),
@@ -166,7 +160,7 @@ class _HiveViewState extends State<HiveView> {
                     SizedBox(width: 20.0),
                     HexagonWidget.flat(
                       width: 150.0,
-                      color: secondSubColor,
+                      color: theme.subColor2,
                       child: FlatButton(
                         height: 150.0,
                         onPressed: () async {
@@ -176,7 +170,7 @@ class _HiveViewState extends State<HiveView> {
                         child: Text(
                           'Zdjęcia',
                           style: TextStyle(
-                              color: mainColor,
+                              color: theme.fontColor,
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold),
                         ),

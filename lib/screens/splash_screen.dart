@@ -46,12 +46,10 @@ class _SplashScreenState extends State<SplashScreen> {
                   decoration: BoxDecoration(
                       image: DecorationImage(
                     image: AssetImage('assets/logo.png'),
-                    fit: BoxFit
-                        .fill, //zasłoni cały background, -> umiejscowienie image w bgc
                   )),
                 ),
                 Text(
-                  'Car Care',
+                  'Bee Happy',
                   style: TextStyle(fontSize: 24.0),
                 )
               ],

@@ -2,6 +2,7 @@ import 'package:carcare/model/location/location_loc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
+import '../../model/theme.dart' as theme;
 
 class MapView extends StatefulWidget {
   final LocationLoc location;
@@ -36,10 +37,9 @@ class _MapViewState extends State<MapView> {
 
   @override
   Widget build(BuildContext context) {
-    Color mainColor = Colors.grey[900];
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: mainColor,
+        backgroundColor: theme.mainColor,
         centerTitle: true,
         title: Text(widget.appBarTitle),
         actions: widget.isSelecting

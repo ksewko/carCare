@@ -2,6 +2,7 @@ import 'package:carcare/model/notes/db_notes.dart';
 import 'package:carcare/model/notes/notes_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import '../../model/theme.dart' as theme;
 
 class NotesDetail extends StatefulWidget {
   final String appBarTitle;
@@ -17,11 +18,6 @@ class NotesDetail extends StatefulWidget {
 
 class NoteDetailState extends State<NotesDetail> {
   DBNotes dbNotes = DBNotes();
-
-  String bgImage = 'bg_bee.png';
-  Color mainColor = Colors.orange[700];
-  Color subColor = Colors.yellow[200];
-  Color secondSubColor = Colors.yellow[50];
 
   String appBarTitle;
   Notes notes;
@@ -46,9 +42,9 @@ class NoteDetailState extends State<NotesDetail> {
             title: Text(
               appBarTitle,
             ),
-            backgroundColor: mainColor,
+            backgroundColor: theme.mainColor,
             leading: IconButton(
-                icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+                icon: Icon(Icons.arrow_back_ios, color: theme.fontColor),
                 onPressed: () {
                   isEdited ? showDiscardDialog(context) : moveToLastScreen();
                 }),
@@ -56,7 +52,7 @@ class NoteDetailState extends State<NotesDetail> {
               IconButton(
                 icon: Icon(
                   Icons.save,
-                  color: Colors.white,
+                  color: theme.fontColor,
                 ),
                 onPressed: () {
                   titleController.text.length == 0
@@ -65,7 +61,7 @@ class NoteDetailState extends State<NotesDetail> {
                 },
               ),
               IconButton(
-                icon: Icon(Icons.delete, color: Colors.white),
+                icon: Icon(Icons.delete, color: theme.fontColor),
                 onPressed: () {
                   showDeleteDialog(context);
                 },
@@ -75,7 +71,7 @@ class NoteDetailState extends State<NotesDetail> {
           body: Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-              image: AssetImage('assets/$bgImage'),
+              image: AssetImage('assets/${theme.bgImage}'),
               fit: BoxFit
                   .cover, //zasłoni cały background, -> umiejscowienie image w bgc
             )),
@@ -85,7 +81,7 @@ class NoteDetailState extends State<NotesDetail> {
                   padding: EdgeInsets.all(16.0),
                   child: TextField(
                     style: TextStyle(
-                      color: Colors.white,
+                      color: theme.fontColor,
                       fontSize: 22.0,
                       fontWeight: FontWeight.bold,
                     ),
@@ -97,7 +93,7 @@ class NoteDetailState extends State<NotesDetail> {
                     decoration: InputDecoration.collapsed(
                       hintText: 'Tytuł',
                       hintStyle: TextStyle(
-                        color: subColor,
+                        color: theme.fontColor,
                         fontSize: 22.0,
                       ),
                     ),
@@ -108,7 +104,7 @@ class NoteDetailState extends State<NotesDetail> {
                     padding: EdgeInsets.all(16.0),
                     child: TextField(
                       style: TextStyle(
-                        color: Colors.white,
+                        color: theme.fontColor,
                         fontSize: 18.0,
                       ),
                       keyboardType: TextInputType.multiline,
@@ -121,7 +117,7 @@ class NoteDetailState extends State<NotesDetail> {
                       decoration: InputDecoration.collapsed(
                         hintText: 'Opis',
                         hintStyle: TextStyle(
-                          color: subColor,
+                          color: theme.fontColor,
                           fontSize: 18.0,
                         ),
                       ),
@@ -144,7 +140,7 @@ class NoteDetailState extends State<NotesDetail> {
           title: Text(
             "Odrzuć zmiany!",
             style: TextStyle(
-              color: secondSubColor,
+              color: theme.fontColor,
               fontWeight: FontWeight.bold,
               fontSize: 22.0,
             ),
@@ -152,7 +148,7 @@ class NoteDetailState extends State<NotesDetail> {
           content: Text(
             "Czy chcesz odrzucić zmiany?",
             style: TextStyle(
-              color: mainColor,
+              color: theme.fontColor,
               fontSize: 18.0,
             ),
           ),
@@ -161,7 +157,7 @@ class NoteDetailState extends State<NotesDetail> {
               child: Text(
                 "Nie",
                 style: TextStyle(
-                  color: secondSubColor,
+                  color: theme.fontColor,
                   fontWeight: FontWeight.bold,
                   fontSize: 22.0,
                 ),
@@ -174,7 +170,7 @@ class NoteDetailState extends State<NotesDetail> {
               child: Text(
                 "Tak",
                 style: TextStyle(
-                  color: secondSubColor,
+                  color: theme.fontColor,
                   fontWeight: FontWeight.bold,
                   fontSize: 22.0,
                 ),
@@ -200,14 +196,14 @@ class NoteDetailState extends State<NotesDetail> {
           title: Text(
             "Brak Tytułu!",
             style: TextStyle(
-              color: secondSubColor,
+              color: theme.fontColor,
               fontSize: 18.0,
             ),
           ),
           content: Text(
             'Musisz dodać tytuł Przypomnienia!',
             style: TextStyle(
-              color: secondSubColor,
+              color: theme.fontColor,
               fontSize: 18.0,
             ),
           ),
@@ -216,7 +212,7 @@ class NoteDetailState extends State<NotesDetail> {
               child: Text(
                 "Ok",
                 style: TextStyle(
-                  color: secondSubColor,
+                  color: theme.fontColor,
                   fontWeight: FontWeight.bold,
                   fontSize: 22.0,
                 ),
@@ -245,7 +241,7 @@ class NoteDetailState extends State<NotesDetail> {
               'Czy chcesz usunąć notatkę?',
               textAlign: TextAlign.center,
             ),
-            backgroundColor: secondSubColor,
+            backgroundColor: theme.fontColor,
             elevation: 8.0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30.0),

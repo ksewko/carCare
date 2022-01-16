@@ -2,6 +2,7 @@ import 'package:carcare/model/inspection/db_inspection.dart';
 import 'package:carcare/model/inspection/inspection_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../model/theme.dart' as theme;
 
 class AddInspection extends StatefulWidget {
   @override
@@ -10,11 +11,6 @@ class AddInspection extends StatefulWidget {
 
 class _AddInspectionState extends State<AddInspection> {
   final DBInspection getDB = DBInspection();
-  String bgImage = 'bg_bee.png';
-  Color mainColor = Colors.orange[700];
-  Color subColor = Colors.yellow[200];
-  Color secondSubColor = Colors.yellow[50];
-  Color redColor = Colors.red[900];
 
   final FocusNode nameNode = FocusNode();
   final FocusNode dateNode = FocusNode();
@@ -31,16 +27,16 @@ class _AddInspectionState extends State<AddInspection> {
     final getDB = Provider.of<DBInspection>(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: mainColor,
+        backgroundColor: theme.mainColor,
         centerTitle: true,
-        title: Text('Dodaj nowy przegląd'),
+        title: Text('Dodaj nowy przegląd' , style: TextStyle(color: theme.fontColor)),
       ),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
-            image: AssetImage('assets/$bgImage'),
+            image: AssetImage('assets/${theme.bgImage}'),
             fit: BoxFit
                 .cover, //zasłoni cały background, -> umiejscowienie image w bgc
           )),
@@ -51,7 +47,7 @@ class _AddInspectionState extends State<AddInspection> {
               children: <Widget>[
                 TextFormField(
                   style: TextStyle(
-                    color: subColor,
+                    color: theme.fontColor,
                     fontSize: 16.0,
                   ),
                   autofocus: true,
@@ -59,17 +55,17 @@ class _AddInspectionState extends State<AddInspection> {
                   controller: nameController,
                   decoration: InputDecoration(
                     labelText: 'Nazwa przeglądu',
-                    labelStyle: TextStyle(color: subColor),
+                    labelStyle: TextStyle(color: theme.fontColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -86,24 +82,24 @@ class _AddInspectionState extends State<AddInspection> {
                 ),
                 TextFormField(
                   style: TextStyle(
-                    color: subColor,
+                    color: theme.fontColor,
                     fontSize: 16.0,
                   ),
                   focusNode: dateNode,
                   controller: dateController,
                   decoration: InputDecoration(
                     labelText: 'Data przeglądu',
-                    labelStyle: TextStyle(color: subColor),
+                    labelStyle: TextStyle(color: theme.fontColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -121,7 +117,7 @@ class _AddInspectionState extends State<AddInspection> {
                 ),
                 TextFormField(
                   style: TextStyle(
-                    color: subColor,
+                    color: theme.fontColor,
                     fontSize: 16.0,
                   ),
                   focusNode: descNode,
@@ -131,17 +127,17 @@ class _AddInspectionState extends State<AddInspection> {
                   controller: descController,
                   decoration: InputDecoration(
                     labelText: 'Opis',
-                    labelStyle: TextStyle(color: subColor),
+                    labelStyle: TextStyle(color: theme.fontColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -152,11 +148,11 @@ class _AddInspectionState extends State<AddInspection> {
                   height: 20.0,
                 ),
                 RaisedButton(
-                  color: redColor,
+                  color: theme.redColor,
                   child: Text(
                     'Dodaj',
                     style: TextStyle(
-                      color: subColor,
+                      color: theme.fontColor,
                       fontSize: 20.0,
                     ),
                   ),

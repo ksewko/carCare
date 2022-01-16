@@ -1,6 +1,7 @@
 import 'package:carcare/model/honey/db_honey.dart';
 import 'package:carcare/model/honey/honey_model.dart';
 import 'package:flutter/material.dart';
+import '../../model/theme.dart' as theme;
 
 class EditHoney extends StatefulWidget {
   final HoneyModel honey;
@@ -12,11 +13,6 @@ class EditHoney extends StatefulWidget {
 
 class _EditHoneyState extends State<EditHoney> {
   final DBHoney getDB = DBHoney();
-  Color redColor = Colors.red[900];
- String bgImage = 'bg_bee.png';
-    Color mainColor = Colors.orange[700];
-    Color subColor = Colors.yellow[200];
-    Color secondSubColor = Colors.yellow[50];
 
   // capture input from TextField
   var typeController = TextEditingController();
@@ -38,14 +34,14 @@ class _EditHoneyState extends State<EditHoney> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: mainColor,
+        backgroundColor: theme.mainColor,
         centerTitle: true,
         title: Text(widget.honey.type),
       ),
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-          image: AssetImage('assets/$bgImage'),
+          image: AssetImage('assets/${theme.bgImage}'),
           fit: BoxFit
               .cover, //zasłoni cały background, -> umiejscowienie image w bgc
         )),
@@ -62,23 +58,23 @@ class _EditHoneyState extends State<EditHoney> {
                     ),
                     TextFormField(
                       style: TextStyle(
-                        color: subColor,
+                        color: theme.fontColor,
                         fontSize: 16.0,
                       ),
                       controller: typeController,
                       decoration: InputDecoration(
                         labelText: 'Rodzaj miodu',
-                        labelStyle: TextStyle(color: subColor),
+                        labelStyle: TextStyle(color: theme.fontColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.circular(20),
@@ -92,23 +88,23 @@ class _EditHoneyState extends State<EditHoney> {
                     ),
                     TextFormField(
                       style: TextStyle(
-                        color: subColor,
+                        color: theme.fontColor,
                         fontSize: 16.0,
                       ),
                       controller: dateController,
                       decoration: InputDecoration(
                         labelText: 'Data zbioru',
-                        labelStyle: TextStyle(color: subColor),
+                        labelStyle: TextStyle(color: theme.fontColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.circular(20),
@@ -122,23 +118,23 @@ class _EditHoneyState extends State<EditHoney> {
                     ),
                     TextFormField(
                       style: TextStyle(
-                        color: subColor,
+                        color: theme.fontColor,
                         fontSize: 16.0,
                       ),
                       controller: amountController,
                       decoration: InputDecoration(
                         labelText: 'Liczba litrów',
-                        labelStyle: TextStyle(color: subColor),
+                        labelStyle: TextStyle(color: theme.fontColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.circular(20),
@@ -152,23 +148,23 @@ class _EditHoneyState extends State<EditHoney> {
                     ),
                     TextFormField(
                       style: TextStyle(
-                        color: subColor,
+                        color: theme.fontColor,
                         fontSize: 16.0,
                       ),
                       controller: priceController,
                       decoration: InputDecoration(
                         labelText: 'Cena za litr miodu',
-                        labelStyle: TextStyle(color: subColor),
+                        labelStyle: TextStyle(color: theme.fontColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.circular(20),
@@ -182,30 +178,29 @@ class _EditHoneyState extends State<EditHoney> {
                       height: 30.0,
                     ),
                     TextFormField(
-                      style: TextStyle(
-                        color: subColor,
-                        fontSize: 16.0,
-                      ),
-                      controller: percentController,
-                      decoration: InputDecoration(
-                        labelText: 'Procent wody w miodzie',
-                        labelStyle: TextStyle(color: subColor),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                          borderSide: BorderSide(
-                            color: subColor,
-                            width: 2.0,
-                          ),
+                        style: TextStyle(
+                          color: theme.fontColor,
+                          fontSize: 16.0,
                         ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: subColor,
-                            width: 2.0,
+                        controller: percentController,
+                        decoration: InputDecoration(
+                          labelText: 'Procent wody w miodzie',
+                          labelStyle: TextStyle(color: theme.fontColor),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                            borderSide: BorderSide(
+                              color: theme.fontColor,
+                              width: 2.0,
+                            ),
                           ),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      )
-                    ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: theme.fontColor,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        )),
                     SizedBox(
                       height: 30.0,
                     ),
@@ -213,11 +208,11 @@ class _EditHoneyState extends State<EditHoney> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         RaisedButton(
-                          color: redColor,
+                          color: theme.redColor,
                           child: Text(
                             'Zapisz',
                             style: TextStyle(
-                              color: subColor,
+                              color: theme.fontColor,
                               fontSize: 20.0,
                             ),
                           ),
@@ -239,11 +234,11 @@ class _EditHoneyState extends State<EditHoney> {
                           width: 30.0,
                         ),
                         RaisedButton(
-                          color: redColor,
+                          color: theme.redColor,
                           child: Text(
                             'Usuń',
                             style: TextStyle(
-                              color: subColor,
+                              color: theme.fontColor,
                               fontSize: 20.0,
                             ),
                           ),

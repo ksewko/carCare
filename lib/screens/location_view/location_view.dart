@@ -4,18 +4,14 @@ import 'package:carcare/screens/location_view/add_location_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
+import '../../model/theme.dart' as theme;
 
 class LocationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    String bgImage = 'bg_bee.png';
-    Color mainColor = Colors.orange[700];
-    Color subColor = Colors.yellow[200];
-    Color secondSubColor = Colors.yellow[50];
-
     return Scaffold(
       appBar: AppBar(
-        title: Text("Gdzie stawiasz ule?"),
+        title: Text("Gdzie stawiasz ule?" , style: TextStyle(color: theme.fontColor)),
         actions: [
           IconButton(
             icon: Icon(Icons.add),
@@ -24,13 +20,13 @@ class LocationView extends StatelessWidget {
             },
           ),
         ],
-        backgroundColor: mainColor,
+        backgroundColor: theme.mainColor,
         centerTitle: true,
       ),
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-          image: AssetImage('assets/$bgImage'),
+          image: AssetImage('assets/${theme.bgImage}'),
           fit: BoxFit
               .cover, //zasłoni cały background, -> umiejscowienie image w bgc
         )),
@@ -40,15 +36,16 @@ class LocationView extends StatelessWidget {
           builder: (context, snapshot) =>
               (snapshot.connectionState == ConnectionState.waiting)
                   ? SpinKitFadingCircle(
-                      color: mainColor,
+                      color: theme.fontColor,
                     )
                   : Consumer<DBLocationProvider>(
                       child: Center(
                         child: Text(
                           "Brak danych do wyświetlenia",
                           style: TextStyle(
-                            color: Colors.white,
-                              fontSize: 18.0, fontWeight: FontWeight.bold),
+                              color: theme.fontColor,
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                       builder: (context, location, child) {

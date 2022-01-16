@@ -7,6 +7,7 @@ import 'package:carcare/model/widgets/loc_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../model/theme.dart' as theme;
 
 class AddLocation extends StatefulWidget {
   static const routeName = "/add-location";
@@ -15,12 +16,6 @@ class AddLocation extends StatefulWidget {
 }
 
 class _AddLocationState extends State<AddLocation> {
-  Color redColor = Colors.red[900];
-  String bgImage = 'bg_bee.png';
-  Color mainColor = Colors.orange[700];
-  Color subColor = Colors.yellow[200];
-  Color secondSubColor = Colors.yellow[50];
-
   final _titleController = TextEditingController();
   File _imagePicked;
   LocationLoc _locationPicked;
@@ -32,50 +27,6 @@ class _AddLocationState extends State<AddLocation> {
   void _selectLocation(double latitude, double longitude) {
     _locationPicked = LocationLoc(latitude: latitude, longitude: longitude);
   }
-
-// onPressed: () {
-//                             showDialog(
-//                                 context: context,
-//                                 barrierDismissible: true,
-//                                 builder: (context) {
-//                                   return AlertDialog(
-//                                     title: Text(
-//                                       'Usuń Warsztat!',
-//                                       textAlign: TextAlign.center,
-//                                     ),
-//                                     content: Text(
-//                                       'Czy chcesz usunąć warsztat \n${nameController.text} z listy?',
-//                                       textAlign: TextAlign.center,
-//                                     ),
-//                                     backgroundColor: Colors.red,
-//                                     elevation: 8.0,
-//                                     shape: RoundedRectangleBorder(
-//                                       borderRadius: BorderRadius.circular(30.0),
-//                                     ),
-//                                     actions: <Widget>[
-//                                       OutlineButton(
-//                                         borderSide:
-//                                             BorderSide(color: Colors.black),
-//                                         shape: StadiumBorder(),
-//                                         child: Text(
-//                                           'Tak',
-//                                           style: TextStyle(
-//                                               fontSize: 18.0,
-//                                               letterSpacing: 1.0,
-//                                               fontWeight: FontWeight.bold,
-//                                               color: Colors.black),
-//                                         ),
-//                                         onPressed: () async {
-//                                           await getDB
-//                                               .deleteMechanics(mechanics.id);
-//                                           Navigator.pop(context);
-//                                           Navigator.pop(context);
-//                                         },
-//                                       ),
-//                                     ],
-//                                   );
-//                                 });
-//                           },
 
   void _savePlace() {
     if (_titleController.text.isEmpty ||
@@ -131,14 +82,14 @@ class _AddLocationState extends State<AddLocation> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: mainColor,
+        backgroundColor: theme.mainColor,
         centerTitle: true,
         title: Text("Dodaj Lokalizację"),
       ),
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-          image: AssetImage('assets/$bgImage'),
+          image: AssetImage('assets/${theme.bgImage}'),
           fit: BoxFit
               .cover, //zasłoni cały background, -> umiejscowienie image w bgc
         )),
@@ -153,24 +104,24 @@ class _AddLocationState extends State<AddLocation> {
                     children: [
                       TextField(
                         style: TextStyle(
-                          color: subColor,
+                          color: theme.fontColor,
                           fontSize: 16.0,
                         ),
                         controller: _titleController,
                         textCapitalization: TextCapitalization.words,
                         decoration: InputDecoration(
                           labelText: "Nazwa Lokalizacji",
-                          labelStyle: TextStyle(color: subColor),
+                          labelStyle: TextStyle(color: theme.fontColor),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20.0),
                             borderSide: BorderSide(
-                              color: subColor,
+                              color: theme.fontColor,
                               width: 2.0,
                             ),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: subColor,
+                              color: theme.fontColor,
                               width: 2.0,
                             ),
                             borderRadius: BorderRadius.circular(20),
@@ -196,13 +147,13 @@ class _AddLocationState extends State<AddLocation> {
                   children: [
                     Icon(
                       Icons.add,
-                      color: subColor,
+                      color: theme.fontColor,
                     ),
                     SizedBox(width: 8),
                     Text(
                       "Dodaj",
                       style: TextStyle(
-                          color: subColor,
+                          color: theme.fontColor,
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold),
                     ),
@@ -211,7 +162,7 @@ class _AddLocationState extends State<AddLocation> {
               ),
               style: ElevatedButton.styleFrom(
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  primary: redColor,
+                  primary: theme.redColor,
                   elevation: 0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(0),

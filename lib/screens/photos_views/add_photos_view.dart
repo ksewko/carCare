@@ -5,6 +5,7 @@ import 'package:carcare/model/photos/db_photos_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../model/theme.dart' as theme;
 
 class AddPhotos extends StatefulWidget {
   static const routeName = "/add-photos";
@@ -13,12 +14,6 @@ class AddPhotos extends StatefulWidget {
 }
 
 class _AddPhotosState extends State<AddPhotos> {
-  Color redColor = Colors.red[900];
- String bgImage = 'bg_bee.png';
-    Color mainColor = Colors.orange[700];
-    Color subColor = Colors.yellow[200];
-    Color secondSubColor = Colors.yellow[50];
-
   File _imagePicked;
 
   void _selectImage(File imagePicked) {
@@ -76,14 +71,14 @@ class _AddPhotosState extends State<AddPhotos> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: mainColor,
+        backgroundColor: theme.mainColor,
         centerTitle: true,
         title: Text("Dodaj Zdjęcie"),
       ),
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-          image: AssetImage('assets/$bgImage'),
+          image: AssetImage('assets/${theme.bgImage}'),
           fit: BoxFit
               .cover, //zasłoni cały background, -> umiejscowienie image w bgc
         )),
@@ -111,13 +106,13 @@ class _AddPhotosState extends State<AddPhotos> {
                   children: [
                     Icon(
                       Icons.add,
-                      color: subColor,
+                      color: theme.subColor,
                     ),
                     SizedBox(width: 8),
                     Text(
                       "Dodaj",
                       style: TextStyle(
-                          color: subColor,
+                          color: theme.subColor,
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold),
                     ),
@@ -126,7 +121,7 @@ class _AddPhotosState extends State<AddPhotos> {
               ),
               style: ElevatedButton.styleFrom(
                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  primary: redColor,
+                  primary: theme.redColor,
                   elevation: 0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(0),

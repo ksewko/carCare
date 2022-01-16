@@ -4,6 +4,7 @@ import 'package:carcare/screens/families_views/add_families.dart';
 import 'package:carcare/screens/families_views/edit_families.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../model/theme.dart' as theme;
 
 class FamiliesMain extends StatefulWidget {
   @override
@@ -12,9 +13,6 @@ class FamiliesMain extends StatefulWidget {
 
 class _FamiliesMainState extends State<FamiliesMain> {
   List<FamilyModel> families;
-   String bgImage = 'bg_bee.png';
-    Color mainColor = Colors.orange[700];
-    Color subColor = Colors.yellow[200];
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +21,14 @@ class _FamiliesMainState extends State<FamiliesMain> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Rodziny'),
-        backgroundColor: mainColor,
+        title: Text('Rodziny', style: TextStyle(color: theme.fontColor)),
+        backgroundColor: theme.mainColor,
       ),
       body: SafeArea(
         child: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
-            image: AssetImage('assets/$bgImage'),
+            image: AssetImage('assets/${theme.bgImage}'),
             fit: BoxFit
                 .cover, //zasłoni cały background, -> umiejscowienie image w bgc
           )),
@@ -51,7 +49,7 @@ class _FamiliesMainState extends State<FamiliesMain> {
                               height: 150.0,
                               decoration: BoxDecoration(
                                   image: DecorationImage(
-                                image: AssetImage('assets/tires.png'),
+                                image: AssetImage('assets/hives.png'),
                                 fit: BoxFit
                                     .fill, //zasłoni cały background, -> umiejscowienie image w bgc
                               )),
@@ -59,18 +57,18 @@ class _FamiliesMainState extends State<FamiliesMain> {
                           ),
                         ),
                         Card(
-                          color: subColor,
+                          color: theme.subColor,
                           elevation: 6.0,
                           shape: StadiumBorder(),
                           child: ListTile(
                             leading: Icon(
                               Icons.radio_button_checked,
-                              color: mainColor,
+                              color: theme.fontColor,
                             ),
                             title: Text(
                               families[index].name,
                               style: TextStyle(
-                                color: mainColor,
+                                color: theme.fontColor,
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -106,7 +104,7 @@ class _FamiliesMainState extends State<FamiliesMain> {
                             trailing: Text(
                               families[index].litersNumber.toString(),
                               style: TextStyle(
-                                color: mainColor,
+                                color: theme.fontColor,
                               ),
                             ),
                             onTap: () {

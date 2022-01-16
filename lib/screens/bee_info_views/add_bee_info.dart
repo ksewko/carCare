@@ -2,6 +2,7 @@ import 'package:carcare/model/bee_info/bee_info_model.dart';
 import 'package:carcare/model/bee_info/db_bee_info.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../model/theme.dart' as theme;
 
 class AddBeeInfo extends StatefulWidget {
   @override
@@ -10,11 +11,6 @@ class AddBeeInfo extends StatefulWidget {
 
 class _AddBeeInfoState extends State<AddBeeInfo> {
   final DBBeeInfo getDB = DBBeeInfo();
-
-    String bgImage = 'bg_bee.png';
-    Color mainColor = Colors.orange[700];
-    Color subColor = Colors.yellow[200];
-    Color secondSubColor = Colors.yellow[50];
 
   final FocusNode nameNode = FocusNode();
   final FocusNode hivesNumberNode = FocusNode();
@@ -40,15 +36,15 @@ class _AddBeeInfoState extends State<AddBeeInfo> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: mainColor,
-        title: Text('Rejestr centralny pasieki'),
+        backgroundColor: theme.mainColor,
+        title: Text('Rejestr centralny pasieki' , style: TextStyle(color: theme.fontColor)),
       ),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
-            image: AssetImage('assets/$bgImage'),
+            image: AssetImage('assets/${theme.bgImage}'),
             fit: BoxFit
                 .cover, //zasłoni cały background, -> umiejscowienie image w bgc
           )),
@@ -59,7 +55,7 @@ class _AddBeeInfoState extends State<AddBeeInfo> {
               children: <Widget>[
                 TextFormField(
                   style: TextStyle(
-                    color: subColor,
+                    color: theme.fontColor,
                     fontSize: 16.0,
                   ),
                   autofocus: true,
@@ -67,17 +63,17 @@ class _AddBeeInfoState extends State<AddBeeInfo> {
                   controller: nameController,
                   decoration: InputDecoration(
                     labelText: 'Nazwa',
-                    labelStyle: TextStyle(color: subColor),
+                    labelStyle: TextStyle(color: theme.fontColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -94,24 +90,24 @@ class _AddBeeInfoState extends State<AddBeeInfo> {
                 ),
                 TextFormField(
                   style: TextStyle(
-                    color: subColor,
+                    color: theme.fontColor,
                     fontSize: 16.0,
                   ),
                   focusNode: hivesNumberNode,
                   controller: hivesNumberController,
                   decoration: InputDecoration(
                     labelText: 'Liczba uli',
-                    labelStyle: TextStyle(color: subColor),
+                    labelStyle: TextStyle(color: theme.fontColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -128,7 +124,7 @@ class _AddBeeInfoState extends State<AddBeeInfo> {
                 ),
                 TextFormField(
                   style: TextStyle(
-                    color: subColor,
+                    color: theme.fontColor,
                     fontSize: 16.0,
                   ),
                   focusNode: yearNode,
@@ -136,17 +132,17 @@ class _AddBeeInfoState extends State<AddBeeInfo> {
                   controller: yearController,
                   decoration: InputDecoration(
                     labelText: 'Rok Powstania pasieki',
-                    labelStyle: TextStyle(color: subColor),
+                    labelStyle: TextStyle(color: theme.fontColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -164,24 +160,24 @@ class _AddBeeInfoState extends State<AddBeeInfo> {
                 ),
                 TextFormField(
                   style: TextStyle(
-                    color: subColor,
+                    color: theme.fontColor,
                     fontSize: 16.0,
                   ),
                   focusNode: beekeeperNode,
                   controller: beekeeperController,
                   decoration: InputDecoration(
                     labelText: 'Nazwisko pszczelarza',
-                    labelStyle: TextStyle(color: subColor),
+                    labelStyle: TextStyle(color: theme.fontColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -198,24 +194,24 @@ class _AddBeeInfoState extends State<AddBeeInfo> {
                 ),
                 TextFormField(
                   style: TextStyle(
-                    color: subColor,
+                    color: theme.fontColor,
                     fontSize: 16.0,
                   ),
                   focusNode: beekeeperNumberNode,
                   controller: beekeeperNumberController,
                   decoration: InputDecoration(
                     labelText: 'Numer rejestracyjny pszczelarza',
-                    labelStyle: TextStyle(color: subColor),
+                    labelStyle: TextStyle(color: theme.fontColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -224,32 +220,33 @@ class _AddBeeInfoState extends State<AddBeeInfo> {
                   onEditingComplete: () {
                     FocusScope.of(context).requestFocus(characterNode);
                   },
-                  validator: (val) =>
-                      val.isEmpty ? 'Musisz dodać numer rejestracyjny pszczelarza!' : null,
+                  validator: (val) => val.isEmpty
+                      ? 'Musisz dodać numer rejestracyjny pszczelarza!'
+                      : null,
                 ),
                 SizedBox(
                   height: 20.0,
                 ),
                 TextFormField(
                   style: TextStyle(
-                    color: subColor,
+                    color: theme.fontColor,
                     fontSize: 16.0,
                   ),
                   focusNode: characterNode,
                   controller: characterController,
                   decoration: InputDecoration(
                     labelText: 'Charakter hodowli pszczół',
-                    labelStyle: TextStyle(color: subColor),
+                    labelStyle: TextStyle(color: theme.fontColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -264,24 +261,24 @@ class _AddBeeInfoState extends State<AddBeeInfo> {
                 ),
                 TextFormField(
                   style: TextStyle(
-                    color: subColor,
+                    color: theme.fontColor,
                     fontSize: 16.0,
                   ),
                   focusNode: districtNode,
                   controller: districtController,
                   decoration: InputDecoration(
                     labelText: 'Nazwa obrębu ewidencyjnego',
-                    labelStyle: TextStyle(color: subColor),
+                    labelStyle: TextStyle(color: theme.fontColor),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: subColor,
+                        color: theme.fontColor,
                         width: 2.0,
                       ),
                       borderRadius: BorderRadius.circular(20),
@@ -292,11 +289,11 @@ class _AddBeeInfoState extends State<AddBeeInfo> {
                   height: 20.0,
                 ),
                 RaisedButton(
-                  color: secondSubColor,
+                  color: theme.subColor,
                   child: Text(
                     'Dodaj',
                     style: TextStyle(
-                      color: mainColor,
+                      color: theme.mainColor,
                       fontSize: 20.0,
                     ),
                   ),

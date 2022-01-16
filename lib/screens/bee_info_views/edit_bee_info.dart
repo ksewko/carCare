@@ -1,6 +1,7 @@
 import 'package:carcare/model/bee_info/bee_info_model.dart';
 import 'package:carcare/model/bee_info/db_bee_info.dart';
 import 'package:flutter/material.dart';
+import '../../model/theme.dart' as theme;
 
 class EditBeeInfo extends StatefulWidget {
   final BeeInfoModel beeInfo;
@@ -12,11 +13,6 @@ class EditBeeInfo extends StatefulWidget {
 
 class _EditBeeInfoState extends State<EditBeeInfo> {
   final DBBeeInfo getDB = DBBeeInfo();
-
-  Color mainColor = Colors.grey[900];
-  Color subColor = Colors.grey[50];
-  Color redColor = Colors.red[900];
-  String bgImage = 'bg.png';
 
   // capture input from TextField
   var nameController = TextEditingController();
@@ -43,13 +39,13 @@ class _EditBeeInfoState extends State<EditBeeInfo> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: mainColor,
+        backgroundColor: theme.mainColor,
       ),
       body: SafeArea(
         child: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
-            image: AssetImage('assets/$bgImage'),
+            image: AssetImage('assets/${theme.bgImage}'),
             fit: BoxFit
                 .cover, //zasłoni cały background, -> umiejscowienie image w bgc
           )),
@@ -65,23 +61,23 @@ class _EditBeeInfoState extends State<EditBeeInfo> {
                     ),
                     TextFormField(
                       style: TextStyle(
-                        color: subColor,
+                        color: theme.fontColor,
                         fontSize: 16.0,
                       ),
                       controller: nameController,
                       decoration: InputDecoration(
                         labelText: 'Nazwa',
-                        labelStyle: TextStyle(color: subColor),
+                        labelStyle: TextStyle(color: theme.fontColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.circular(20),
@@ -95,54 +91,55 @@ class _EditBeeInfoState extends State<EditBeeInfo> {
                     ),
                     TextFormField(
                       style: TextStyle(
-                        color: subColor,
+                        color: theme.fontColor,
                         fontSize: 16.0,
                       ),
                       controller: hivesNumberController,
                       decoration: InputDecoration(
                         labelText: 'Liczba uli',
-                        labelStyle: TextStyle(color: subColor),
+                        labelStyle: TextStyle(color: theme.fontColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      validator: (val) =>
-                          val.isEmpty ? 'Musisz dodać liczbę uli w pasiece!' : null,
+                      validator: (val) => val.isEmpty
+                          ? 'Musisz dodać liczbę uli w pasiece!'
+                          : null,
                     ),
                     SizedBox(
                       height: 20.0,
                     ),
                     TextFormField(
                       style: TextStyle(
-                        color: subColor,
+                        color: theme.fontColor,
                         fontSize: 16.0,
                       ),
                       keyboardType: TextInputType.number,
                       controller: yearController,
                       decoration: InputDecoration(
                         labelText: 'Rok powstania',
-                        labelStyle: TextStyle(color: subColor),
+                        labelStyle: TextStyle(color: theme.fontColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.circular(20),
@@ -157,23 +154,23 @@ class _EditBeeInfoState extends State<EditBeeInfo> {
                     ),
                     TextFormField(
                       style: TextStyle(
-                        color: subColor,
+                        color: theme.fontColor,
                         fontSize: 16.0,
                       ),
                       controller: beekeeperController,
                       decoration: InputDecoration(
                         labelText: 'Nazwisko pszczelarza',
-                        labelStyle: TextStyle(color: subColor),
+                        labelStyle: TextStyle(color: theme.fontColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.circular(20),
@@ -188,53 +185,54 @@ class _EditBeeInfoState extends State<EditBeeInfo> {
                     ),
                     TextFormField(
                       style: TextStyle(
-                        color: subColor,
+                        color: theme.fontColor,
                         fontSize: 16.0,
                       ),
                       controller: beekeeperNumberController,
                       decoration: InputDecoration(
                         labelText: 'Numer rejestracyjny pszczelarza',
-                        labelStyle: TextStyle(color: subColor),
+                        labelStyle: TextStyle(color: theme.fontColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      validator: (val) =>
-                          val.isEmpty ? 'Musisz dodać numer rejestracyjny pszczelarza!' : null,
+                      validator: (val) => val.isEmpty
+                          ? 'Musisz dodać numer rejestracyjny pszczelarza!'
+                          : null,
                     ),
                     SizedBox(
                       height: 20.0,
                     ),
                     TextFormField(
                       style: TextStyle(
-                        color: subColor,
+                        color: theme.fontColor,
                         fontSize: 16.0,
                       ),
                       controller: characterController,
                       decoration: InputDecoration(
                         labelText: 'Charakter hodowli pszczół',
-                        labelStyle: TextStyle(color: subColor),
+                        labelStyle: TextStyle(color: theme.fontColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.circular(20),
@@ -246,24 +244,24 @@ class _EditBeeInfoState extends State<EditBeeInfo> {
                     ),
                     TextFormField(
                       style: TextStyle(
-                        color: subColor,
+                        color: theme.fontColor,
                         fontSize: 16.0,
                       ),
                       keyboardType: TextInputType.number,
                       controller: districtController,
                       decoration: InputDecoration(
                         labelText: 'Nazwa obrębu ewidencyjnego',
-                        labelStyle: TextStyle(color: subColor),
+                        labelStyle: TextStyle(color: theme.fontColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.circular(20),
@@ -277,11 +275,11 @@ class _EditBeeInfoState extends State<EditBeeInfo> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         RaisedButton(
-                          color: redColor,
+                          color: theme.redColor,
                           child: Text(
                             'Zapisz',
                             style: TextStyle(
-                              color: subColor,
+                              color: theme.fontColor,
                               fontSize: 20.0,
                             ),
                           ),
@@ -289,16 +287,15 @@ class _EditBeeInfoState extends State<EditBeeInfo> {
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
                               beeInfo.name = nameController.text;
-                              beeInfo.hivesNumber = int.parse(hivesNumberController.text);
+                              beeInfo.hivesNumber =
+                                  int.parse(hivesNumberController.text);
                               beeInfo.year = int.parse(yearController.text);
-                              beeInfo.beekeeper =
-                                  beekeeperController.text;
-                              beeInfo.beekeeperNumber =
-                                  int.parse(beekeeperNumberController.text ?? '');
+                              beeInfo.beekeeper = beekeeperController.text;
+                              beeInfo.beekeeperNumber = int.parse(
+                                  beekeeperNumberController.text ?? '');
                               beeInfo.character =
                                   characterController.text ?? '';
-                              beeInfo.district =
-                                  districtController.text ?? '';
+                              beeInfo.district = districtController.text ?? '';
                               getDB.updateBeeInfo(beeInfo);
                               Navigator.pop(context);
                             }
@@ -308,11 +305,11 @@ class _EditBeeInfoState extends State<EditBeeInfo> {
                           width: 30.0,
                         ),
                         RaisedButton(
-                          color: redColor,
+                          color: theme.redColor,
                           child: Text(
                             'Usuń',
                             style: TextStyle(
-                              color: subColor,
+                              color: theme.fontColor,
                               fontSize: 20.0,
                             ),
                           ),

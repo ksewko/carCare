@@ -3,6 +3,7 @@ import 'package:carcare/model/weather/weather_model.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:hexagon/hexagon.dart';
+import '../model/theme.dart' as theme;
 
 class Home extends StatefulWidget {
   @override
@@ -19,20 +20,14 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    String bgImage = 'bg_bee.png';
-    Color bgColor = Colors.blue;
-    Color mainColor = Colors.orange[700];
-    Color subColor = Colors.yellow[200];
-    Color subColor2 = Colors.yellow[50];
-    Color subColor3 = Colors.yellow[100];
 
     return Scaffold(
       //ustanienie paska na górze aplikacji w zależności od dnia i nocy
-      backgroundColor: bgColor,
+      backgroundColor: theme.bgColor,
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Car Care'),
-        backgroundColor: mainColor,
+        title: Text('Bee happy', style: TextStyle(color: theme.fontColor)),
+        backgroundColor: theme.mainColor,
         elevation: 0.0,
       ),
       body: SafeArea(
@@ -40,7 +35,7 @@ class _HomeState extends State<Home> {
           child: Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-              image: AssetImage('assets/$bgImage'),
+              image: AssetImage('assets/${theme.bgImage}'),
               fit: BoxFit
                   .cover, //zasłoni cały background, -> umiejscowienie image w bgc
             )),
@@ -55,8 +50,6 @@ class _HomeState extends State<Home> {
                       decoration: BoxDecoration(
                           image: DecorationImage(
                         image: AssetImage('assets/logo.png'),
-                        fit: BoxFit
-                            .fill, //zasłoni cały background, -> umiejscowienie image w bgc
                       )),
                     ),
                   ),
@@ -76,7 +69,7 @@ class _HomeState extends State<Home> {
                                 '${((_response.tempInfo.temperature - 32) / 1.8).toStringAsFixed(1)}°C',
                                 style: TextStyle(
                                   fontSize: 40,
-                                  color: Colors.white,
+                                  color: theme.fontColor,
                                 ),
                               ),
                               Padding(
@@ -85,7 +78,7 @@ class _HomeState extends State<Home> {
                                   'Wilgotność ${_response.tempInfo.humidity}%',
                                   style: TextStyle(
                                     fontSize: 14,
-                                    color: Colors.white,
+                                    color: theme.fontColor,
                                   ),
                                 ),
                               )
@@ -99,7 +92,7 @@ class _HomeState extends State<Home> {
                               width: 120,
                               child: TextField(
                                   style: TextStyle(
-                                    color: Colors.white,
+                                    color: theme.fontColor,
                                     fontSize: 20.0,
                                   ),
                                   controller: _cityTextController,
@@ -107,7 +100,7 @@ class _HomeState extends State<Home> {
                                       labelText: 'Miasto',
                                       labelStyle: TextStyle(
                                         fontSize: 16.0,
-                                        color: Colors.white,
+                                        color: theme.fontColor,
                                       )),
                                   textAlign: TextAlign.center),
                             ),
@@ -115,9 +108,9 @@ class _HomeState extends State<Home> {
                               onPressed: _search,
                               child: Text(
                                 'Szukaj',
-                                style: TextStyle(color: mainColor),
+                                style: TextStyle(color: theme.fontColor),
                               ),
-                              color: subColor,
+                              color: theme.subColor,
                               shape: StadiumBorder(),
                             ),
                           ],
@@ -134,7 +127,7 @@ class _HomeState extends State<Home> {
                   children: <Widget>[
                     HexagonWidget.flat(
                       width: 150.0,
-                      color: subColor,
+                      color: theme.subColor,
                       child: FlatButton(
                         height: 150.0,
                         onPressed: () async {
@@ -145,7 +138,7 @@ class _HomeState extends State<Home> {
                           'Notatki',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              color: mainColor,
+                              color: theme.fontColor,
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold),
                         ),
@@ -154,7 +147,7 @@ class _HomeState extends State<Home> {
                     SizedBox(width: 20.0),
                     HexagonWidget.flat(
                       width: 150.0,
-                      color: subColor2,
+                      color: theme.subColor2,
                       child: FlatButton(
                         height: 150.0,
                         onPressed: () async {
@@ -164,7 +157,7 @@ class _HomeState extends State<Home> {
                         child: Text(
                           'Moja pasieka',
                           style: TextStyle(
-                              color: mainColor,
+                              color: theme.fontColor,
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold),
                         ),
@@ -178,7 +171,7 @@ class _HomeState extends State<Home> {
                   children: <Widget>[
                     HexagonWidget.flat(
                       width: 150.0,
-                      color: subColor3,
+                      color: theme.subColor3,
                       child: FlatButton(
                         height: 150.0,
                         onPressed: () async {
@@ -195,7 +188,7 @@ class _HomeState extends State<Home> {
                           'Normy Unijne',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              color: mainColor,
+                              color: theme.fontColor,
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold),
                         ),

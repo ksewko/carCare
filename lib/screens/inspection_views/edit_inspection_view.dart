@@ -1,6 +1,7 @@
 import 'package:carcare/model/inspection/db_inspection.dart';
 import 'package:carcare/model/inspection/inspection_model.dart';
 import 'package:flutter/material.dart';
+import '../../model/theme.dart' as theme;
 
 class EditInspection extends StatefulWidget {
   final InspectionModel inspection;
@@ -12,11 +13,6 @@ class EditInspection extends StatefulWidget {
 
 class _EditInspectionState extends State<EditInspection> {
   final DBInspection getDB = DBInspection();
-  String bgImage = 'bg_bee.png';
-  Color mainColor = Colors.orange[700];
-  Color subColor = Colors.yellow[200];
-  Color secondSubColor = Colors.yellow[50];
-  Color redColor = Colors.red[900];
 
   // capture input from TextField
   var nameController = TextEditingController();
@@ -34,14 +30,14 @@ class _EditInspectionState extends State<EditInspection> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: mainColor,
+        backgroundColor: theme.mainColor,
         centerTitle: true,
-        title: Text('Przegląd'),
+        title: Text('Przegląd' , style: TextStyle(color: theme.fontColor)),
       ),
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-          image: AssetImage('assets/$bgImage'),
+          image: AssetImage('assets/${theme.bgImage}'),
           fit: BoxFit
               .cover, //zasłoni cały background, -> umiejscowienie image w bgc
         )),
@@ -58,23 +54,23 @@ class _EditInspectionState extends State<EditInspection> {
                     ),
                     TextFormField(
                       style: TextStyle(
-                        color: subColor,
+                        color: theme.fontColor,
                         fontSize: 16.0,
                       ),
                       controller: nameController,
                       decoration: InputDecoration(
                         labelText: 'Nazwa przeglądu',
-                        labelStyle: TextStyle(color: subColor),
+                        labelStyle: TextStyle(color: theme.fontColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.circular(20),
@@ -88,23 +84,23 @@ class _EditInspectionState extends State<EditInspection> {
                     ),
                     TextFormField(
                       style: TextStyle(
-                        color: subColor,
+                        color: theme.fontColor,
                         fontSize: 16.0,
                       ),
                       controller: dateController,
                       decoration: InputDecoration(
                         labelText: 'Data przeglądu',
-                        labelStyle: TextStyle(color: subColor),
+                        labelStyle: TextStyle(color: theme.fontColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
                           borderSide: BorderSide(
-                            color: subColor,
+                            color:theme.fontColor,
                             width: 2.0,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.circular(20),
@@ -119,7 +115,7 @@ class _EditInspectionState extends State<EditInspection> {
                     ),
                     TextFormField(
                       style: TextStyle(
-                        color: subColor,
+                        color: theme.fontColor,
                         fontSize: 16.0,
                       ),
                       textInputAction: TextInputAction.next,
@@ -128,17 +124,17 @@ class _EditInspectionState extends State<EditInspection> {
                       controller: descController,
                       decoration: InputDecoration(
                         labelText: 'Opis',
-                        labelStyle: TextStyle(color: subColor),
+                        labelStyle: TextStyle(color: theme.fontColor),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: subColor,
+                            color: theme.fontColor,
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.circular(20),
@@ -152,11 +148,11 @@ class _EditInspectionState extends State<EditInspection> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         RaisedButton(
-                          color: redColor,
+                          color: theme.redColor,
                           child: Text(
                             'Zapisz',
                             style: TextStyle(
-                              color: subColor,
+                              color: theme.fontColor,
                               fontSize: 20.0,
                             ),
                           ),
@@ -165,7 +161,8 @@ class _EditInspectionState extends State<EditInspection> {
                             if (_formKey.currentState.validate()) {
                               inspection.name = nameController.text;
                               inspection.date = dateController.text;
-                              inspection.description = descController.text ?? '';
+                              inspection.description =
+                                  descController.text ?? '';
 
                               getDB.updateInspection(inspection);
                               Navigator.pop(context);
@@ -176,11 +173,11 @@ class _EditInspectionState extends State<EditInspection> {
                           width: 30.0,
                         ),
                         RaisedButton(
-                          color: redColor,
+                          color: theme.redColor,
                           child: Text(
                             'Usuń',
                             style: TextStyle(
-                              color: subColor,
+                              color: theme.fontColor,
                               fontSize: 20.0,
                             ),
                           ),
@@ -218,7 +215,8 @@ class _EditInspectionState extends State<EditInspection> {
                                               color: Colors.black),
                                         ),
                                         onPressed: () async {
-                                          await getDB.deleteInspection(inspection.id);
+                                          await getDB
+                                              .deleteInspection(inspection.id);
                                           Navigator.pop(context);
                                           Navigator.pop(context);
                                         },

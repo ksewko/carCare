@@ -4,6 +4,7 @@ import 'package:carcare/screens/inspection_views/add_inspection_view.dart';
 import 'package:carcare/screens/inspection_views/edit_inspection_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../model/theme.dart' as theme;
 
 class InspectionMain extends StatefulWidget {
   @override
@@ -12,11 +13,6 @@ class InspectionMain extends StatefulWidget {
 
 class _InspectionMainState extends State<InspectionMain> {
   List<InspectionModel> inspection;
-   String bgImage = 'bg_bee.png';
-  Color mainColor = Colors.orange[700];
-  Color subColor = Colors.yellow[200];
-  Color secondSubColor = Colors.yellow[50];
-  Color redColor = Colors.red[900];
 
   @override
   Widget build(BuildContext context) {
@@ -25,14 +21,14 @@ class _InspectionMainState extends State<InspectionMain> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Lista Przeglądów'),
-        backgroundColor: mainColor,
+        title: Text('Lista Przeglądów', style: TextStyle(color: theme.fontColor)),
+        backgroundColor: theme.mainColor,
       ),
       body: SafeArea(
         child: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
-            image: AssetImage('assets/$bgImage'),
+            image: AssetImage('assets/${theme.bgImage}'),
             fit: BoxFit
                 .cover, //zasłoni cały background, -> umiejscowienie image w bgc
           )),
@@ -52,12 +48,12 @@ class _InspectionMainState extends State<InspectionMain> {
                       child: ListTile(
                         leading: Icon(
                           Icons.construction_rounded,
-                          color: mainColor,
+                          color: theme.fontColor,
                         ),
                         title: Text(
                           inspection[index].name,
                           style: TextStyle(
-                            color: mainColor,
+                            color: theme.fontColor,
                             fontSize: 18.0,
                             fontWeight: FontWeight.bold,
                           ),
@@ -65,7 +61,7 @@ class _InspectionMainState extends State<InspectionMain> {
                         subtitle: Text(
                           (inspection[index].date),
                           style: TextStyle(
-                            color: subColor,
+                            color: theme.subColor,
                             fontSize: 14.0,
                             fontWeight: FontWeight.bold,
                           ),

@@ -4,6 +4,7 @@ import 'package:carcare/screens/bee_info_views/add_bee_info.dart';
 import 'package:carcare/screens/bee_info_views/edit_bee_info.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../model/theme.dart' as theme;
 
 class BeeInfoMain extends StatefulWidget {
   @override
@@ -12,10 +13,6 @@ class BeeInfoMain extends StatefulWidget {
 
 class _BeeInfoMainState extends State<BeeInfoMain> {
   List<BeeInfoModel> beeInfo;
-  String bgImage = 'bg_bee.png';
-  Color mainColor = Colors.orange[700];
-  Color subColor = Colors.yellow[200];
-  Color secondSubColor = Colors.yellow[50];
 
   @override
   Widget build(BuildContext context) {
@@ -24,14 +21,14 @@ class _BeeInfoMainState extends State<BeeInfoMain> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Podstawowe Informacje'),
-        backgroundColor: mainColor,
+        title: Text('Podstawowe Informacje', style: TextStyle(color: theme.fontColor)),
+        backgroundColor: theme.mainColor,
       ),
       body: SafeArea(
         child: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
-            image: AssetImage('assets/$bgImage'),
+            image: AssetImage('assets/${theme.bgImage}'),
             fit: BoxFit.cover,
           )),
           child: FutureBuilder(
@@ -47,18 +44,18 @@ class _BeeInfoMainState extends State<BeeInfoMain> {
                         children: [
                           Card(
                             // color: Theme.of(context).primaryColorLight,
-                            color: secondSubColor,
+                            color: theme.subColor2,
                             elevation: 6.0,
                             shape: StadiumBorder(),
                             child: ListTile(
                               leading: Icon(
                                 Icons.label_important,
-                                color: mainColor,
+                                color: theme.fontColor,
                               ),
                               title: Text(
                                 'Nazwa: ',
                                 style: TextStyle(
-                                  color: mainColor,
+                                  color: theme.fontColor,
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -76,18 +73,18 @@ class _BeeInfoMainState extends State<BeeInfoMain> {
                           SizedBox(height: 10.0),
                           Card(
                             // color: Theme.of(context).primaryColorLight,
-                            color: secondSubColor,
+                            color: theme.subColor2,
                             elevation: 6.0,
                             shape: StadiumBorder(),
                             child: ListTile(
                               leading: Icon(
                                 Icons.label_important,
-                                color: mainColor,
+                                color: theme.fontColor,
                               ),
                               title: Text(
                                 'Liczba uli: ',
                                 style: TextStyle(
-                                  color: mainColor,
+                                  color: theme.fontColor,
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -105,18 +102,18 @@ class _BeeInfoMainState extends State<BeeInfoMain> {
                           SizedBox(height: 10.0),
                           Card(
                             // color: Theme.of(context).primaryColorLight,
-                            color:secondSubColor,
+                            color: theme.subColor2,
                             elevation: 6.0,
                             shape: StadiumBorder(),
                             child: ListTile(
                               leading: Icon(
                                 Icons.label_important,
-                                color: mainColor,
+                                color: theme.fontColor,
                               ),
                               title: Text(
                                 'Rok powstania: ',
                                 style: TextStyle(
-                                  color: mainColor,
+                                  color: theme.fontColor,
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -134,18 +131,18 @@ class _BeeInfoMainState extends State<BeeInfoMain> {
                           SizedBox(height: 10.0),
                           Card(
                             // color: Theme.of(context).primaryColorLight,
-                            color: secondSubColor,
+                            color: theme.subColor2,
                             elevation: 6.0,
                             shape: StadiumBorder(),
                             child: ListTile(
                               leading: Icon(
                                 Icons.label_important,
-                                color: mainColor,
+                                color: theme.fontColor,
                               ),
                               title: Text(
                                 'Nzwisko pszczelarza: ',
                                 style: TextStyle(
-                                  color: mainColor,
+                                  color: theme.fontColor,
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -163,18 +160,18 @@ class _BeeInfoMainState extends State<BeeInfoMain> {
                           SizedBox(height: 10.0),
                           Card(
                             // color: Theme.of(context).primaryColorLight,
-                            color: secondSubColor,
+                            color: theme.subColor2,
                             elevation: 6.0,
                             shape: StadiumBorder(),
                             child: ListTile(
                               leading: Icon(
                                 Icons.label_important,
-                                color: mainColor,
+                                color: theme.fontColor,
                               ),
                               title: Text(
                                 'Numer rejestracyjny pszczelarza: ',
                                 style: TextStyle(
-                                  color: mainColor,
+                                  color: theme.fontColor,
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -192,18 +189,18 @@ class _BeeInfoMainState extends State<BeeInfoMain> {
                           SizedBox(height: 10.0),
                           Card(
                             // color: Theme.of(context).primaryColorLight,
-                            color: secondSubColor,
+                            color: theme.subColor2,
                             elevation: 6.0,
                             shape: StadiumBorder(),
                             child: ListTile(
                               leading: Icon(
                                 Icons.label_important,
-                                color: mainColor,
+                                color: theme.fontColor,
                               ),
                               title: Text(
                                 'Charakter hodowli pszczół: ',
                                 style: TextStyle(
-                                  color: mainColor,
+                                  color: theme.fontColor,
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -221,18 +218,18 @@ class _BeeInfoMainState extends State<BeeInfoMain> {
                           SizedBox(height: 10.0),
                           Card(
                             // color: Theme.of(context).primaryColorLight,
-                            color: secondSubColor,
+                            color: theme.subColor2,
                             elevation: 6.0,
                             shape: StadiumBorder(),
                             child: ListTile(
                               leading: Icon(
                                 Icons.label_important,
-                                color: mainColor,
+                                color: theme.fontColor,
                               ),
                               title: Text(
                                 'Nazwa obrębu ewidencyjnego: ',
                                 style: TextStyle(
-                                  color: mainColor,
+                                  color: theme.fontColor,
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -263,7 +260,7 @@ class _BeeInfoMainState extends State<BeeInfoMain> {
       floatingActionButton: FloatingActionButton(
         child: Icon(
           Icons.edit,
-          color: subColor,
+          color: theme.subColor,
         ),
         onPressed: () {
           if (beeInfo.length == 0) {
