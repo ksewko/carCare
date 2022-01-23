@@ -6,6 +6,7 @@ import 'package:carcare/model/photos/db_photos_provider.dart';
 import 'package:carcare/screens/bee_info_views/bee_info_view.dart';
 import 'package:carcare/screens/families_views/familiy_view.dart';
 import 'package:carcare/screens/hive_views/hive_main_view.dart';
+import 'package:carcare/screens/home.dart';
 import 'package:carcare/screens/honey_views/honey_view.dart';
 import 'package:carcare/screens/inspection_views/inspection_view.dart';
 import 'package:carcare/screens/location_view/add_location_view.dart';
@@ -15,7 +16,6 @@ import 'package:carcare/screens/photos_views/add_photos_view.dart';
 import 'package:carcare/screens/photos_views/photos_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:carcare/screens/splash_screen.dart';
 
 import 'model/bee_info/db_bee_info.dart';
 
@@ -39,8 +39,7 @@ class MovieRental extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Bee happy',
-        // theme: MyTheme().buildTheme(),
-        home: SplashScreen(),
+        home: Home(),
         routes: {
           '/hive': (context) => HiveView(),
           '/beeinfo': (context) => BeeInfoMain(),
